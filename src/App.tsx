@@ -1,25 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+
+// imports regarding State
+import { addActiveTodo } from './features/ActiveTodosSlice';
+import { RootState } from './app/store';
+
+// Components and Routes import:
+import HomeRoute from './Routes/home';
+import ErrorPage from './Routes/ErrorPage';
+import Navbar from './components/Navbar';
 
 function App() {
+  const activeTodos = useSelector((state: RootState) => state.activeTodos.value)
+  const dispatch = useDispatch();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Navbar />}>
+          <Route index element={<HomeRoute /> } />
+          <Route path='*' element={<ErrorPage />} />
+        </Route>
+      </Routes>
+  </BrowserRouter>
   );
 }
 

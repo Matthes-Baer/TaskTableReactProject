@@ -1,0 +1,6 @@
+@mixin gridContainerMixin ($columnAmount, $columnWidth, $rowAmount, $rowheight) {
+    display: grid;
+    grid-template-columns: repeat($columnAmount, $columnWidth);
+    grid-template-rows: repeat($rowAmount, $rowheight);
+    gap: 20px;
+}
