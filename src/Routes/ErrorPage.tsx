@@ -13,7 +13,7 @@ import caveWithRocks from '../images/caveWithRocks.png';
 
 
 
-import { useGetRandomQuoteQuery } from "../APIs/QuoteAPI";
+// import { useGetRandomQuoteQuery } from "../APIs/QuoteAPI";
 
 type APIDataType =  string | null
 
