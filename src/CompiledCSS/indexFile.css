@@ -38,6 +38,10 @@
   color: #eeeeee;
 }
 
+button, input {
+  color: #393e46;
+}
+
 body {
   margin: 0;
   font-family: "Kdam Thmor Pro", sans-serif !important;
@@ -64,6 +68,10 @@ a {
 }
 .navbarMainContainer > a {
   padding: 10px;
+}
+
+.homePageMainContainer {
+  background-color: #222831;
 }
 
 .errorPageMainContainer {

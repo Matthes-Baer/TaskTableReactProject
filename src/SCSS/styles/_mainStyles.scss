@@ -5,6 +5,10 @@
     color: $fourthColor;
 }
 
+button, input {
+    color: $secondColor
+}
+
 body {
     margin: 0;
     font-family: 'Kdam Thmor Pro', sans-serif !important;
@@ -35,6 +39,12 @@ a {
         & > a {
             padding: 10px;
         }
+    }
+}
+
+.homePage {
+    &MainContainer {
+        background-color: $firstColor;
     }
 }
 
