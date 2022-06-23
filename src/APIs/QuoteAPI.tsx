@@ -1,28 +1,30 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import React from "react";
 
-const baseUrl = "https://quotes15.p.rapidapi.com/quotes";
-const headers = {
-    'X-RapidAPI-Key': 'f03d3be43bmshff8818da5afed13p10b09bjsna4194941df1b',
-    'X-RapidAPI-Host': 'quotes15.p.rapidapi.com'
-  };
-const params = { language_code: 'de' }
+// import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-type URL = string;
+// const baseUrl = "https://quotes15.p.rapidapi.com/quotes";
+// const headers = {
+//     'X-RapidAPI-Key': 'x',
+//     'X-RapidAPI-Host': 'quotes15.p.rapidapi.com'
+//   };
+// const params = { language_code: 'de' }
 
-const request = (url: URL) => ({
-    url,
-    headers: headers,
-    params: params
-    });
+// type URL = string;
 
-export const QuoteAPI = createApi({
-    reducerPath: 'quoteAPI',
-    baseQuery: fetchBaseQuery({baseUrl}),
-    endpoints: (builder) => ({
-        getRandomQuote: builder.query({
-            query: () => request('/random/')
-        })
-    })
-})
+// const request = (url: URL) => ({
+//     url,
+//     headers: headers,
+//     params: params
+//     });
 
-export const { useGetRandomQuoteQuery } = QuoteAPI;
+// export const QuoteAPI = createApi({
+//     reducerPath: 'quoteAPI',
+//     baseQuery: fetchBaseQuery({baseUrl}),
+//     endpoints: (builder) => ({
+//         getRandomQuote: builder.query({
+//             query: () => request('/random/')
+//         })
+//     })
+// })
+
+// export const { useGetRandomQuoteQuery } = QuoteAPI;

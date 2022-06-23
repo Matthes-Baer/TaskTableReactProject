@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { DoughnutChartComp } from "../charts/doughnutChart";
+// import { DoughnutChartComp } from "../charts/doughnutChart";
 import { useDispatch, useSelector } from "react-redux";
 import { addActiveTodo } from "../features/ActiveTodosSlice";
 
 import ReactMarkdown from 'react-markdown'
 
-import { useGet5DayForecastQuery } from '../APIs/WeatherApi';
+// import { useGet5DayForecastQuery } from '../APIs/WeatherApi';
 import { RootState } from "../app/store";
 
 import Checkbox from "../components/Checkbox";
@@ -32,7 +32,7 @@ const HomeRoute = () => {
         { name: "important", checked: false },
     ]);
 
-    const {data, error, isFetching} = useGet5DayForecastQuery(null);
+    // const {data, error, isFetching} = useGet5DayForecastQuery(null);
 
     const updateCheckStatus = (index: number) => {
         setBadges(
@@ -101,7 +101,7 @@ const HomeRoute = () => {
             </div>
 
                 <button onClick={dispatchAddFunction}>CLICK HERE HEY</button>
-            <DoughnutChartComp />
+            {/* <DoughnutChartComp /> */}
 
             
         </div>

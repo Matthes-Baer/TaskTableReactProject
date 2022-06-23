@@ -3,19 +3,19 @@ import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import { ActiveTodosSlice } from '../features/ActiveTodosSlice';
 
 // APIs:
-import { QuoteAPI } from "../APIs/QuoteAPI";
-import { WeatherApi } from '../APIs/WeatherApi';
+// import { QuoteAPI } from "../APIs/QuoteAPI";
+// import { WeatherApi } from '../APIs/WeatherApi';
 
 
 export const store = configureStore({
     reducer: {
         activeTodos: ActiveTodosSlice.reducer,
-        quoteAPI: QuoteAPI.reducer,
-        WeatherApi: WeatherApi.reducer,
+        // quoteAPI: QuoteAPI.reducer,
+        // WeatherApi: WeatherApi.reducer,
     },
     // Adding the api middleware enables caching, invalidation, polling,
     // and other useful features of `rtk-query`.
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(QuoteAPI.middleware)
+    // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(QuoteAPI.middleware)
 })
 
 export type RootState = ReturnType<typeof store.getState>;
