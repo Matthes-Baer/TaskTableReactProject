@@ -1,15 +1,10 @@
 import React, { useEffect, useState } from "react";
-// import { DoughnutChartComp } from "../charts/doughnutChart";
 import { useDispatch, useSelector } from "react-redux";
 import { addActiveTodo } from "../features/ActiveTodosSlice";
 
-import ReactMarkdown from 'react-markdown'
-
-// import { useGet5DayForecastQuery } from '../APIs/WeatherApi';
 import { RootState } from "../app/store";
 
 import Checkbox from "../components/Checkbox";
-import { iteratorSymbol } from "immer/dist/internal";
 
 interface badgeInterface {
     singleBadge: {
@@ -31,8 +26,6 @@ const HomeRoute = () => {
         { name: "feature", checked: false },
         { name: "important", checked: false },
     ]);
-
-    // const {data, error, isFetching} = useGet5DayForecastQuery(null);
 
     const updateCheckStatus = (index: number) => {
         setBadges(
@@ -57,17 +50,8 @@ const HomeRoute = () => {
 
 
     return (
-        <div style={{backgroundColor: 'black'}}>
-            {/* {error ? (
-                <>Error</>
-            ) : isFetching ? (
-                <>Loading</>
-            ) : data ? (
-                <div>{specific(1)} +++++++ {showAllDataFrom('rh')}</div>
-
-            ) : null} */}
-
-            <div style={{color: 'black'}}>
+        <div className="homePageMainContainer">
+            <div>
                 {badges.map((badge, idx) => {
                     return (
                         <Checkbox 
@@ -86,15 +70,28 @@ const HomeRoute = () => {
             <div>
                 <input type="textarea" placeholder="comment for todo" value={comment} onChange={(e) => setComment(e.target.value)}/>
             </div>
-
-            <p>
-                <pre>{JSON.stringify(badges, null, 2)}</pre>
-            </p>
-            <div>
+            <div className="container text-center" style={{width: '500px'}}>
                 {todoState && todoState.map((item, idx) => {
                     return(
-                        <div key={idx}>
-                            {`id: ${item.id}, title: ${item.title}, ${item.badges?.map(item => `${item.name} ${item.checked}`)}, comment: ${item.comment} `}
+                        <div key={item.id} className="row bg-primary p-2">
+                            <div className="col-lg-12 p-1">
+                                <h3>{item.title}</h3>
+                            </div>
+                            <div className="col-lg-12 p-1">
+                                {item.comment ? <span>{item.comment}</span> : <span>Kein Kommentar hinzugefügt</span>}
+                            </div>
+                            <div className="col-lg-12 p-1">
+                                {item.badges?.map(element => {
+                                    if (element.name === 'todo') {
+                                        return <span className="p-2">Todo-Eintrag</span>
+                                    }
+                                    else if (element.name === 'feature') {
+                                        return <span className="p-2">Feature-Eintrag</span>
+                                    }
+                                    else if (element.name === 'important'){
+                                        return <span className="p-2">Important-Eintrag</span>
+                                    }})}
+                            </div>
                         </div>
                     )
                 })}
