@@ -1,33 +1,33 @@
 import React from "react";
 
-// import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 
-// const baseUrl = "https://weatherbit-v1-mashape.p.rapidapi.com";
+const baseUrl = "https://weatherbit-v1-mashape.p.rapidapi.com";
 
-// const header = {
-//     'X-RapidAPI-Key': 'x',
-//     'X-RapidAPI-Host': 'weatherbit-v1-mashape.p.rapidapi.com'
-//   }
+const header = {
+    'X-RapidAPI-Key': process.env.REACT_APP_API_KEY,
+    'X-RapidAPI-Host': 'weatherbit-v1-mashape.p.rapidapi.com'
+  }
 
-// const param = {
-//     lat: '54.32', 
-//     lon: '10.12'
-// }
+const param = {
+    lat: '54.32', 
+    lon: '10.12'
+}
 
-// const request = (url: string) => ({
-//     url,
-//     headers: header,
-//     params: param
-// });
+const request = (url: string) => ({
+    url,
+    headers: header,
+    params: param
+});
 
-// export const WeatherApi = createApi({
-//     reducerPath: 'WeatherApi',
-//     baseQuery: fetchBaseQuery({ baseUrl }),
-//     endpoints: (builder) => ({
-//         get5DayForecast: builder.query({
-//             query: () => request(`/forecast/3hourly`)
-//         })
-//     })});
+export const WeatherApi = createApi({
+    reducerPath: 'WeatherApi',
+    baseQuery: fetchBaseQuery({ baseUrl }),
+    endpoints: (builder) => ({
+        get5DayForecast: builder.query({
+            query: () => request(`/forecast/3hourly`)
+        })
+    })});
 
-//     export const { useGet5DayForecastQuery } = WeatherApi;
+    export const { useGet5DayForecastQuery } = WeatherApi;
