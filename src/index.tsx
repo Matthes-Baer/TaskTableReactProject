@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 // Save every now and then after compiling if it doesn't update
-import './CompiledCSS/indexFile.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
 import App from './App';
