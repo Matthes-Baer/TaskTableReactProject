@@ -7,6 +7,7 @@ import { RootState } from "../app/store";
 import Checkbox from "../components/Checkbox";
 import SideBar from '../components/SideBar';
 import HeaderElement from '../components/HeaderElement';
+import TodoTaskContainer from '../components/TodoTaskContainer'
 
 interface badgeInterface {
     singleBadge: {
@@ -16,7 +17,7 @@ interface badgeInterface {
 }
 
 const HomeRoute = () => {
-
+    const dispatch = useDispatch();
     const [todoId, setTodoId] = useState(1);
     const [todo, setTodo] = useState("");
     const [loading, setLoading] = useState(false);
@@ -42,8 +43,7 @@ const HomeRoute = () => {
       fetchTodo();
     }, []);
 
-    const todoState = useSelector((state: RootState) => state.activeTodos.value)
-    const dispatch = useDispatch();
+    
 
     const [id, setId] = useState<number>(0);
     const [title, setTitle] = useState<string>("");
@@ -79,7 +79,7 @@ const HomeRoute = () => {
 
     return (
         <div className="container-fluid d-flex justify-content-center align-items-center" style={mainContainer}>
-            <div style={innerContainer} className="d-flex justify-content-center row">
+            <div style={innerContainer} className="d-flex justify-content-evenly row">
                 
             
             <div style={headerElement} className="col-lg-12 d-flex align-items-center">
@@ -88,53 +88,44 @@ const HomeRoute = () => {
 
   
 
-            <div className="col-lg-8 d-flex align-items-center row">
-                <div className="col-lg-6 bg-primary">
-                <div>
-                    {badges.map((badge, idx) => {
-                        return (
-                            <Checkbox 
-                                key={badge.name}
-                                isChecked={badge.checked}
-                                label={badge.name}
-                                checkHandler={() => updateCheckStatus(idx)}
-                                index={idx}
-                            />
-                        )
-                    })}
-                </div>
-            <div>
-                <input type="text" placeholder="title for todo" value={title} onChange={(e) => setTitle(e.target.value)}/>
-            </div>
-            <div>
-                <input type="textarea" placeholder="comment for todo" value={comment} onChange={(e) => setComment(e.target.value)}/>
-            </div>
-            <div className="container text-center" style={{width: '500px'}}>
-                {todoState && todoState.map((item, idx) => {
-                    return(
-                        <div key={item.id} className="row bg-primary p-2">
-                            <div className="col-lg-12 p-1">
-                                <h3>{item.title}</h3>
-                            </div>
-                            <div className="col-lg-12 p-1">
-                                {item.comment ? <span>{item.comment}</span> : <span>Kein Kommentar hinzugefügt</span>}
-                            </div>
-                            <div className="col-lg-12 p-1">
-                                {item.badges?.map(element => {
-                                    if (element.name === 'todo') {
-                                        return <span className="p-2">Todo-Eintrag</span>
-                                    }
-                                    else if (element.name === 'feature') {
-                                        return <span className="p-2">Feature-Eintrag</span>
-                                    }
-                                    else if (element.name === 'important'){
-                                        return <span className="p-2">Important-Eintrag</span>
-                                    }})}
-                            </div>
+            <div className="container row col-lg-8 d-flex align-items-center justify-content-center mt-5 mb-5">
+                <div className="col-lg-6 rounded" style={{backgroundColor: '#B6CCFE'}}>
+
+                <div className="row p-4 d-flex justify-content-center align-items-center">
+                    <input className="p-1 m-1 col-lg-5" type="text" placeholder="title for todo" value={title} onChange={(e) => setTitle(e.target.value)} />
+                    <input className="p-1 m-1 col-lg-5" type="textarea" placeholder="comment for todo" value={comment} onChange={(e) => setComment(e.target.value)} />
+                    <div className="col-lg-12 row d-flex justify-content-center align-items-center">
+                        <div style={{maxWidth: '200px', border: '1px solid black'}}>
+                            <h4>Badges:</h4>
+                            {badges.map((badge, idx) => {
+                                return ( 
+                                    <Checkbox 
+                                        key={badge.name}
+                                        isChecked={badge.checked}
+                                        label={badge.name}
+                                        checkHandler={() => updateCheckStatus(idx)}
+                                        index={idx}
+                                    />
+                                )  
+                            })}
                         </div>
-                    )
-                })}
-            </div>
+                    </div>
+                </div>
+                <div>
+                   <TodoTaskContainer />
+
+                </div>
+
+                
+
+
+            
+
+
+          
+
+
+          
 
                 </div>
 
@@ -148,11 +139,11 @@ const HomeRoute = () => {
 
           
 
-                <button onClick={dispatchAddFunction}>CLICK HERE HEY</button>
+                <button className="mt-5" onClick={dispatchAddFunction}>CLICK HERE HEY</button>
 
             </div>
 
-            <div className="col-lg-4" style={sideBar}>
+            <div className="col-lg-2 mt-5 mb-5" style={sideBar}>
                 <SideBar />
             </div>
         
@@ -163,29 +154,29 @@ const HomeRoute = () => {
 }
 
 const mainContainer = {
-    backgroundColor: '#757a79',
-    height: '100vh'
+    backgroundColor: '#EDF2FB',
+    minHeight: '100vh'
 }
 
 const innerContainer = {
-    backgroundColor: '#aeccc6',
-    height: '75vh',
+    backgroundColor: '#D7E3FC',
+    maxHeight: '90vh',
     width: '75vw',
-    outline: '40px solid #9ba6a5',
-    borderRadius: '10px'
+    outline: '40px solid #E2EAFC',
+    borderRadius: '20px'
 }
 
 const headerElement = {
-    backgroundColor: '#757a79',
+    backgroundColor: '#B6CCFE',
     height: '100px',
-    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)'
+    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
 }
-
-
 
 const sideBar = {
     height: '500px',
-    backgroundColor: 'green'
+    backgroundColor: '#B6CCFE'
 }
+
+
 
 export default HomeRoute;

@@ -14,9 +14,10 @@ const HeaderElement = ():JSX.Element => {
 const sideEffect = {
     width: '10px',
     height: 'auto',
-    backgroundColor: '#bbe9db',
+    backgroundColor: '#CCDBFD',
     borderRadius: '10px 0 0 10px',
-    marginRight: '10px'
+    marginRight: '10px',
+    border: '2px solid black'
 }
 
 export default HeaderElement;
