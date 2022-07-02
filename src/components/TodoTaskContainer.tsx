@@ -5,7 +5,7 @@ import { RootState } from "../app/store";
 import homeworkIcon from '../images/homework icon.png'
 import timeIcon from '../images/time icon.png'
 
-
+import "../CSS.css";
 
 interface propsInterface {
     mainTime: number
@@ -66,8 +66,9 @@ const TodoTaskContainer = (props:propsInterface): JSX.Element => {
 }
 
 const singleTodoTask = {
-    border: '2px solid #ABC4FF',
+    border: '1px solid #ABC4FF',
     backgroundColor: '#CCDBFD',
+    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)'
 }
 
 const iconStyle = {

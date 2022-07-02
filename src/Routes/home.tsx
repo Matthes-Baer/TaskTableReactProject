@@ -4,7 +4,7 @@ import { addActiveTodo } from "../features/ActiveTodosSlice";
 import { RootState } from "../app/store";
 
 
-
+import { changeColorTheme } from "../features/ColorSlice";
 
 // Components:
 import Checkbox from "../components/Checkbox";
@@ -26,12 +26,43 @@ interface badgeInterface {
 // akzent: #ff7070
 
 const HomeRoute = () => {
-
-
-
-
-
+    const colorTheme = useSelector((state: RootState) => state.colorTheme.colorBoolean);
     const dispatch = useDispatch();
+
+    // const [colorTheme, setColorTheme] = useState(JSON.parse(localStorage.getItem('color') || `{}`))
+
+    const changer = () => {
+        if (colorTheme) {
+            localStorage.setItem('color', JSON.stringify(false));
+        }
+        else {
+            localStorage.setItem('color', JSON.stringify(true))
+        }
+        dispatch(changeColorTheme(JSON.parse(localStorage.getItem('color') || "{}")))
+
+        // localStorage.clear();
+    }
+    
+    const mainContainer = {
+        backgroundColor: colorTheme ? '#001233' : '#EDF2FB',
+        minHeight: '100vh'
+    };
+
+    const innerContainer = {
+        backgroundColor: colorTheme ? '#023E7D' : '#D7E3FC',
+        maxHeight: '90vh',
+        width: '75vw',
+        outline: colorTheme ? '40px solid #002855' : '40px solid #E2EAFC',
+        borderRadius: '20px'
+    };
+
+    const sideBar = {
+        height: '500px',
+        backgroundColor: '#B6CCFE'
+    };
+
+
+   
     const [todoId, setTodoId] = useState(1);
     const [todo, setTodo] = useState("");
     const [loading, setLoading] = useState(false);
@@ -102,7 +133,7 @@ const HomeRoute = () => {
         }
       };
 
-
+      
 
 
     return (
@@ -169,11 +200,14 @@ const HomeRoute = () => {
           
 
                 <button className="mt-5" onClick={dispatchAddFunction}>CLICK HERE HEY</button>
+                <button onClick={() => localStorage.clear}>CLEAR HERE</button>
+                <button onClick={changer}>CHANGER HERE</button>
 
             </div>
 
             <div className="col-lg-2 mt-5 mb-5" style={sideBar}>
                 <SideBar />
+                
             </div>
         
             </div>
@@ -182,25 +216,6 @@ const HomeRoute = () => {
     )
 }
 
-const mainContainer = {
-    backgroundColor: '#EDF2FB',
-    minHeight: '100vh'
-}
-
-const innerContainer = {
-    backgroundColor: '#D7E3FC',
-    maxHeight: '90vh',
-    width: '75vw',
-    outline: '40px solid #E2EAFC',
-    borderRadius: '20px'
-}
-
-
-
-const sideBar = {
-    height: '500px',
-    backgroundColor: '#B6CCFE'
-}
 
 
 
