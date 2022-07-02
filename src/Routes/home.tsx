@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { addActiveTodo } from "../features/ActiveTodosSlice";
 import { RootState } from "../app/store";
 
+
+
+
 // Components:
 import Checkbox from "../components/Checkbox";
 import SideBar from '../components/SideBar';
@@ -23,6 +26,11 @@ interface badgeInterface {
 // akzent: #ff7070
 
 const HomeRoute = () => {
+
+
+
+
+
     const dispatch = useDispatch();
     const [todoId, setTodoId] = useState(1);
     const [todo, setTodo] = useState("");
