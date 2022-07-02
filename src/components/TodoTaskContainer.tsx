@@ -1,10 +1,15 @@
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../app/store";
 
 import homeworkIcon from '../images/homework icon.png'
 import timeIcon from '../images/time icon.png'
 
-const TodoTaskContainer = (): JSX.Element => {
+interface propsInterface {
+    mainTime: number
+}
+
+const TodoTaskContainer = (props:propsInterface): JSX.Element => {
     const todoState = useSelector((state: RootState) => state.activeTodos.value);
     const dispatch = useDispatch();
 
@@ -24,22 +29,32 @@ const TodoTaskContainer = (): JSX.Element => {
                             <div className="col-lg-8 p-1">
                                 {item.comment ? <span>{item.comment}</span> : <span>Kein Kommentar hinzugefügt</span>}
                             </div>
-
-                            <div className="col-lg-12 d-flex justify-content-center align-items-center">
-                                {item.badges?.map(element => {
-                                    if (element.name === 'todo') {
-                                        return <><div style={{width: '15px', height: '15px', backgroundColor: 'red' }} className='rounded'></div><img src={homeworkIcon} style={iconStyle} /></>
-                                    }
-                                    else if (element.name === 'feature') {
-                                        return <><div style={{width: '15px', height: '15px', backgroundColor: 'green'}} className='rounded'></div><img src={timeIcon} style={iconStyle} /></>
-                                    }
-                                    else if (element.name === 'important'){
-                                        return <span className="p-2">Important-Eintrag</span>
-                                    }})}
-                            </div>
+                                <div className="row d-flex justify-content-center">
+                                    {item.badges?.map(element => {
+                                        if (element.name === 'todo') {
+                                            return <div className="col-sm-4"><img src={homeworkIcon} style={iconStyle} /></div>
+                                        }
+                                        else if (element.name === 'feature') {
+                                            return <div className="col-sm-4"><img src={timeIcon} style={iconStyle} /></div>
+                                        }
+                                        else if (element.name === 'important'){
+                                            return <div className="col-sm-4"><img src={timeIcon} style={iconStyle} /></div>
+                                        }})}
+                                </div>
+                                <div className="container-fluid d-flex justify-content-end align-items-center">
+                                       {(props.mainTime - item.time) > 60 
+                                       ? `${Math.round((props.mainTime - item.time) / 60)} hour/s ago` 
+                                       : `${Math.round(props.mainTime - item.time)} minute/s ago` 
+                                       }
+                                       
+                                       
+                                </div>
+                            
                         </div>
+                        
                     )
                 })}
+                
             </div>
         </>
     )    
@@ -53,6 +68,8 @@ const singleTodoTask = {
 const iconStyle = {
     transform: 'scale(0.5)',
 }
+
+
 
 
 export default TodoTaskContainer;

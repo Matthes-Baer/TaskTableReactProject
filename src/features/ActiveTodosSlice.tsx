@@ -5,10 +5,11 @@ interface activeTodoArrayInterface {
 }
 
 interface activeTodoInterface {
-    id: number;
-    title: string;
-    badges?: {name: string, checked: boolean}[];
-    comment?: string;
+    id: number
+    title: string
+    badges?: {name: string, checked: boolean}[]
+    comment?: string
+    time: number
 }
 
 const initialState: activeTodoArrayInterface = {

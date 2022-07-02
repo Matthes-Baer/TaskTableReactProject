@@ -16,11 +16,18 @@ interface badgeInterface {
     }[]
 }
 
+// COLORS:
+// https://coolors.co/palette/edf2fb-e2eafc-d7e3fc-ccdbfd-c1d3fe-b6ccfe-abc4ff
+// green: #7bf1a8
+// red: #ee6055
+// akzent: #ff7070
+
 const HomeRoute = () => {
     const dispatch = useDispatch();
     const [todoId, setTodoId] = useState(1);
     const [todo, setTodo] = useState("");
     const [loading, setLoading] = useState(false);
+    const [mainTime, setMainTime] = useState<number>(new Date().getTime() / 1000 / 60);
   
     function getNewTodo() {
       setTodoId((todoId) => (todoId === 20 ? 1 : todoId + 1));
@@ -66,7 +73,11 @@ const HomeRoute = () => {
       }
 
       const dispatchAddFunction = () => {
-        dispatch(addActiveTodo({ id: id, title: title, badges: badges.filter(item => item.checked), comment: comment}));
+        if (title && comment.length < 50) {
+
+        
+
+        setMainTime(new Date().getTime() / 1000 / 60)
         setId(prevState => prevState + 1);
         setTitle("");
         setComment("")
@@ -74,17 +85,26 @@ const HomeRoute = () => {
             badges.map(badge => {
                 return { ...badge , checked: false }
             }));
+
+            dispatch(addActiveTodo({ id: id, title: title, badges: badges.filter(item => item.checked), comment: comment, time: new Date().getTime() / 1000 / 60}));
+
+        }
+        else {
+            alert('Fehler: Titel fehlt, oder Kommentar übersteigt 50 Zeichen.')
+        }
       };
-   
+
+
+
 
     return (
         <div className="container-fluid d-flex justify-content-center align-items-center" style={mainContainer}>
             <div style={innerContainer} className="d-flex justify-content-evenly row">
                 
             
-            <div style={headerElement} className="col-lg-12 d-flex align-items-center">
+ 
                 <HeaderElement />
-            </div>
+        
 
   
 
@@ -93,7 +113,8 @@ const HomeRoute = () => {
 
                 <div className="row p-4 d-flex justify-content-center align-items-center">
                     <input className="p-1 m-1 col-lg-5" type="text" placeholder="title for todo" value={title} onChange={(e) => setTitle(e.target.value)} />
-                    <input className="p-1 m-1 col-lg-5" type="textarea" placeholder="comment for todo" value={comment} onChange={(e) => setComment(e.target.value)} />
+                    <input className="p-1 m-1 col-lg-5" type="text" placeholder="comment for todo" value={comment} onChange={(e) => setComment(e.target.value)} />
+                    {comment.length}
                     <div className="col-lg-12 row d-flex justify-content-center align-items-center">
                         <div style={{maxWidth: '200px', border: '1px solid black'}}>
                             <h4>Badges:</h4>
@@ -112,8 +133,8 @@ const HomeRoute = () => {
                     </div>
                 </div>
                 <div>
-                   <TodoTaskContainer />
-
+                   <TodoTaskContainer mainTime={mainTime}/>
+                   <button onClick={() => setMainTime(new Date().getTime() / 1000 / 60)}>UPDATE ALL TIMER</button>         
                 </div>
 
                 
@@ -166,11 +187,7 @@ const innerContainer = {
     borderRadius: '20px'
 }
 
-const headerElement = {
-    backgroundColor: '#B6CCFE',
-    height: '100px',
-    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
-}
+
 
 const sideBar = {
     height: '500px',
