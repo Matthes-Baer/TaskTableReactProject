@@ -5,10 +5,13 @@ import { RootState } from "../app/store";
 import homeworkIcon from '../images/homework icon.png'
 import timeIcon from '../images/time icon.png'
 
+import { changeColorTheme } from "../features/ColorSlice";
+
 import "../CSS.css";
 
 interface propsInterface {
     mainTime: number
+    setMainTime: Function
 }
 
 const TodoTaskContainer = (props:propsInterface): JSX.Element => {
@@ -22,7 +25,7 @@ const TodoTaskContainer = (props:propsInterface): JSX.Element => {
         <>
             <div 
                 className="container text-center mb-4" 
-                style={{ border: '1px solid #ABC4FF', backgroundColor: '#E2EAFC', minHeight: '250px', maxHeight: '200px', overflowY: 'scroll' }}
+                style={{ border: '1px solid #ABC4FF', backgroundColor: '#E2EAFC', minHeight: '175px', maxHeight: '200px', overflowY: 'scroll' }}
             >
                 {todoState && todoState.map((item, idx) => {
                     return(
@@ -54,7 +57,6 @@ const TodoTaskContainer = (props:propsInterface): JSX.Element => {
                                        
                                        
                                 </div>
-                            
                         </div>
                         
                     )

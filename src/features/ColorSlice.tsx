@@ -5,7 +5,7 @@ interface colorSliceInterface {
 }
 
 const initialState = {
-    colorBoolean: JSON.parse(localStorage.getItem('color') || `{}`)
+    value: JSON.parse(localStorage.getItem('darkmode') || `{}`)
 }   
 
 
@@ -14,7 +14,7 @@ export const ColorSlice = createSlice({
     initialState,
     reducers: {
         changeColorTheme: (state, action: PayloadAction<colorSliceInterface>) => {
-            state.colorBoolean = action.payload;
+            state.value = action.payload;
         }
     }
 });
