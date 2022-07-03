@@ -70,7 +70,7 @@ const TodoTaskContainer = (props:propsInterface): JSX.Element => {
 const singleTodoTask = {
     border: '1px solid #ABC4FF',
     backgroundColor: '#CCDBFD',
-    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)'
+    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)'
 }
 
 const iconStyle = {

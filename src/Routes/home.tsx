@@ -16,6 +16,7 @@ import CompletedTaskContainer from '../components/CompletedTaskContainer';
 import TasksLeftSide from '../components/TasksLeftSide';
 import TasksRightSide from '../components/TasksRightSide';
 
+import landscape from '../images/landscape.jpg'
 
 
 // COLORS:
@@ -43,7 +44,12 @@ const HomeRoute = () => {
     
     const mainContainer = {
         backgroundColor: colorTheme ? '#001233' : '#EDF2FB',
-        minHeight: '100vh'
+        minHeight: '150vh',
+        backgroundImage: `url(${landscape})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed',
+        backgroundPosition: colorTheme ? 'top' : 'bottom',
+        transition: 'all 1s'
     };
 
     const innerContainer = {
@@ -51,12 +57,13 @@ const HomeRoute = () => {
         minHeight: '90vh',
         width: '75vw',
         outline: colorTheme ? '40px solid #002855' : '40px solid #E2EAFC',
-        borderRadius: '20px'
+        borderRadius: '15px',
     };
 
     const sideBar = {
         height: '500px',
-        backgroundColor: '#B6CCFE'
+        backgroundColor: '#B6CCFE',
+        boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)'
     };
 
     const [todoId, setTodoId] = useState(1);
@@ -90,11 +97,11 @@ const HomeRoute = () => {
             <div style={innerContainer} className="d-flex justify-content-evenly row">
                 <HeaderElement />
                 <div className="row col-lg-12 d-flex align-items-center justify-content-evenly mt-5 mb-5">
-                    <div className="col-lg-4 rounded" style={{backgroundColor: '#B6CCFE', height: '500px'}}>
+                    <div className="col-lg-4 rounded" style={{backgroundColor: '#B6CCFE', height: '750px'}}>
                         <TasksLeftSide mainTime={mainTime} setMainTime={setMainTime}/>
                     </div>
 
-                    <div className="col-lg-4 rounded" style={{backgroundColor: '#B6CCFE', height: '500px'}}>
+                    <div className="col-lg-4 rounded" style={{backgroundColor: '#B6CCFE', height: '750px'}}>
                         <TasksRightSide />
                     </div>
 

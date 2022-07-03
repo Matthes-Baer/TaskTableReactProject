@@ -63,7 +63,8 @@ const TasksLeftSide = (props: propsInterface) => {
 
     return (
         <>
-            <div className="row p-4 d-flex justify-content-center align-items-center" style={{height: '275px'}}>
+             
+            <div className="row p-4 d-flex justify-content-center align-items-center" style={{height: '375px'}}>
                 <input className="p-1 m-1 col-lg-5" type="text" placeholder="title for todo" value={title} onChange={(e) => setTitle(e.target.value)} />
                 <input className="p-1 m-1 col-lg-5" type="text" placeholder="comment for todo" value={comment} onChange={(e) => setComment(e.target.value)} />
                 {comment.length}
@@ -85,10 +86,12 @@ const TasksLeftSide = (props: propsInterface) => {
                 </div>
             </div>
             <div>
+            
                 <TodoTaskContainer mainTime={props.mainTime} setMainTime={props.setMainTime}/>
-                <button onClick={() => props.setMainTime(new Date().getTime() / 1000 / 60)}>UPDATE ALL TIMER</button>         
+                <button className="mt-5" onClick={dispatchAddFunction}>CLICK HERE HEY</button>
+            <button onClick={() => props.setMainTime(new Date().getTime() / 1000 / 60)}>UPDATE ALL TIMER</button>  
             </div>
-            <button className="mt-5" onClick={dispatchAddFunction}>CLICK HERE HEY</button>
+            
         </>
     )
 }
