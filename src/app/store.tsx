@@ -2,6 +2,7 @@ import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 
 import { ActiveTodosSlice } from '../features/ActiveTodosSlice';
 import { ColorSlice } from "../features/ColorSlice";
+import { DoneTodoSlice } from "../features/DoneTodoSlice";
 
 // APIs:
 // import { QuoteAPI } from "../APIs/QuoteAPI";
@@ -12,6 +13,7 @@ export const store = configureStore({
     reducer: {
         activeTodos: ActiveTodosSlice.reducer,
         colorTheme: ColorSlice.reducer,
+        doneTodos: DoneTodoSlice.reducer,
         // quoteAPI: QuoteAPI.reducer,
         // WeatherApi: WeatherApi.reducer,
     },

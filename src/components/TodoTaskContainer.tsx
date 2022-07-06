@@ -6,6 +6,8 @@ import homeworkIcon from '../images/homework icon.png'
 import timeIcon from '../images/time icon.png'
 
 import { changeColorTheme } from "../features/ColorSlice";
+import { removeActiveTodo } from "../features/ActiveTodosSlice";
+import { addDoneTodo } from "../features/DoneTodoSlice";
 
 import "../CSS.css";
 
@@ -14,12 +16,26 @@ interface propsInterface {
     setMainTime: Function
 }
 
+interface itemInterface {
+    id: number,
+    title: string,
+    badges?: {name: string, checked: boolean}[],
+    comment?: string,
+    time: number,
+}
+
 const TodoTaskContainer = (props:propsInterface): JSX.Element => {
-  
+    const [completedTime, setCompletedTime] = useState<number>(new Date().getTime() / 1000 / 60);
 
 
     const todoState = useSelector((state: RootState) => state.activeTodos.value);
     const dispatch = useDispatch();
+
+    const deleteFromActive = (item: itemInterface, index: number) => {
+        setCompletedTime(new Date().getTime() / 1000 / 60);
+        dispatch(removeActiveTodo(index));
+        dispatch(addDoneTodo({...item, completedTime}));
+    }
 
     return (
         <>
@@ -55,6 +71,12 @@ const TodoTaskContainer = (props:propsInterface): JSX.Element => {
                                        : `${Math.round(props.mainTime - item.time)} minute/s ago` 
                                        }
                                        
+                                       
+                                </div>
+                                <div 
+                                    style={{width: '50px', height: '50px', backgroundColor: 'red'}}
+                                    onClick={() => deleteFromActive(item, idx)}
+                                    >
                                        
                                 </div>
                         </div>
