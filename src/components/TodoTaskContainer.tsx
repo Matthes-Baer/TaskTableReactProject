@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../app/store";
 
@@ -11,6 +11,7 @@ import { addDoneTodo } from "../features/DoneTodoSlice";
 
 import "../CSS.css";
 
+// interfaces
 interface propsInterface {
     mainTime: number
     setMainTime: Function
@@ -24,79 +25,90 @@ interface itemInterface {
     time: number,
 }
 
+// component
 const TodoTaskContainer = (props:propsInterface): JSX.Element => {
-    const [completedTime, setCompletedTime] = useState<number>(new Date().getTime() / 1000 / 60);
-
-
     const todoState = useSelector((state: RootState) => state.activeTodos.value);
     const dispatch = useDispatch();
 
-    const deleteFromActive = (item: itemInterface, index: number) => {
-        setCompletedTime(new Date().getTime() / 1000 / 60);
+    const deleteFromActive = (item: itemInterface, index: number, callback: Function) => {
+        callback(item, index, new Date().getTime() / 1000 / 60);
+    }
+
+    const dispatchCall = (item: itemInterface, index: number, time: number) => {
         dispatch(removeActiveTodo(index));
-        dispatch(addDoneTodo({...item, completedTime}));
+        dispatch(addDoneTodo({...item, completedTime: time}));
     }
 
     return (
-        <>
+        <Fragment>
             <div 
                 className="container text-center mb-4" 
-                style={{ border: '1px solid #ABC4FF', backgroundColor: '#E2EAFC', minHeight: '175px', maxHeight: '200px', overflowY: 'scroll' }}
+                style={{ border: '1px solid #ABC4FF', backgroundColor: '#E2EAFC', height: '300px', overflowY: 'scroll'}}
             >
+                
                 {todoState && todoState.map((item, idx) => {
                     return(
-                        <div key={item.id} className="row d-flex align-items-center p-2 m-1 mt-4 rounded task" style={singleTodoTask}>
-                            <div className="col-lg-4 p-1">
-                                <h3>{item.title.toUpperCase()}</h3>
+                        <div key={item.id} className="row d-flex align-items-start m-1 mt-4 rounded task position-relative" style={singleTodoTask}>
+                            <div 
+                                style={deleteStyle}
+                                onClick={() => deleteFromActive(item, idx, dispatchCall)}
+                                className="d-flex justify-content-center align-items-center position-absolute"
+                                >
+                                ❌
                             </div>
-                           
-                            <div className="col-lg-8 p-1">
-                                {item.comment ? <span>{item.comment}</span> : <span>Kein Kommentar hinzugefügt</span>}
+                            <div className="d-flex justify-content-evenly">
+                                <div className="col-lg-4 p-1">
+                                    <h3>{item.title.toUpperCase()}</h3>
+                                </div>
+                            
+                                <div className="col-lg-8 p-1">
+                                    {item.comment ? <span>{item.comment}</span> : <span>Kein Kommentar hinzugefügt</span>}
+                                </div>
                             </div>
-                                <div className="row d-flex justify-content-center">
-                                    {item.badges?.map(element => {
-                                        if (element.name === 'todo') {
-                                            return <div className="col-sm-4"><img src={homeworkIcon} style={iconStyle} /></div>
-                                        }
-                                        else if (element.name === 'feature') {
-                                            return <div className="col-sm-4"><img src={timeIcon} style={iconStyle} /></div>
-                                        }
-                                        else if (element.name === 'important'){
-                                            return <div className="col-sm-4"><img src={timeIcon} style={iconStyle} /></div>
-                                        }})}
-                                </div>
-                                <div className="container-fluid d-flex justify-content-end align-items-center">
-                                       {(props.mainTime - item.time) > 60 
-                                       ? `${Math.round((props.mainTime - item.time) / 60)} hour/s ago` 
-                                       : `${Math.round(props.mainTime - item.time)} minute/s ago` 
-                                       }
-                                       
-                                       
-                                </div>
-                                <div 
-                                    style={{width: '50px', height: '50px', backgroundColor: 'red'}}
-                                    onClick={() => deleteFromActive(item, idx)}
-                                    >
-                                       
-                                </div>
+                            <div className="d-flex justify-content-evenly align-items-center">
+                                {item.badges?.map(element => {
+                                    if (element.name === 'todo') {
+                                        return <div><img src={homeworkIcon} style={iconStyle} /></div>
+                                    }
+                                    else if (element.name === 'feature') {
+                                        return <div><img src={timeIcon} style={iconStyle} /></div>
+                                    }
+                                    else if (element.name === 'important'){
+                                        return <div><img src={timeIcon} style={iconStyle} /></div>
+                                    }})}
+                            </div>
+                            <div className="d-flex justify-content-end align-items-center">
+                                    {(props.mainTime - item.time) > 60 
+                                    ? `${Math.round((props.mainTime - item.time) / 60)} hour/s ago` 
+                                    : `${Math.round(props.mainTime - item.time)} minute/s ago` 
+                                    }
+                            </div>
+
                         </div>
-                        
                     )
                 })}
-                
             </div>
-        </>
+        </Fragment>
     )    
 }
 
 const singleTodoTask = {
     border: '1px solid #ABC4FF',
     backgroundColor: '#CCDBFD',
-    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)'
+    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
 }
 
 const iconStyle = {
-    transform: 'scale(0.5)',
+    transform: 'scale(0.35)',
+}
+
+const deleteStyle = {
+    backgroundColor: 'transparent',
+    width: '25px',
+    height: '25px',
+    cursor: 'pointer',
+    top: '0',
+    right: '0',
 }
 
 

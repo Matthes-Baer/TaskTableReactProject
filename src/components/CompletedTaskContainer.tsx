@@ -7,13 +7,13 @@ import timeIcon from '../images/time icon.png';
 
 const CompletedTaskContainer = () => {
     const doneTodoState = useSelector((state: RootState) => state.doneTodos.value);
-    const [currentTime, setCurrentTime] = useState<number>(new Date().getTime() / 1000 / 60)
+    const [currentTime, setCurrentTime] = useState<number>(new Date().getTime() / 1000 / 60);
 
     return (
         <Fragment>
         <div 
             className="container text-center mb-4" 
-            style={{ border: '1px solid #ABC4FF', backgroundColor: '#E2EAFC', minHeight: '175px', maxHeight: '200px', overflowY: 'scroll' }}
+            style={{ border: '1px solid #ABC4FF', backgroundColor: '#E2EAFC', height: '300px', overflowY: 'scroll' }}
         >
             {doneTodoState && doneTodoState.map((item, index) => {
                 return (
@@ -40,7 +40,7 @@ const CompletedTaskContainer = () => {
                         <div className="container-fluid d-flex justify-content-end align-items-center">
                                {(currentTime - item.completedTime) > 60 
                                ? `finished ${Math.round((currentTime - item.completedTime) / 60)} hour/s ago` 
-                               : `finished ${Math.round(currentTime - item.completedTime)} minute/s ago` 
+                               : `finished ${Math.max(0, Math.round(currentTime - item.completedTime))} minute/s ago` 
                                }
 
 

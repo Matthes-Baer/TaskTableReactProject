@@ -61,7 +61,7 @@ const HomeRoute = () => {
     };
 
     const sideBar = {
-        height: '500px',
+        minHeight: '500px',
         backgroundColor: '#B6CCFE',
         boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)'
     };
@@ -75,33 +75,16 @@ const HomeRoute = () => {
       setTodoId((todoId) => (todoId === 20 ? 1 : todoId + 1));
     }
   
-    useEffect(() => {
-      async function fetchTodo() {
-        const url = `/.netlify/functions/todo`;
-        try {
-          setLoading(true);
-          const response = await fetch(url).then((res) => res.json());
-          console.log(response)
-    
-        } catch (err) {
-          console.log("something");
-        } 
-      }
-      console.log(todo)
-      console.log(loading)
-      fetchTodo();
-    }, []);
-
     return (
         <div className="container-fluid d-flex justify-content-center align-items-center" style={mainContainer}>
             <div style={innerContainer} className="d-flex justify-content-evenly row">
                 <HeaderElement />
                 <div className="row col-lg-12 d-flex align-items-center justify-content-evenly mt-5 mb-5">
-                    <div className="col-lg-4 rounded" style={{backgroundColor: '#B6CCFE', height: '750px'}}>
+                    <div className="col-lg-4 rounded" style={{backgroundColor: '#B6CCFE', minHeight: '750px'}}>
                         <TasksLeftSide mainTime={mainTime} setMainTime={setMainTime}/>
                     </div>
 
-                    <div className="col-lg-4 rounded" style={{backgroundColor: '#B6CCFE', height: '750px'}}>
+                    <div className="col-lg-4 rounded" style={{backgroundColor: '#B6CCFE', minHeight: '750px'}}>
                         <TasksRightSide />
                     </div>
 
