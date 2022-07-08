@@ -46,6 +46,7 @@ const TodoTaskContainer = (): JSX.Element => {
 
     return (
         <Fragment>
+            <h2>Active Tasks</h2>
             <div 
                 className="container text-center mb-4" 
                 style={{ border: '1px solid #ABC4FF', backgroundColor: '#E2EAFC', height: '300px', overflowY: 'scroll' }}

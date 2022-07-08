@@ -39,8 +39,6 @@ const HomeRoute = () => {
             localStorage.setItem('darkmode', JSON.stringify(true))
         }
         dispatch(changeColorTheme(JSON.parse(localStorage.getItem('darkmode') || "{}")))
-
-        // localStorage.clear();
     }
     
     const mainContainer = {
@@ -64,24 +62,36 @@ const HomeRoute = () => {
     const sideBar = {
         minHeight: '500px',
         backgroundColor: '#B6CCFE',
-        boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)'
+        boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
+        border: colorTheme ? '2px solid #EDF2FB' : '2px solid black',
     };
+
+    const tasksLeftSide = {
+        border: colorTheme ? '2px solid #EDF2FB' : '2px solid black',
+        boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
+        backgroundColor: '#B6CCFE'
+    }
+
+    const tasksRightSide = {
+        border: colorTheme ? '2px solid #EDF2FB' : '2px solid black',
+        boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
+        backgroundColor: '#B6CCFE'
+    }
   
     return (
         <div className="container-fluid d-flex justify-content-center align-items-center" style={mainContainer}>
             <div style={innerContainer} className="d-flex justify-content-evenly row">
                 <HeaderElement />
-                <div className="row col-lg-12 d-flex align-items-center justify-content-evenly mt-5 mb-5">
-                    <div className="col-lg-4 rounded" style={{backgroundColor: '#B6CCFE', minHeight: '750px'}}>
+                <div className="row col-lg-12 d-flex align-items-start justify-content-evenly mt-5 mb-5">
+                    <div className="col-lg-2 rounded" style={sideBar}>
+                        <SideBar />
+                    </div>
+                    <div className="col-lg-4 rounded" style={tasksLeftSide}>
                         <TasksLeftSide />
                     </div>
 
-                    <div className="col-lg-4 rounded" style={{backgroundColor: '#B6CCFE', minHeight: '750px'}}>
+                    <div className="col-lg-4 rounded" style={tasksRightSide}>
                         <TasksRightSide />
-                    </div>
-
-                    <div className="col-lg-2 mt-5 mb-5" style={sideBar}>
-                        <SideBar />
                     </div>
                     <button onClick={() => localStorage.clear}>CLEAR HERE</button>
                     <button onClick={changer}>CHANGER HERE</button>

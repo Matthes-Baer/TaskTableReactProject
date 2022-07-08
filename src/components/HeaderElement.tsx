@@ -13,7 +13,7 @@ const HeaderElement = ():JSX.Element => {
         backgroundImage: colorTheme ? 'linear-gradient(to right, #002855, #0353A4, #0353A4, #002855)' : 'linear-gradient(to right, #E2EAFC, #B6CCFE, #B6CCFE, #E2EAFC)',
         color: colorTheme ? 'white' : 'black',
         height: '100px',
-        boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
+        boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
         transition: 'all .5s',
     }
 
@@ -35,15 +35,13 @@ const HeaderElement = ():JSX.Element => {
     )
 }
 
-
-
 const sideEffect = {
     width: '10px',
     height: 'auto',
     backgroundColor: '#EC214E',
     borderRadius: '10px 0 0 10px',
     marginRight: '10px',
-    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
+    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
 }
 
 const timeStyle = {
@@ -59,7 +57,7 @@ const backgroundLogoStyle = {
     height: '80px',
     borderRadius: '50%',
     backgroundRepeat: 'no-repeat',
-    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
+    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
 }
 
 export default HeaderElement;

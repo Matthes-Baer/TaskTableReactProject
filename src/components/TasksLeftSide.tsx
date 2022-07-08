@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import TodoTaskContainer from '../components/TodoTaskContainer';
@@ -9,8 +9,10 @@ import { addActiveTodo } from "../features/ActiveTodosSlice";
 import summerWinter from '../images/summer-winter.png';
 import { RootState } from '../app/store';
 import { changeCurrentTime } from '../features/CurrentTimeSlice';
-import { useCookies } from 'react-cookie';
 
+
+import { gsap } from 'gsap'
+import { RedFormat } from 'three';
 
 interface badgeInterface {
     singleBadge: {
@@ -29,9 +31,29 @@ const TasksLeftSide = () => {
         { name: "short-term", checked: false },
         { name: "long-term", checked: false },
     ]);
+    const [addedBoolean, setAddedBoolean] = useState<boolean>(false)
 
     const currentTime = useSelector((state: RootState) => state.currentTime.value);
+    const colorTheme = useSelector((state: RootState) => state.colorTheme.value);
     const dispatch = useDispatch();
+    const horizontalLineRef = useRef(null)
+
+   const buttonStyle = {
+    border: colorTheme ? '1px solid #E2EAFC' : '1px solid black',
+    boxShadow: '4px 4px 0px 0px #023E7D',
+    backgroundColor: colorTheme ? '#001233' : '#ABC4FF',
+    transition: 'all .5s',
+    fontSize: '25px',
+    color: colorTheme ? 'white' : 'black',
+   }
+
+   const horizontalLine = {
+    width: '100%',
+    height: '5px',
+    backgroundImage: 'linear-gradient(to Right, #ABC4FF, #0466C8)',
+    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
+
+   }
 
     const updateCheckStatus = (index: number) => {
         setBadges(
@@ -43,19 +65,31 @@ const TasksLeftSide = () => {
         )
       }
 
-      const dispatchAddFunction = (callback: Function) => {
+      const dispatchAddFunction = (callback: Function, { currentTarget }: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         if (title && comment.length < 50) {
         dispatch(changeCurrentTime(new Date().getTime() / 1000 / 60));
+
+        // GSAP
+        const buttonPushTL = gsap.timeline({});
+        buttonPushTL.to(currentTarget, { duration: 0.25 ,y: 10, boxShadow: '4px -16px 0px 0px #023E7D' });
+        buttonPushTL.to(currentTarget, { duration: 0.25, y: 0, boxShadow: '4px 4px 0px 0px #023E7D' });
+
+        const linePushTL = gsap.timeline();
+        linePushTL.to(horizontalLineRef.current, { duration: 0.25, backgroundImage: `linear-gradient(to Right, ${addedBoolean ? '#ABC4FF, #0466C8' : '#ABC4FF, #EC214E'}`, ease: 'linear' });
+        setAddedBoolean(!addedBoolean);
+
         callback();
         }
         else {
-            alert('Fehler: Titel fehlt, oder Kommentar übersteigt 50 Zeichen.')
+            alert('Fehler: Titel fehlt, oder Kommentar übersteigt 50 Zeichen.');
+            
         }
       };
 
       const callbackForDispatchAdd = () => {
         setId(prevState => prevState + 1);
         dispatch(addActiveTodo({ id: id, title: title, badges: badges.filter(item => item.checked), comment: comment, time: new Date().getTime() / 1000 / 60 }));
+        
 
         setTitle("");
         setComment("");
@@ -67,12 +101,13 @@ const TasksLeftSide = () => {
 
     return (
         <Fragment> 
-            <div className="row p-4 d-flex justify-content-center align-items-center" style={{ height: '600px' }}>
-                <h2 className='text-center'>Task Configuration</h2>
-                <div className='text-center'>maximum of 50 characters for comments</div>
-                <input className="p-1 m-1 col-lg-5" type="text" placeholder="title for task" value={title} onChange={(e) => setTitle(e.target.value)} />
-                <input className="p-1 m-1 col-lg-5" type="text" placeholder="comment for task" value={comment} onChange={(e) => setComment(e.target.value)} />
-                <div className="col-lg-12 row d-flex justify-content-center align-items-center">
+            <div className="row p-4 d-flex justify-content-center align-items-start rounded">
+                <div className='col-lg-12 row text-center d-flex justify-content-center'>
+                    <h2 className='col-lg-12 text-center'>Task Configuration</h2>
+                    <div className='col-lg-12 text-center'><i>maximum of 50 characters for comments</i></div>
+                    <input className="p-1 m-1 col-lg-5" type="text" placeholder="title for task" value={title} onChange={(e) => setTitle(e.target.value)} />
+                    <input className="p-1 m-1 col-lg-5" type="text" placeholder="comment for task" value={comment} onChange={(e) => setComment(e.target.value)} />
+                    <div className="col-lg-12 row d-flex justify-content-center align-items-center">
                         {badges.map((badge, idx) => {
                             return ( 
                                 <Checkbox
@@ -84,15 +119,15 @@ const TasksLeftSide = () => {
                                 />
                             )  
                         })}
+                    </div>
+                    <button className="col-lg-6 mt-3 mb-3" style={buttonStyle} onClick={(current) => dispatchAddFunction(callbackForDispatchAdd, current)}>Add task</button>
+                    <span ref={horizontalLineRef} style={horizontalLine} className="rounded"></span>
+                    <div className='text-center'>
+                        <TodoTaskContainer />
+                    </div>
                 </div>
-                <button onClick={() => dispatchAddFunction(callbackForDispatchAdd)}>Add task</button>
-                <button onClick={() => dispatch(changeCurrentTime(new Date().getTime() / 1000 / 60))}>Timer update</button>  
             </div>
-            <div className='text-center'>
-                <h2>Active Tasks</h2>
-                <TodoTaskContainer />
-            </div>
-        </Fragment>
+        </Fragment>      
     )
 }
 
