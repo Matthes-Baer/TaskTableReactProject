@@ -6,11 +6,11 @@ import Checkbox from "../components/Checkbox";
 
 import { addActiveTodo } from "../features/ActiveTodosSlice";
 
-// interfaces:
-interface propsInterface {
-    mainTime: number
-    setMainTime: Function
-}
+import summerWinter from '../images/summer-winter.png';
+import { RootState } from '../app/store';
+import { changeCurrentTime } from '../features/CurrentTimeSlice';
+import { useCookies } from 'react-cookie';
+
 
 interface badgeInterface {
     singleBadge: {
@@ -19,18 +19,19 @@ interface badgeInterface {
     }[]
 }
 
-// component:
-const TasksLeftSide = (props: propsInterface) => {
+const TasksLeftSide = () => {
     const [title, setTitle] = useState<string>("");
     const [comment, setComment] = useState<string>("");
     const [id, setId] = useState<number>(0);
-    const dispatch = useDispatch();
     const [badges, setBadges] = useState<badgeInterface["singleBadge"]>([
         { name: "todo", checked: false },
         { name: "important", checked: false },
         { name: "short-term", checked: false },
         { name: "long-term", checked: false },
     ]);
+
+    const currentTime = useSelector((state: RootState) => state.currentTime.value);
+    const dispatch = useDispatch();
 
     const updateCheckStatus = (index: number) => {
         setBadges(
@@ -42,26 +43,31 @@ const TasksLeftSide = (props: propsInterface) => {
         )
       }
 
-      const dispatchAddFunction = () => {
+      const dispatchAddFunction = (callback: Function) => {
         if (title && comment.length < 50) {
-        props.setMainTime(new Date().getTime() / 1000 / 60)
-        setId(prevState => prevState + 1);
-        setTitle("");
-        setComment("")
-        setBadges(
-            badges.map(badge => {
-                return { ...badge , checked: false }
-            }));
-            dispatch(addActiveTodo({ id: id, title: title, badges: badges.filter(item => item.checked), comment: comment, time: new Date().getTime() / 1000 / 60}));
+        dispatch(changeCurrentTime(new Date().getTime() / 1000 / 60));
+        callback();
         }
         else {
             alert('Fehler: Titel fehlt, oder Kommentar übersteigt 50 Zeichen.')
         }
       };
 
+      const callbackForDispatchAdd = () => {
+        setId(prevState => prevState + 1);
+        dispatch(addActiveTodo({ id: id, title: title, badges: badges.filter(item => item.checked), comment: comment, time: new Date().getTime() / 1000 / 60 }));
+
+        setTitle("");
+        setComment("");
+        setBadges(
+            badges.map(badge => {
+                return { ...badge , checked: false }
+            }));
+      }
+
     return (
         <Fragment> 
-            <div className="row p-4 d-flex justify-content-center align-items-center" style={{minHeight: '500px'}}>
+            <div className="row p-4 d-flex justify-content-center align-items-center" style={{ height: '600px' }}>
                 <h2 className='text-center'>Task Configuration</h2>
                 <div className='text-center'>maximum of 50 characters for comments</div>
                 <input className="p-1 m-1 col-lg-5" type="text" placeholder="title for task" value={title} onChange={(e) => setTitle(e.target.value)} />
@@ -79,14 +85,13 @@ const TasksLeftSide = (props: propsInterface) => {
                             )  
                         })}
                 </div>
-                <button onClick={dispatchAddFunction}>Add task</button>
-                <button onClick={() => props.setMainTime(new Date().getTime() / 1000 / 60)}>Timer update</button>  
+                <button onClick={() => dispatchAddFunction(callbackForDispatchAdd)}>Add task</button>
+                <button onClick={() => dispatch(changeCurrentTime(new Date().getTime() / 1000 / 60))}>Timer update</button>  
             </div>
             <div className='text-center'>
                 <h2>Active Tasks</h2>
-                <TodoTaskContainer mainTime={props.mainTime} setMainTime={props.setMainTime}/>
+                <TodoTaskContainer />
             </div>
-            
         </Fragment>
     )
 }

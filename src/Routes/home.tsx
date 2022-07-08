@@ -16,14 +16,15 @@ import CompletedTaskContainer from '../components/CompletedTaskContainer';
 import TasksLeftSide from '../components/TasksLeftSide';
 import TasksRightSide from '../components/TasksRightSide';
 
-import landscape from '../images/landscape.jpg'
-
+import landscape from '../images/landscape.jpg';
+import bears from '../images/winterBears.jpg';
+import winterLandscape from '../images/winterLandscape.jpg';
 
 // COLORS:
 // https://coolors.co/palette/edf2fb-e2eafc-d7e3fc-ccdbfd-c1d3fe-b6ccfe-abc4ff
 // green: #7bf1a8
 // red: #ee6055
-// akzent: #ff7070
+// akzent: #EC214E
 
 const HomeRoute = () => {
     const colorTheme = useSelector((state: RootState) => state.colorTheme.value);
@@ -49,14 +50,14 @@ const HomeRoute = () => {
         backgroundRepeat: 'no-repeat',
         backgroundAttachment: 'fixed',
         backgroundPosition: colorTheme ? 'top' : 'bottom',
-        transition: 'all 1s'
+        transition: 'all 0.5s',
     };
 
     const innerContainer = {
         backgroundColor: colorTheme ? '#023E7D' : '#D7E3FC',
         minHeight: '90vh',
         width: '75vw',
-        outline: colorTheme ? '40px solid #002855' : '40px solid #E2EAFC',
+        outline: colorTheme ? '20px solid #002855' : '20px solid #E2EAFC',
         borderRadius: '15px',
     };
 
@@ -65,15 +66,6 @@ const HomeRoute = () => {
         backgroundColor: '#B6CCFE',
         boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)'
     };
-
-    const [todoId, setTodoId] = useState(1);
-    const [todo, setTodo] = useState("");
-    const [loading, setLoading] = useState(false);
-    const [mainTime, setMainTime] = useState<number>(new Date().getTime() / 1000 / 60);
-  
-    function getNewTodo() {
-      setTodoId((todoId) => (todoId === 20 ? 1 : todoId + 1));
-    }
   
     return (
         <div className="container-fluid d-flex justify-content-center align-items-center" style={mainContainer}>
@@ -81,7 +73,7 @@ const HomeRoute = () => {
                 <HeaderElement />
                 <div className="row col-lg-12 d-flex align-items-center justify-content-evenly mt-5 mb-5">
                     <div className="col-lg-4 rounded" style={{backgroundColor: '#B6CCFE', minHeight: '750px'}}>
-                        <TasksLeftSide mainTime={mainTime} setMainTime={setMainTime}/>
+                        <TasksLeftSide />
                     </div>
 
                     <div className="col-lg-4 rounded" style={{backgroundColor: '#B6CCFE', minHeight: '750px'}}>

@@ -9,13 +9,11 @@ import { changeColorTheme } from "../features/ColorSlice";
 import { removeActiveTodo } from "../features/ActiveTodosSlice";
 import { addDoneTodo } from "../features/DoneTodoSlice";
 
-import "../CSS.css";
+import winterLandscape from '../images/winterLandscape.jpg'
 
-// interfaces
-interface propsInterface {
-    mainTime: number
-    setMainTime: Function
-}
+
+import "../CSS.css";
+import { useCookies } from "react-cookie";
 
 interface itemInterface {
     id: number,
@@ -25,10 +23,16 @@ interface itemInterface {
     time: number,
 }
 
-// component
-const TodoTaskContainer = (props:propsInterface): JSX.Element => {
+const TodoTaskContainer = (): JSX.Element => {
     const todoState = useSelector((state: RootState) => state.activeTodos.value);
+    const currentTime = useSelector((state: RootState) => state.currentTime.value);
     const dispatch = useDispatch();
+
+    const [cookie, setCookie] = useCookies();
+
+ 
+
+    
 
     const deleteFromActive = (item: itemInterface, index: number, callback: Function) => {
         callback(item, index, new Date().getTime() / 1000 / 60);
@@ -37,13 +41,14 @@ const TodoTaskContainer = (props:propsInterface): JSX.Element => {
     const dispatchCall = (item: itemInterface, index: number, time: number) => {
         dispatch(removeActiveTodo(index));
         dispatch(addDoneTodo({...item, completedTime: time}));
+
     }
 
     return (
         <Fragment>
             <div 
                 className="container text-center mb-4" 
-                style={{ border: '1px solid #ABC4FF', backgroundColor: '#E2EAFC', height: '300px', overflowY: 'scroll'}}
+                style={{ border: '1px solid #ABC4FF', backgroundColor: '#E2EAFC', height: '300px', overflowY: 'scroll' }}
             >
                 
                 {todoState && todoState.map((item, idx) => {
@@ -56,12 +61,12 @@ const TodoTaskContainer = (props:propsInterface): JSX.Element => {
                                 >
                                 ❌
                             </div>
-                            <div className="d-flex justify-content-evenly">
-                                <div className="col-lg-4 p-1">
-                                    <h3>{item.title.toUpperCase()}</h3>
+                            <div className="d-flex justify-content-evenly align-items-center mt-3">
+                                <div className="col-xl-5 p-1" style={{borderRight: '1px solid green'}}>
+                                    <span>{item.title}</span>
                                 </div>
                             
-                                <div className="col-lg-8 p-1">
+                                <div className="col-xl-5 p-1">
                                     {item.comment ? <span>{item.comment}</span> : <span>Kein Kommentar hinzugefügt</span>}
                                 </div>
                             </div>
@@ -78,12 +83,11 @@ const TodoTaskContainer = (props:propsInterface): JSX.Element => {
                                     }})}
                             </div>
                             <div className="d-flex justify-content-end align-items-center">
-                                    {(props.mainTime - item.time) > 60 
-                                    ? `${Math.round((props.mainTime - item.time) / 60)} hour/s ago` 
-                                    : `${Math.round(props.mainTime - item.time)} minute/s ago` 
+                                    {(currentTime - item.time) > 60 
+                                    ? `created ${Math.round((currentTime - item.time) / 60)} hour/s ago` 
+                                    : `created ${Math.round(currentTime - item.time)} minute/s ago` 
                                     }
                             </div>
-
                         </div>
                     )
                 })}

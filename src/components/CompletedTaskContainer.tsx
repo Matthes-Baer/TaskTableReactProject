@@ -5,9 +5,13 @@ import { RootState } from "../app/store";
 import homeworkIcon from '../images/homework icon.png';
 import timeIcon from '../images/time icon.png';
 
+import summerWinter from '../images/summer-winter.png';
+
 const CompletedTaskContainer = () => {
     const doneTodoState = useSelector((state: RootState) => state.doneTodos.value);
-    const [currentTime, setCurrentTime] = useState<number>(new Date().getTime() / 1000 / 60);
+    const currentTime = useSelector((state: RootState) => state.currentTime.value);
+
+
 
     return (
         <Fragment>
@@ -18,13 +22,15 @@ const CompletedTaskContainer = () => {
             {doneTodoState && doneTodoState.map((item, index) => {
                 return (
                     <div key={item.id} className="row d-flex align-items-center p-2 m-1 mt-4 rounded task" style={singleTodoTask}>
-                    <div className="col-lg-4 p-1">
-                        <h3>{item.title.toUpperCase()}</h3>
-                    </div>
-                   
-                    <div className="col-lg-8 p-1">
-                        {item.comment ? <span>{item.comment}</span> : <span>Kein Kommentar hinzugefügt</span>}
-                    </div>
+                        <div className="d-flex justify-content-evenly align-items-center">
+                            <div className="col-lg-5 p-1">
+                                <span>{item.title}</span>
+                            </div>
+                        
+                            <div className="col-lg-5 p-1">
+                                {item.comment ? <span>{item.comment}</span> : <span>Kein Kommentar hinzugefügt</span>}
+                            </div>
+                        </div>
                         <div className="row d-flex justify-content-center">
                             {item.badges?.map(element => {
                                 if (element.name === 'todo') {
@@ -47,12 +53,12 @@ const CompletedTaskContainer = () => {
                                
                                
                         </div>
-                        <div 
+                        {/* <div 
                             style={{width: '50px', height: '50px', backgroundColor: 'red'}}
                             onClick={() => setCurrentTime(new Date().getTime() / 1000 / 60)}
                             >
                                Get current time
-                        </div>
+                        </div> */}
                 </div>
                 )
             })}
@@ -65,7 +71,7 @@ const CompletedTaskContainer = () => {
 const singleTodoTask = {
     border: '1px solid #ABC4FF',
     backgroundColor: '#CCDBFD',
-    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)'
+    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
 }
 
 const iconStyle = {
