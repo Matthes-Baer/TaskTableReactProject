@@ -1,4 +1,4 @@
-import { Fragment, useRef, useState } from 'react';
+import { Fragment, useRef, useState, useTransition } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import TodoTaskContainer from '../components/TodoTaskContainer';
@@ -6,13 +6,9 @@ import Checkbox from "../components/Checkbox";
 
 import { addActiveTodo } from "../features/ActiveTodosSlice";
 
-import summerWinter from '../images/summer-winter.png';
 import { RootState } from '../app/store';
 import { changeCurrentTime } from '../features/CurrentTimeSlice';
-
-
 import { gsap } from 'gsap'
-import { RedFormat } from 'three';
 
 interface badgeInterface {
     singleBadge: {
@@ -32,11 +28,11 @@ const TasksLeftSide = () => {
         { name: "long-term", checked: false },
     ]);
     const [addedBoolean, setAddedBoolean] = useState<boolean>(false)
-
-    const currentTime = useSelector((state: RootState) => state.currentTime.value);
     const colorTheme = useSelector((state: RootState) => state.colorTheme.value);
     const dispatch = useDispatch();
     const horizontalLineRef = useRef(null)
+    const [isPending, startTransition] = useTransition();
+
 
    const buttonStyle = {
     border: colorTheme ? '1px solid #E2EAFC' : '1px solid black',
@@ -52,7 +48,6 @@ const TasksLeftSide = () => {
     height: '5px',
     backgroundImage: 'linear-gradient(to Right, #ABC4FF, #0466C8)',
     boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
-
    }
 
     const updateCheckStatus = (index: number) => {
@@ -63,6 +58,12 @@ const TasksLeftSide = () => {
               : badge
           )
         )
+      }
+
+      const updateInput = (event: React.ChangeEvent<HTMLInputElement>, setter: Function) => {
+        startTransition(() => {
+            setter(event.target.value);
+        });
       }
 
       const dispatchAddFunction = (callback: Function, { currentTarget }: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -101,12 +102,12 @@ const TasksLeftSide = () => {
 
     return (
         <Fragment> 
-            <div className="row p-4 d-flex justify-content-center align-items-start rounded">
+            <div className="row d-flex justify-content-center align-items-start rounded">
                 <div className='col-lg-12 row text-center d-flex justify-content-center'>
                     <h2 className='col-lg-12 text-center'>Task Configuration</h2>
                     <div className='col-lg-12 text-center'><i>maximum of 50 characters for comments</i></div>
-                    <input className="p-1 m-1 col-lg-5" type="text" placeholder="title for task" value={title} onChange={(e) => setTitle(e.target.value)} />
-                    <input className="p-1 m-1 col-lg-5" type="text" placeholder="comment for task" value={comment} onChange={(e) => setComment(e.target.value)} />
+                    <input className="p-1 m-1 col-lg-5" type="text" placeholder="title for task" value={title} onChange={(event) => updateInput(event, setTitle)} />
+                    <input className="p-1 m-1 col-lg-5" type="text" placeholder="comment for task" value={comment} onChange={(event) => updateInput(event, setComment)} />
                     <div className="col-lg-12 row d-flex justify-content-center align-items-center">
                         {badges.map((badge, idx) => {
                             return ( 

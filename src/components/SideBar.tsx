@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { gsap } from "gsap";
 
 const SideBar = (): JSX.Element => {
-    const [workingTime, setWorkingTime] = useState<number|boolean>(10);
-    const [relaxTime, setRelaxTime] = useState<number|boolean>(10);
+    const [workingTime, setWorkingTime] = useState<number|boolean>(60);
+    const [relaxTime, setRelaxTime] = useState<number|boolean>(60);
     const [workOrRelax, setWorkOrRelax] = useState<boolean>(true)
     const [playing, setPlaying] = useState<boolean>(false);
 
@@ -102,23 +102,46 @@ const SideBar = (): JSX.Element => {
             </div>
             <div 
               style={{
-                height: '300px',
+                height: '120px',
+                width: '120px',
                 backgroundColor: 'green',
                 transition: 'all 0.5s',
-                width: '25px',
                 position: 'relative',
+                borderRadius: '50%',
+                zIndex: '1'
                 }}
               >
               <div style={{
-                height: workOrRelax ? `${workingSeconds * 5}px` : `${relaxSeconds * 5}px`,
-                backgroundColor: 'red',
+                // height: workOrRelax ? `${workingSeconds * 2}px` : `${relaxSeconds * 2}px`,
+                height: 'inherit',
+                width: 'inherit',
+                backgroundImage: 'linear-gradient(to top, red, red)',
+                backgroundSize: workOrRelax ? `100% ${workingSeconds * (5/3)}%` : `100% ${relaxSeconds * (5/3)}%`,
+                backgroundRepeat: 'no-repeat',
                 transition: 'all 0.5s',
-                width: '25px',
                 position: 'absolute',
                 top: '0',
-                left: '0'
+                right: '0',
+                borderRadius: '50%',
+                zIndex: '10'
                 }}
               >
+              </div>
+              <div style={{
+                height: '100px',
+                width: '100px',
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                backgroundColor: '#B6CCFE',
+                zIndex: '15',
+                borderRadius: '50%'
+              }}
+              >
+                <div style={{width:'inherit', height: 'inherit', fontSize: '30px' }} className="d-flex align-items-center justify-content-center">
+                  {workOrRelax ? formattedWorkingSeconds : formattedRelaxSeconds}
+                </div>
               </div>
             </div>
         </div>
