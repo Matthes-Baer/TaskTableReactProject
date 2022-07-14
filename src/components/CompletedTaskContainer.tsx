@@ -15,10 +15,11 @@ const CompletedTaskContainer = () => {
 
     return (
         <Fragment>
-        <div 
-            className="container text-center mb-4" 
-            style={{ border: '1px solid #ABC4FF', backgroundColor: '#E2EAFC', height: '300px', overflowY: 'scroll' }}
-        >
+            <h2>Finished Tasks</h2>
+            <div 
+                className="container text-center mb-4" 
+                style={{ border: '1px solid #ABC4FF', backgroundColor: '#E2EAFC', height: '300px', overflowY: 'scroll' }}
+            >
             {doneTodoState && doneTodoState.map((item, index) => {
                 return (
                     <div key={item.id} className="row d-flex align-items-center p-2 m-1 mt-4 rounded task" style={singleTodoTask}>

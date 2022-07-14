@@ -86,7 +86,7 @@ const HomeRoute = () => {
                     <div className="col-lg-2 rounded" style={sideBar}>
                         <SideBar />
                     </div>
-                    <div className="col-lg-4 rounded" style={tasksLeftSide}>
+                    <div className="col-lg-5 rounded" style={tasksLeftSide}>
                         <TasksLeftSide />
                     </div>
 

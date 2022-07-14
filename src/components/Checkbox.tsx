@@ -9,29 +9,28 @@ interface CheckboxInterface {
 }
 
 const Checkbox = ({ isChecked, index, label, checkHandler }: CheckboxInterface):JSX.Element => {
-    const colorState = useSelector((state: RootState) => state.colorTheme.value);
-
-    const containerStyle = {
-        border: colorState ? '1px solid #E2EAFC' : '1px solid black',
-        boxShadow: isChecked ? '4px 4px 0px 0px #023E7D' : '3px 3px 0px 0px #023E7D',
-        backgroundColor: colorState ? '#001233' : '#ABC4FF',
-        transition: 'all .5s',
-    }
+    const darkmode = useSelector((state: RootState) => state.colorTheme.value);
 
     const labelStyle = {
-        color: colorState ? "white" : "black",
-        fontSize: isChecked ? '22.5px' : '20px',
+        color: isChecked ? '#EC214E' : darkmode ? 'white' : 'black',
         transition: 'all .5s',
+        backgroundColor: darkmode ? '#001233' : '#ABC4FF',
+        width: '100%',
+        height: '50px',
+        boxShadow: '4px 4px 0px 0px #023E7D',
+        border: darkmode ? '1px solid #E2EAFC' : '1px solid black',
     }
 
+
+
     return (
-        <div style={containerStyle} className="col-xl-5 m-2 p-2 d-flex flex-column justify-content-center align-items-center text-center">
-            <label style={labelStyle} htmlFor={`checkbox-${index}`}>{label}</label>
+        <div className="col-xl-6 p-2 d-flex flex-column justify-content-center align-items-center text-center">
+            <label className="d-flex justify-content-center align-items-center" style={labelStyle} htmlFor={`checkbox-${index}`}>{label}</label>
             <input 
-            type="checkbox"
-            id={`checkbox-${index}`}
-            checked={isChecked}
-            onChange={()=>checkHandler()}
+                type="checkbox"
+                id={`checkbox-${index}`}
+                checked={isChecked}
+                onChange={()=>checkHandler()}
             />
         </div>
     )
