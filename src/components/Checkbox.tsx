@@ -27,10 +27,10 @@ const Checkbox = ({ isChecked, index, label, checkHandler }: CheckboxInterface):
         <div className="col-xl-6 p-2 d-flex flex-column justify-content-center align-items-center text-center">
             <label className="d-flex justify-content-center align-items-center" style={labelStyle} htmlFor={`checkbox-${index}`}>{label}</label>
             <input 
-            type="checkbox"
-            id={`checkbox-${index}`}
-            checked={isChecked}
-            onChange={()=>checkHandler()}
+                type="checkbox"
+                id={`checkbox-${index}`}
+                checked={isChecked}
+                onChange={()=>checkHandler()}
             />
         </div>
     )

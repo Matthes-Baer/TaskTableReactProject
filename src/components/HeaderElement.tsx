@@ -5,8 +5,11 @@ import { RootState } from "../app/store";
 import logo from '../images/logo.jpg';
 
 const HeaderElement = ():JSX.Element => {
-    const [today, setToday] = useState(new Date());
-    const months = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"];
+    const [today, setToday] = useState(new Date().toLocaleDateString('de-DE', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+    }));
     const colorTheme = useSelector((state: RootState) => state.colorTheme.value);
 
     const headerElement = {
@@ -27,7 +30,7 @@ const HeaderElement = ():JSX.Element => {
 
             <div className="d-flex">
                 <div style={sideEffect}></div>
-                <div style={timeStyle} className="p-2">{`${today.getDate()}. ${months[today.getMonth()]} ${today.getFullYear()}`}</div>
+                <div style={timeStyle} className="p-2">{today}</div>
             </div>
 
             

@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { gsap } from "gsap";
+import { useSelector } from "react-redux";
+import { RootState } from "../app/store";
 
 const SideBar = (): JSX.Element => {
     const [workingTime, setWorkingTime] = useState<number|boolean>(60);
     const [relaxTime, setRelaxTime] = useState<number|boolean>(60);
     const [workOrRelax, setWorkOrRelax] = useState<boolean>(true)
     const [playing, setPlaying] = useState<boolean>(false);
+    const darkmode = useSelector((state: RootState) => state.colorTheme.value)
 
     let workingMinutes = Math.floor(+workingTime / 60);
     let workingSeconds = (+workingTime - workingMinutes * 60);
@@ -56,39 +59,70 @@ const SideBar = (): JSX.Element => {
         setRelaxTime(600);
       }
 
-      const limitAnimation = ({ currentTarget }: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      const limitAnimation = ({ currentTarget }: React.MouseEvent<HTMLButtonElement|HTMLDivElement, MouseEvent>) => {
         let targetTimeline = gsap.timeline({});
         targetTimeline.to(currentTarget, { duration: 0.5, backgroundColor: 'red' });
         targetTimeline.to(currentTarget, { duration: 0.5, backgroundColor: 'yellow' });
       }
       
+      const playStopButtonStyle = {
+        color: playing ? 'black' : darkmode ? 'white' : 'black',
+        transition: 'all .5s',
+        backgroundColor: playing ? "#7bf1a8" : darkmode ? '#001233' : '#ABC4FF',
+        width: '100%',
+        height: 'auto',
+        boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
+        border: darkmode ? '1px solid #E2EAFC' : '1px solid black',
+      }
+
+      const workButtonStyle = {
+        backgroundColor: workOrRelax ? '#7bf1a8' : 'yellow',
+      }
+
+      const relaxButtonStyle = {
+        backgroundColor: !workOrRelax ? '#7bf1a8' : 'yellow',
+      }
+      
     return (
         <div className="row d-flex flex-column justify-content-center align-items-center">
-            <div>
-              {
-              workOrRelax ? 
-                workingTime ? 
-                  "Work for:" + formattedWorkingMinutes + ":" + formattedWorkingSeconds : 
-                  "no working Time left" : 
-                relaxTime ? 
-                  "Relax for:" + formattedRelaxMinutes + ":" + formattedRelaxSeconds : 
-                  'no relax Time left'
+          <div className="d-flex justify-content-evenly align-items-center flex-column p-3 row">
+            <button style={playStopButtonStyle} className="row col-lg-12 p-2" onClick={(target) => workingTime || relaxTime ? setPlaying(!playing) : limitAnimation(target)}>
+              <div className="col-lg-12">Play / Stop</div>
+              <div className="col-lg-12"><strong>{playing ? "live" : "paused"}</strong></div>
+            </button>
+            <div className="d-flex justify-content-evenly align-items-center col-lg-12 mt-3">
+              <div style={workButtonStyle} onClick={(target) => workingTime && relaxTime ? setWorkOrRelax(true) : limitAnimation(target)}>
+                Work
+              </div>
+              <div style={relaxButtonStyle} onClick={(target) => workingTime && relaxTime ? setWorkOrRelax(false) : limitAnimation(target)}>
+                Relax
+              </div>
+            </div>
+              <div className="text-center">
+                {
+                workOrRelax ? 
+                  workingTime ? 
+                    <span style={timerStylesLarge}>{"Work for:" + formattedWorkingMinutes + ":" + formattedWorkingSeconds}</span> : 
+                    <span style={timerStylesLarge}>{"no working time left"}</span> : 
+                  relaxTime ? 
+                  <span style={timerStylesLarge}>{"Relax for:" + formattedRelaxMinutes + ":" + formattedRelaxSeconds}</span> : 
+                  <span style={timerStylesLarge}>{"no relax time left"}</span>
+                  }
+              </div>
+              <div className="text-center">
+                {
+                workOrRelax ? 
+                  relaxTime ? 
+                  <span style={timerStylesSmall}>{"Next: relax for" + " " + formattedRelaxMinutes + ":" + formattedRelaxSeconds}</span> : 
+                  <span style={timerStylesSmall}>{"no relax time left"}</span> : 
+                  workingTime ? 
+                  <span style={timerStylesSmall}>{"Next: work for" + " "+ formattedWorkingMinutes + ":" + formattedWorkingSeconds}</span> : 
+                  <span style={timerStylesSmall}>{"no working time left"}</span>
                 }
+              </div>
             </div>
-            <div>
-              {
-              workOrRelax ? 
-                relaxTime ? 
-                  "Relax for:" + formattedRelaxMinutes + ":" + formattedRelaxSeconds : 
-                  "no relax Time left" : 
-                workingTime ? 
-                  "Work for:" + formattedWorkingMinutes + ":" + formattedWorkingSeconds : 
-                  'no working Time left'
-              }
-            </div>
-            <div>{playing.toString()}</div>
-            <button onClick={() => setPlaying(!playing)}>Play/Stop</button>
-            <button onClick={(target) => workingTime && relaxTime ? setWorkOrRelax(!workOrRelax) : limitAnimation(target)}>Relax/Work</button>
+            
+            {/* <button onClick={(target) => workingTime && relaxTime ? setWorkOrRelax(!workOrRelax) : limitAnimation(target)}>Relax/Work</button> */}
             <div className="col-lg-12 d-flex mt-3">
               <button style={buttonStyle} onClick={(target) => workingTime >= 120 && !playing ? setWorkingTime(+workingTime - 60) : limitAnimation(target)}>delete work time</button>
               <button style={buttonStyle} onClick={(target) => workingTime < 3600 && !playing ? setWorkingTime(+workingTime + 60) : limitAnimation(target)}>add work time</button>
@@ -150,6 +184,16 @@ const SideBar = (): JSX.Element => {
 
 const buttonStyle = {
   backgroundColor: 'yellow',
+}
+
+const timerStylesLarge = {
+  fontSize: '25px',
+  
+}
+
+const timerStylesSmall = {
+  fontSize: '12.5px',
+ 
 }
 
 export default SideBar;
