@@ -83,7 +83,7 @@ const HomeRoute = () => {
             <div style={innerContainer} className="d-flex justify-content-evenly row">
                 <HeaderElement />
                 <div className="row col-lg-12 d-flex align-items-start justify-content-evenly mt-5 mb-5">
-                    <div className="col-lg-2 rounded" style={sideBar}>
+                    <div className="col-lg-3 rounded" style={sideBar}>
                         <SideBar />
                     </div>
                     <div className="col-lg-5 rounded" style={tasksLeftSide}>

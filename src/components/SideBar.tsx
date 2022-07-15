@@ -65,9 +65,17 @@ const SideBar = (): JSX.Element => {
       const limitAnimation = ({ currentTarget }: React.MouseEvent<HTMLButtonElement|HTMLDivElement, MouseEvent>) => {
         const baseColor = currentTarget.style.backgroundColor;
         console.log(baseColor)
-        let targetTimeline = gsap.timeline({});
-        targetTimeline.to(currentTarget, { duration: 0.5, backgroundColor: 'red' });
-        targetTimeline.to(currentTarget, { duration: 0.5, backgroundColor: 'yellow' });
+        
+        if (darkmode) {
+          let targetTimeline = gsap.timeline({});
+          targetTimeline.to(currentTarget, { duration: 0.5, backgroundColor: 'red' });
+          targetTimeline.to(currentTarget, { duration: 0.5, backgroundColor: '#001233' });
+        } else {
+          let targetTimeline = gsap.timeline({});
+          targetTimeline.to(currentTarget, { duration: 0.5, backgroundColor: 'red' });
+          targetTimeline.to(currentTarget, { duration: 0.5, backgroundColor: '#ABC4FF' });
+        }
+        
       }
       
       const playStopButtonStyle = {
@@ -98,7 +106,24 @@ const SideBar = (): JSX.Element => {
 
       const iconImageStyles = {
         width: "25px",
-        height: "25px"
+        height: "25px",
+        filter: 'drop-shadow(1px 4px 6px rgba(0, 0, 0, 0.3))',
+      }
+
+      const buttonStyle = {
+        backgroundColor: darkmode ? '#001233' : '#ABC4FF',
+        color: darkmode ? 'white' : 'black',
+        cursor: "pointer",
+        boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
+        border: darkmode ? '1px solid #E2EAFC' : '1px solid black',
+      }
+
+      const timerStylesLarge = {
+        fontSize: '25px',
+      }
+      
+      const timerStylesSmall = {
+        fontSize: '12.5px',
       }
       
     return (
@@ -108,17 +133,17 @@ const SideBar = (): JSX.Element => {
               <div className="col-lg-12">Play / Stop</div>
               <div className="col-lg-12"><strong>{playing ? "live" : "paused"}</strong></div>
             </button>
-            <div className="d-flex justify-content-evenly align-items-center col-lg-12 mt-3">
-              <div style={workButtonStyle} className="d-flex justify-content-evenly align-items-center me-2 p-2" onClick={(target) => workingTime && relaxTime ? setWorkOrRelax(true) : limitAnimation(target)}>
+            <div className="col-lg-12 mt-3">
+              <div style={workButtonStyle} className="d-flex justify-content-evenly align-content-center p-2" onClick={(target) => workingTime && relaxTime ? setWorkOrRelax(true) : limitAnimation(target)}>
                 <img style={iconImageStyles} src={workIconImage}/>
-                <p>Work</p>
+                <div>WORK</div>
               </div>
-              <div style={relaxButtonStyle} className="d-flex justify-content-evenly align-items-center p-2" onClick={(target) => workingTime && relaxTime ? setWorkOrRelax(false) : limitAnimation(target)}>
+              <div style={relaxButtonStyle} className="d-flex justify-content-evenly align-content-center p-2 mt-3" onClick={(target) => workingTime && relaxTime ? setWorkOrRelax(false) : limitAnimation(target)}>
                 <img style={iconImageStyles} src={relaxIconImage}/>
-                <p>Relax</p>
+                <div>RELAX</div>
               </div>
             </div>
-              <div className="text-center">
+              <div className="text-center mt-3">
                 {
                 workOrRelax ? 
                   workingTime ? 
@@ -141,19 +166,7 @@ const SideBar = (): JSX.Element => {
                 }
               </div>
             </div>
-            
-            {/* <button onClick={(target) => workingTime && relaxTime ? setWorkOrRelax(!workOrRelax) : limitAnimation(target)}>Relax/Work</button> */}
-            <div className="col-lg-12 d-flex mt-3">
-              <button style={buttonStyle} onClick={(target) => workingTime >= 120 && !playing ? setWorkingTime(+workingTime - 60) : limitAnimation(target)}>delete work time</button>
-              <button style={buttonStyle} onClick={(target) => workingTime < 3600 && !playing ? setWorkingTime(+workingTime + 60) : limitAnimation(target)}>add work time</button>
-            </div>
-            <div className="col-lg-12 d-flex mt-3">
-              <button style={buttonStyle} onClick={(target) => relaxTime >= 120 && !playing ? setRelaxTime(+relaxTime - 60) : limitAnimation(target)}>delete relax time</button>
-              <button style={buttonStyle} onClick={(target) => relaxTime < 1800 && !playing ? setRelaxTime(+relaxTime + 60) : limitAnimation(target)}>add relax time</button>
-            </div>
-            <div className="col-lg-12 d-flex mt-3">
-              <button onClick={(target) => !playing ? resetTimer() : limitAnimation(target)}>reset timer</button>
-            </div>
+
             <div 
               style={{
                 height: '120px',
@@ -198,22 +211,22 @@ const SideBar = (): JSX.Element => {
                 </div>
               </div>
             </div>
+            
+            {/* <button onClick={(target) => workingTime && relaxTime ? setWorkOrRelax(!workOrRelax) : limitAnimation(target)}>Relax/Work</button> */}
+            <div className="col-lg-12 d-flex mt-3">
+              <button style={buttonStyle} onClick={(target) => workingTime >= 120 && !playing ? setWorkingTime(+workingTime - 60) : limitAnimation(target)}>delete work time</button>
+              <button style={buttonStyle} onClick={(target) => workingTime < 3600 && !playing ? setWorkingTime(+workingTime + 60) : limitAnimation(target)}>add work time</button>
+            </div>
+            <div className="col-lg-12 d-flex mt-3">
+              <button style={buttonStyle} onClick={(target) => relaxTime >= 120 && !playing ? setRelaxTime(+relaxTime - 60) : limitAnimation(target)}>delete relax time</button>
+              <button style={buttonStyle} onClick={(target) => relaxTime < 1800 && !playing ? setRelaxTime(+relaxTime + 60) : limitAnimation(target)}>add relax time</button>
+            </div>
+            <div className="col-lg-12 d-flex mt-3">
+              <button onClick={(target) => !playing ? resetTimer() : limitAnimation(target)}>reset timer</button>
+            </div>
         </div>
     )
 }
 
-const buttonStyle = {
-  backgroundColor: 'yellow',
-}
-
-const timerStylesLarge = {
-  fontSize: '25px',
-  
-}
-
-const timerStylesSmall = {
-  fontSize: '12.5px',
- 
-}
 
 export default SideBar;
