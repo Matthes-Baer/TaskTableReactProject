@@ -3,6 +3,9 @@ import { gsap } from "gsap";
 import { useSelector } from "react-redux";
 import { RootState } from "../app/store";
 
+import workIconImage from '../images/work-icon.png';
+import relaxIconImage from '../images/relax-icon.png';
+
 const SideBar = (): JSX.Element => {
     const [workingTime, setWorkingTime] = useState<number|boolean>(60);
     const [relaxTime, setRelaxTime] = useState<number|boolean>(60);
@@ -60,6 +63,8 @@ const SideBar = (): JSX.Element => {
       }
 
       const limitAnimation = ({ currentTarget }: React.MouseEvent<HTMLButtonElement|HTMLDivElement, MouseEvent>) => {
+        const baseColor = currentTarget.style.backgroundColor;
+        console.log(baseColor)
         let targetTimeline = gsap.timeline({});
         targetTimeline.to(currentTarget, { duration: 0.5, backgroundColor: 'red' });
         targetTimeline.to(currentTarget, { duration: 0.5, backgroundColor: 'yellow' });
@@ -76,11 +81,24 @@ const SideBar = (): JSX.Element => {
       }
 
       const workButtonStyle = {
-        backgroundColor: workOrRelax ? '#7bf1a8' : 'yellow',
+        backgroundColor: workOrRelax ? "#7bf1a8" : darkmode ? '#001233' : '#ABC4FF',
+        color: workOrRelax ? 'black' : darkmode ? 'white' : 'black',
+        cursor: "pointer",
+        boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
+        border: darkmode ? '1px solid #E2EAFC' : '1px solid black',
       }
 
       const relaxButtonStyle = {
-        backgroundColor: !workOrRelax ? '#7bf1a8' : 'yellow',
+        backgroundColor: !workOrRelax ? "#7bf1a8" : darkmode ? '#001233' : '#ABC4FF',
+        color: !workOrRelax ? 'black' : darkmode ? 'white' : 'black',
+        cursor: "pointer",
+        boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
+        border: darkmode ? '1px solid #E2EAFC' : '1px solid black',
+      }
+
+      const iconImageStyles = {
+        width: "25px",
+        height: "25px"
       }
       
     return (
@@ -91,11 +109,13 @@ const SideBar = (): JSX.Element => {
               <div className="col-lg-12"><strong>{playing ? "live" : "paused"}</strong></div>
             </button>
             <div className="d-flex justify-content-evenly align-items-center col-lg-12 mt-3">
-              <div style={workButtonStyle} onClick={(target) => workingTime && relaxTime ? setWorkOrRelax(true) : limitAnimation(target)}>
-                Work
+              <div style={workButtonStyle} className="d-flex justify-content-evenly align-items-center me-2 p-2" onClick={(target) => workingTime && relaxTime ? setWorkOrRelax(true) : limitAnimation(target)}>
+                <img style={iconImageStyles} src={workIconImage}/>
+                <p>Work</p>
               </div>
-              <div style={relaxButtonStyle} onClick={(target) => workingTime && relaxTime ? setWorkOrRelax(false) : limitAnimation(target)}>
-                Relax
+              <div style={relaxButtonStyle} className="d-flex justify-content-evenly align-items-center p-2" onClick={(target) => workingTime && relaxTime ? setWorkOrRelax(false) : limitAnimation(target)}>
+                <img style={iconImageStyles} src={relaxIconImage}/>
+                <p>Relax</p>
               </div>
             </div>
               <div className="text-center">
