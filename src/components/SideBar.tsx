@@ -6,6 +6,14 @@ import { RootState } from "../app/store";
 import workIconImage from '../images/work-icon.png';
 import relaxIconImage from '../images/relax-icon.png';
 
+//* heroicons:
+import { ArrowCircleDownIcon } from '@heroicons/react/outline';
+import { ArrowCircleUpIcon } from '@heroicons/react/outline';
+import { RewindIcon } from '@heroicons/react/outline';
+import { PlayIcon } from '@heroicons/react/outline';
+import { PauseIcon } from '@heroicons/react/outline';
+
+
 const SideBar = (): JSX.Element => {
     const [workingTime, setWorkingTime] = useState<number|boolean>(60);
     const [relaxTime, setRelaxTime] = useState<number|boolean>(60);
@@ -62,27 +70,38 @@ const SideBar = (): JSX.Element => {
         setRelaxTime(600);
       }
 
-      const limitAnimation = ({ currentTarget }: React.MouseEvent<HTMLButtonElement|HTMLDivElement, MouseEvent>) => {
-        const baseColor = currentTarget.style.backgroundColor;
-        console.log(baseColor)
-        
-        if (darkmode) {
-          let targetTimeline = gsap.timeline({});
-          targetTimeline.to(currentTarget, { duration: 0.5, backgroundColor: 'red' });
-          targetTimeline.to(currentTarget, { duration: 0.5, backgroundColor: '#001233' });
+      const gsapTimerAnimation = ({ currentTarget }: React.MouseEvent<HTMLButtonElement|HTMLDivElement, MouseEvent>, success: boolean, callback?: Function) => {        
+        if (success) {
+          if (darkmode) {
+            let targetTimeline = gsap.timeline({});
+            targetTimeline.to(currentTarget, { duration: 0.5, backgroundColor: '#7bf1a8' });
+            targetTimeline.to(currentTarget, { duration: 0.5, backgroundColor: '#001233' });
+            callback && callback();
+          } else {
+            let targetTimeline = gsap.timeline({});
+            targetTimeline.to(currentTarget, { duration: 0.5, backgroundColor: '#7bf1a8' });
+            targetTimeline.to(currentTarget, { duration: 0.5, backgroundColor: '#ABC4FF' });
+            callback && callback();
+          }
+          
         } else {
-          let targetTimeline = gsap.timeline({});
-          targetTimeline.to(currentTarget, { duration: 0.5, backgroundColor: 'red' });
-          targetTimeline.to(currentTarget, { duration: 0.5, backgroundColor: '#ABC4FF' });
+          if (darkmode) {
+            let targetTimeline = gsap.timeline({});
+            targetTimeline.to(currentTarget, { duration: 0.5, backgroundColor: 'red' });
+            targetTimeline.to(currentTarget, { duration: 0.5, backgroundColor: '#001233' });
+          } else {
+            let targetTimeline = gsap.timeline({});
+            targetTimeline.to(currentTarget, { duration: 0.5, backgroundColor: 'red' });
+            targetTimeline.to(currentTarget, { duration: 0.5, backgroundColor: '#ABC4FF' });
+          }
         }
-        
       }
       
       const playStopButtonStyle = {
         color: playing ? 'black' : darkmode ? 'white' : 'black',
         transition: 'all .5s',
         backgroundColor: playing ? "#7bf1a8" : darkmode ? '#001233' : '#ABC4FF',
-        width: '100%',
+        minWidth: '100%',
         height: 'auto',
         boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
         border: darkmode ? '1px solid #E2EAFC' : '1px solid black',
@@ -125,32 +144,41 @@ const SideBar = (): JSX.Element => {
       const timerStylesSmall = {
         fontSize: '12.5px',
       }
+
+      const heroIconStyle = {
+        width: '25px',
+        height: '25px'
+      }
       
     return (
         <div className="row d-flex flex-column justify-content-center align-items-center">
           <div className="d-flex justify-content-evenly align-items-center flex-column p-3 row">
-            <button style={playStopButtonStyle} className="row col-lg-12 p-2" onClick={(target) => workingTime || relaxTime ? setPlaying(!playing) : limitAnimation(target)}>
+            <button style={playStopButtonStyle} className="row col-lg-12 p-2" onClick={(target) => workingTime || relaxTime ? setPlaying(!playing) : gsapTimerAnimation(target, false)}>
               <div className="col-lg-12">Play / Stop</div>
-              <div className="col-lg-12"><strong>{playing ? "live" : "paused"}</strong></div>
+              {/* <div className="col-lg-12"><strong>{playing ? "live" : "paused"}</strong></div> */}
             </button>
-            <div className="col-lg-12 mt-3">
-              <div style={workButtonStyle} className="d-flex justify-content-evenly align-content-center p-2" onClick={(target) => workingTime && relaxTime ? setWorkOrRelax(true) : limitAnimation(target)}>
-                <img style={iconImageStyles} src={workIconImage}/>
+            <div className="col-lg-12 mt-3 d-flex justify-content-evenly flex-column">
+              <button style={workButtonStyle} className="d-flex justify-content-evenly p-2" onClick={(target) => workingTime && relaxTime ? setWorkOrRelax(true) : gsapTimerAnimation(target, false)}>
+                <div style={heroIconStyle}>
+                  <PlayIcon />
+                </div>
                 <div>WORK</div>
-              </div>
-              <div style={relaxButtonStyle} className="d-flex justify-content-evenly align-content-center p-2 mt-3" onClick={(target) => workingTime && relaxTime ? setWorkOrRelax(false) : limitAnimation(target)}>
-                <img style={iconImageStyles} src={relaxIconImage}/>
+              </button>
+              <button style={relaxButtonStyle} className="mt-3 d-flex justify-content-evenly p-2" onClick={(target) => workingTime && relaxTime ? setWorkOrRelax(false) : gsapTimerAnimation(target, false)}>
+                <div style={heroIconStyle}>
+                  <PauseIcon />
+                </div>
                 <div>RELAX</div>
-              </div>
+              </button>
             </div>
               <div className="text-center mt-3">
                 {
                 workOrRelax ? 
                   workingTime ? 
-                    <span style={timerStylesLarge}>{"Work for:" + formattedWorkingMinutes + ":" + formattedWorkingSeconds}</span> : 
+                    <span style={timerStylesLarge}>{"Work for" + " " + formattedWorkingMinutes + ":" + formattedWorkingSeconds}</span> : 
                     <span style={timerStylesLarge}>{"no working time left"}</span> : 
                   relaxTime ? 
-                  <span style={timerStylesLarge}>{"Relax for:" + formattedRelaxMinutes + ":" + formattedRelaxSeconds}</span> : 
+                  <span style={timerStylesLarge}>{"Relax for" + " "+ formattedRelaxMinutes + ":" + formattedRelaxSeconds}</span> : 
                   <span style={timerStylesLarge}>{"no relax time left"}</span>
                   }
               </div>
@@ -158,15 +186,14 @@ const SideBar = (): JSX.Element => {
                 {
                 workOrRelax ? 
                   relaxTime ? 
-                  <span style={timerStylesSmall}>{"Next: relax for" + " " + formattedRelaxMinutes + ":" + formattedRelaxSeconds}</span> : 
+                  <span style={timerStylesSmall}>{"Next: Relax for" + " " + formattedRelaxMinutes + ":" + formattedRelaxSeconds}</span> : 
                   <span style={timerStylesSmall}>{"no relax time left"}</span> : 
                   workingTime ? 
-                  <span style={timerStylesSmall}>{"Next: work for" + " "+ formattedWorkingMinutes + ":" + formattedWorkingSeconds}</span> : 
+                  <span style={timerStylesSmall}>{"Next: Work for" + " "+ formattedWorkingMinutes + ":" + formattedWorkingSeconds}</span> : 
                   <span style={timerStylesSmall}>{"no working time left"}</span>
                 }
               </div>
             </div>
-
             <div 
               style={{
                 height: '120px',
@@ -179,7 +206,6 @@ const SideBar = (): JSX.Element => {
                 }}
               >
               <div style={{
-                // height: workOrRelax ? `${workingSeconds * 2}px` : `${relaxSeconds * 2}px`,
                 height: 'inherit',
                 width: 'inherit',
                 backgroundImage: 'linear-gradient(to top, red, red)',
@@ -211,22 +237,47 @@ const SideBar = (): JSX.Element => {
                 </div>
               </div>
             </div>
-            
             {/* <button onClick={(target) => workingTime && relaxTime ? setWorkOrRelax(!workOrRelax) : limitAnimation(target)}>Relax/Work</button> */}
-            <div className="col-lg-12 d-flex mt-3">
-              <button style={buttonStyle} onClick={(target) => workingTime >= 120 && !playing ? setWorkingTime(+workingTime - 60) : limitAnimation(target)}>delete work time</button>
-              <button style={buttonStyle} onClick={(target) => workingTime < 3600 && !playing ? setWorkingTime(+workingTime + 60) : limitAnimation(target)}>add work time</button>
-            </div>
-            <div className="col-lg-12 d-flex mt-3">
-              <button style={buttonStyle} onClick={(target) => relaxTime >= 120 && !playing ? setRelaxTime(+relaxTime - 60) : limitAnimation(target)}>delete relax time</button>
-              <button style={buttonStyle} onClick={(target) => relaxTime < 1800 && !playing ? setRelaxTime(+relaxTime + 60) : limitAnimation(target)}>add relax time</button>
-            </div>
-            <div className="col-lg-12 d-flex mt-3">
-              <button onClick={(target) => !playing ? resetTimer() : limitAnimation(target)}>reset timer</button>
+            <div className="col-lg-12 mt-3 row d-flex align-items-center flex-column">
+              <div className="col-lg-12 row justify-content-center d-flex">
+                <button style={buttonStyle} className="col-xl-6 d-flex justify-content-evenly p-2 m-1" onClick={(target) => workingTime >= 120 && !playing ? gsapTimerAnimation(target, true, () => setWorkingTime(+workingTime - 60)) : gsapTimerAnimation(target, false)}>
+                  <div style={heroIconStyle}>
+                    <ArrowCircleDownIcon />
+                  </div>
+                  <div>Work</div>
+                </button>
+                <button style={buttonStyle} className="col-xl-6 d-flex justify-content-evenly p-2 m-1" onClick={(target) => workingTime < 3600 && !playing ? gsapTimerAnimation(target, true, () => setWorkingTime(+workingTime + 60)) : gsapTimerAnimation(target, false)}>
+                  <div style={heroIconStyle}>
+                    <ArrowCircleUpIcon />
+                  </div>
+                  <div>Work</div>
+                </button>
+              </div>
+              <div className="col-lg-12 mt-2 row justify-content-center d-flex">
+                <button style={buttonStyle} className="col-xl-6 d-flex justify-content-evenly p-2 m-1" onClick={(target) => relaxTime >= 120 && !playing ? gsapTimerAnimation(target, true, () => setRelaxTime(+relaxTime - 60)) : gsapTimerAnimation(target, false)}>
+                  <div style={heroIconStyle}>
+                    <ArrowCircleDownIcon />
+                  </div>
+                  <div>Relax</div>
+                </button>
+                <button style={buttonStyle} className="col-xl-6 d-flex justify-content-evenly p-2 m-1" onClick={(target) => relaxTime < 1800 && !playing ? gsapTimerAnimation(target, true, () => setRelaxTime(+relaxTime + 60)) : gsapTimerAnimation(target, false)}>
+                  <div style={heroIconStyle}>
+                    <ArrowCircleUpIcon />
+                  </div>
+                  <div>Relax</div>
+                </button>
+              </div>
+              <div className="col-lg-12 mt-4 mb-3 row justify-content-center d-flex">
+                <button style={buttonStyle} className="col-xl-6 d-flex justify-content-evenly p-2" onClick={(target) => !playing ? gsapTimerAnimation(target, true, () => resetTimer()) : gsapTimerAnimation(target, false)}>
+                  <div style={heroIconStyle}>
+                    <RewindIcon />
+                  </div>
+                  <div>Reset</div>
+                </button>
+              </div>      
             </div>
         </div>
     )
 }
-
 
 export default SideBar;
