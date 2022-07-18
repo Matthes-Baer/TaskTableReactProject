@@ -167,7 +167,7 @@ const SideBar = (): JSX.Element => {
       }
       
     return (
-        <div className="row d-flex flex-column justify-content-center align-items-center position-relative">
+        <div className="row d-flex flex-column justify-content-center align-items-center position-relative" style={{zIndex: '9000'}}>
           <SidebarBackgrounDecorationComponent />
           <div className="d-flex justify-content-evenly align-items-center flex-column p-3 row">
               <div className="col-lg-12" style={{height: '25px'}}>
