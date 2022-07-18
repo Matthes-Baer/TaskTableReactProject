@@ -1,0 +1,39 @@
+.flipBox {
+    width: inherit;
+    background-color: transparent;
+    perspective: 1000px;
+  }
+  
+  .flipBoxInner {
+    position: relative;
+    width: inherit;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+  
+  
+  .flipBoxBack, .flipBoxFront {
+    position: absolute;
+    width: inherit;
+    height: auto;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  
+  .flipBoxFront {
+    color: black;
+  }
+  
+  .flipBoxFront > p {
+    border-radius: 20px;
+  }
+  
+  .flipBoxBack {
+    color: white;
+    transform: rotateX(180deg);
+  }
+  
+  .flipBoxBack > p {
+    border-radius: 20px;
+  }

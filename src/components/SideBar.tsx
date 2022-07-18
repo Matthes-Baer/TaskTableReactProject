@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { useSelector } from "react-redux";
 import { RootState } from "../app/store";
 
-import workIconImage from '../images/work-icon.png';
-import relaxIconImage from '../images/relax-icon.png';
+//* css module
+import classes from './Sidebar.module.css';
 
 //* heroicons:
 import { ArrowCircleDownIcon } from '@heroicons/react/outline';
@@ -13,6 +13,9 @@ import { RewindIcon } from '@heroicons/react/outline';
 import { PlayIcon } from '@heroicons/react/outline';
 import { PauseIcon } from '@heroicons/react/outline';
 
+//* components
+import SidebarBackgrounDecorationComponent from "./SidebarBackgroundDecoration";
+
 
 const SideBar = (): JSX.Element => {
     const [workingTime, setWorkingTime] = useState<number|boolean>(60);
@@ -20,6 +23,8 @@ const SideBar = (): JSX.Element => {
     const [workOrRelax, setWorkOrRelax] = useState<boolean>(true)
     const [playing, setPlaying] = useState<boolean>(false);
     const darkmode = useSelector((state: RootState) => state.colorTheme.value)
+    const flipBoxFront = useRef(null);
+    const flipBoxBack = useRef(null);
 
     let workingMinutes = Math.floor(+workingTime / 60);
     let workingSeconds = (+workingTime - workingMinutes * 60);
@@ -96,6 +101,17 @@ const SideBar = (): JSX.Element => {
           }
         }
       }
+
+      const playStopButtonHandler = (direction: string, callback?: Function) => {
+        if (direction === "toStop") {
+          gsap.to(flipBoxFront.current, { duration: 1, transform: 'rotateX(180deg)' });
+          gsap.to(flipBoxBack.current, { duration: 1, transform: 'rotateX(0deg)' });
+        } else if (direction === "toPlay") {
+          gsap.to(flipBoxFront.current, { duration: 1, transform: 'rotateX(0deg)' });
+          gsap.to(flipBoxBack.current, { duration: 1, transform: 'rotateX(180deg)' });
+        }
+        callback && callback();
+      }
       
       const playStopButtonStyle = {
         color: playing ? 'black' : darkmode ? 'white' : 'black',
@@ -151,12 +167,25 @@ const SideBar = (): JSX.Element => {
       }
       
     return (
-        <div className="row d-flex flex-column justify-content-center align-items-center">
+        <div className="row d-flex flex-column justify-content-center align-items-center position-relative">
+          <SidebarBackgrounDecorationComponent />
           <div className="d-flex justify-content-evenly align-items-center flex-column p-3 row">
-            <button style={playStopButtonStyle} className="row col-lg-12 p-2" onClick={(target) => workingTime || relaxTime ? setPlaying(!playing) : gsapTimerAnimation(target, false)}>
-              <div className="col-lg-12">Play / Stop</div>
-              {/* <div className="col-lg-12"><strong>{playing ? "live" : "paused"}</strong></div> */}
-            </button>
+              <div className="col-lg-12" style={{height: '25px'}}>
+                <div className={classes.flipBox}>
+                  <div className={classes.flipBoxInner} >
+                    <div className={classes.flipBoxFront} ref={flipBoxFront}>
+                      <button style={playStopButtonStyle} onClick={(target) => workingTime || relaxTime ? playStopButtonHandler("toStop", () => setPlaying(true)) : gsapTimerAnimation(target, false)}>
+                        <strong>Play</strong>
+                      </button>
+                    </div>
+                    <div className={classes.flipBoxBack} ref={flipBoxBack}>
+                      <button style={playStopButtonStyle} onClick={(target) => workingTime || relaxTime ? playStopButtonHandler("toPlay", () => setPlaying(false)) : gsapTimerAnimation(target, false)}>
+                        <strong>Stop</strong>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             <div className="col-lg-12 mt-3 d-flex justify-content-evenly flex-column">
               <button style={workButtonStyle} className="d-flex justify-content-evenly p-2" onClick={(target) => workingTime && relaxTime ? setWorkOrRelax(true) : gsapTimerAnimation(target, false)}>
                 <div style={heroIconStyle}>
