@@ -1,6 +1,8 @@
+import classes from './SidebarBackgroundDecoration.module.css';
+
 const SidebarBackgrounDecorationComponent = (): JSX.Element => {
     return (
-        <div className="position-absolute" style={{height: '100%', width: '100%', zIndex: -1}}>
+        <div className={classes.container}>
             <div className="position-absolute" style={{backgroundColor: 'black', height: '200px', width: '50px', bottom: 0}}>
                 
             </div>

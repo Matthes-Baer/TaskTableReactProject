@@ -8,7 +8,10 @@ import { addActiveTodo } from "../features/ActiveTodosSlice";
 
 import { RootState } from '../app/store';
 import { changeCurrentTime } from '../features/CurrentTimeSlice';
-import { gsap } from 'gsap'
+import { gsap } from 'gsap';
+import { useId } from "react-id-generator";
+
+
 
 interface badgeInterface {
     singleBadge: {
@@ -18,9 +21,10 @@ interface badgeInterface {
 }
 
 const TasksLeftSide = () => {
+    const [htmlId] = useId();
+
     const [title, setTitle] = useState<string>("");
     const [comment, setComment] = useState<string>("");
-    const [id, setId] = useState<number>(0);
     const [badges, setBadges] = useState<badgeInterface["singleBadge"]>([
         { name: "todo", checked: false },
         { name: "important", checked: false },
@@ -88,8 +92,7 @@ const TasksLeftSide = () => {
       };
 
       const callbackForDispatchAdd = () => {
-        setId(prevState => prevState + 1);
-        dispatch(addActiveTodo({ id: id, title: title, badges: badges.filter(item => item.checked), comment: comment, time: new Date().getTime() / 1000 / 60 }));
+        dispatch(addActiveTodo({ id: htmlId, title: title, badges: badges.filter(item => item.checked), comment: comment, time: new Date().getTime() / 1000 / 60 }));
         
 
         setTitle("");

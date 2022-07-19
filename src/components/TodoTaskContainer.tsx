@@ -1,6 +1,7 @@
 import { Fragment, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../app/store";
+import { Link } from "react-router-dom";
 
 import homeworkIcon from '../images/homework icon.png'
 import timeIcon from '../images/time icon.png'
@@ -9,14 +10,11 @@ import { changeColorTheme } from "../features/ColorSlice";
 import { removeActiveTodo } from "../features/ActiveTodosSlice";
 import { addDoneTodo } from "../features/DoneTodoSlice";
 
-import winterLandscape from '../images/winterLandscape.jpg'
-
-
 import "../CSS.css";
 import { useCookies } from "react-cookie";
 
 interface itemInterface {
-    id: number,
+    id: string,
     title: string,
     badges?: {name: string, checked: boolean}[],
     comment?: string,
@@ -55,6 +53,7 @@ const TodoTaskContainer = (): JSX.Element => {
                 {todoState && todoState.map((item, idx) => {
                     return(
                         <div key={item.id} className="row d-flex align-items-start m-1 mt-4 rounded task position-relative" style={singleTodoTask}>
+                            <Link to={`/${item.id}`}>more info here</Link>
                             <div 
                                 style={deleteStyle}
                                 onClick={() => deleteFromActive(item, idx, dispatchCall)}
@@ -83,12 +82,15 @@ const TodoTaskContainer = (): JSX.Element => {
                                         return <div><img src={timeIcon} style={iconStyle} /></div>
                                     }})}
                             </div>
+                            
                             <div className="d-flex justify-content-end align-items-center">
                                     {(currentTime - item.time) > 60 
                                     ? `created ${Math.round((currentTime - item.time) / 60)} hour/s ago` 
                                     : `created ${Math.round(currentTime - item.time)} minute/s ago` 
                                     }
+                                    
                             </div>
+                            
                         </div>
                     )
                 })}

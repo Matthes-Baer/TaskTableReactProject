@@ -59,13 +59,6 @@ const HomeRoute = () => {
         borderRadius: '15px',
     };
 
-    const sideBar = {
-        minHeight: '500px',
-        backgroundColor: '#B6CCFE',
-        boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
-        border: colorTheme ? '2px solid #EDF2FB' : '2px solid black',
-    };
-
     const tasksLeftSide = {
         border: colorTheme ? '2px solid #EDF2FB' : '2px solid black',
         boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
@@ -82,15 +75,12 @@ const HomeRoute = () => {
         <div className="container-fluid d-flex justify-content-center align-items-center" style={mainContainer}>
             <div style={innerContainer} className="d-flex justify-content-evenly row">
                 <HeaderElement />
+                <SideBar />
                 <div className="row col-lg-12 d-flex align-items-start justify-content-evenly mt-5 mb-5">
-                    <div className="col-lg-3 rounded" style={sideBar}>
-                        <SideBar />
-                    </div>
                     <div className="col-lg-5 rounded" style={tasksLeftSide}>
                         <TasksLeftSide />
                     </div>
-
-                    <div className="col-lg-4 rounded" style={tasksRightSide}>
+                    <div className="col-lg-5 rounded" style={tasksRightSide}>
                         <TasksRightSide />
                     </div>
                     <button onClick={() => localStorage.clear}>CLEAR HERE</button>

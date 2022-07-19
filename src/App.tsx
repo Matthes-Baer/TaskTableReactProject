@@ -11,6 +11,7 @@ import { RootState } from './app/store';
 import HomeRoute from './Routes/home';
 import ErrorPage from './Routes/ErrorPage';
 import Navbar from './components/Navbar';
+import DetailView from './Routes/DetailTaskView';
 
 // import { useGet5DayForecastQuery } from './APIs/WeatherApi';
 
@@ -27,6 +28,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Navbar />}>
           <Route index element={<HomeRoute /> } />
+          <Route path=':taskID' element={<DetailView />} />
           <Route path='*' element={<ErrorPage />} />
         </Route>
       </Routes>

@@ -5,7 +5,7 @@ interface stateInterfaceArray {
 }
 
 interface stateInterface {
-    id: number,
+    id: string,
     title: string,
     badges?: {name: string, checked: boolean}[],
     comment?: string,

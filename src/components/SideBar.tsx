@@ -165,10 +165,21 @@ const SideBar = (): JSX.Element => {
         width: '25px',
         height: '25px'
       }
+
+      const sideBar = {
+        backgroundColor: '#B6CCFE',
+        boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
+        // border: darkmode ? '2px solid #EDF2FB' : '2px solid black',
+        zIndex: '9000'
+      };
       
     return (
-        <div className="row d-flex flex-column justify-content-center align-items-center position-relative" style={{zIndex: '9000'}}>
+        <div className="row position-relative" style={sideBar}>
           <SidebarBackgrounDecorationComponent />
+          <div className="col-lg-4">
+            Something
+          </div>
+          <div className="col-lg-8 ">
           <div className="d-flex justify-content-evenly align-items-center flex-column p-3 row">
               <div className="col-lg-12" style={{height: '25px'}}>
                 <div className={classes.flipBox}>
@@ -223,7 +234,7 @@ const SideBar = (): JSX.Element => {
                 }
               </div>
             </div>
-            <div 
+            <div className="mx-auto"
               style={{
                 height: '120px',
                 width: '120px',
@@ -304,6 +315,7 @@ const SideBar = (): JSX.Element => {
                   <div>Reset</div>
                 </button>
               </div>      
+            </div>
             </div>
         </div>
     )
