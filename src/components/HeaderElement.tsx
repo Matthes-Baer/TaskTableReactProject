@@ -15,25 +15,22 @@ const HeaderElement = ():JSX.Element => {
     const headerElement = {
         backgroundImage: colorTheme ? 'linear-gradient(to right, #002855, #0353A4, #0353A4, #002855)' : 'linear-gradient(to right, #E2EAFC, #B6CCFE, #B6CCFE, #E2EAFC)',
         color: colorTheme ? 'white' : 'black',
-        height: '100px',
+        minHeight: '100px',
         boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
         transition: 'all .5s',
     }
 
     return (
-        <div style={headerElement} className="d-flex align-items-center justify-content-between">
-            <div className="d-flex">
+        <div style={headerElement} className="row d-flex align-items-center justify-content-between">
+            <div className="d-flex col-sm-9 justify-content-start">
                 <div className="ms-1" style={backgroundLogoStyle}></div>
                 <div className="ms-3" style={sideEffect}></div>
                 <h1 className="align-self-center">Task Tour</h1>
             </div>
-
-            <div className="d-flex">
+            <div className="d-flex col-sm-3 justify-content-end">
                 <div style={sideEffect}></div>
                 <div style={timeStyle} className="p-2">{today}</div>
             </div>
-
-            
         </div>
     )
 }
