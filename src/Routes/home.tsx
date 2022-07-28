@@ -31,16 +31,6 @@ const HomeRoute = () => {
     const dispatch = useDispatch();
     const refTest = useRef(null)
   
-    const changer = () => {
-        if (colorTheme) {
-            localStorage.setItem('darkmode', JSON.stringify(false));
-        }
-        else {
-            localStorage.setItem('darkmode', JSON.stringify(true))
-        }
-        dispatch(changeColorTheme(JSON.parse(localStorage.getItem('darkmode') || "{}")))
-    }
-    
     const mainContainer = {
         backgroundColor: colorTheme ? '#001233' : '#EDF2FB',
         minHeight: '150vh',
@@ -48,7 +38,6 @@ const HomeRoute = () => {
         backgroundRepeat: 'no-repeat',
         backgroundAttachment: 'fixed',
         backgroundPosition: colorTheme ? 'top' : 'bottom',
-        transition: 'all 0.5s',
     };
 
     const innerContainer = {
@@ -84,7 +73,6 @@ const HomeRoute = () => {
                         <TasksRightSide />
                     </div>
                     <button onClick={() => localStorage.clear}>CLEAR HERE</button>
-                    <button onClick={changer}>CHANGER HERE</button>
                 </div> 
             </div>
         </div>

@@ -3,7 +3,7 @@ import { gsap } from "gsap";
 import { useSelector } from "react-redux";
 import { RootState } from "../app/store";
 
-//* css module
+//* css module:
 import classes from './Sidebar.module.css';
 
 //* heroicons:
@@ -13,8 +13,12 @@ import { RewindIcon } from '@heroicons/react/outline';
 import { PlayIcon } from '@heroicons/react/outline';
 import { PauseIcon } from '@heroicons/react/outline';
 
-//* components
+//* components:
 import SidebarBackgrounDecorationComponent from "./SidebarBackgroundDecoration";
+
+//* images:
+import GalaxyPNG from '../images/space/GalaxyPNG.png';
+import SpaceshipPNG from '../images/space/SpaceshipPNG.png';
 
 
 const SideBar = (): JSX.Element => {
@@ -115,7 +119,6 @@ const SideBar = (): JSX.Element => {
       
       const playStopButtonStyle = {
         color: playing ? 'black' : darkmode ? 'white' : 'black',
-        transition: 'all .5s',
         backgroundColor: playing ? "#7bf1a8" : darkmode ? '#001233' : '#ABC4FF',
         minWidth: '100%',
         height: 'auto',
@@ -172,15 +175,15 @@ const SideBar = (): JSX.Element => {
       const sideBar = {
         backgroundColor: '#B6CCFE',
         boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
-        // border: darkmode ? '2px solid #EDF2FB' : '2px solid black',
+        border: darkmode ? '2px solid #EDF2FB' : '2px solid black',
         zIndex: '9000'
       };
       
     return (
         <div className="row position-relative" style={sideBar}>
           <SidebarBackgrounDecorationComponent />
-          <div className="col-lg-4">
-            Something
+          <div className="col-lg-4 d-flex justify-content-end">
+            <img src={SpaceshipPNG} style={{ maxWidth: '100%', maxHeight: '500px' }}/>
           </div>
           <div className="col-lg-8">
           <div className="d-flex align-items-center flex-column p-3 row">
@@ -282,7 +285,6 @@ const SideBar = (): JSX.Element => {
                 height: '120px',
                 width: '120px',
                 backgroundColor: 'green',
-                transition: 'all 0.5s',
                 position: 'relative',
                 borderRadius: '50%',
                 zIndex: '1'
@@ -294,7 +296,6 @@ const SideBar = (): JSX.Element => {
                 backgroundImage: 'linear-gradient(to top, red, red)',
                 backgroundSize: workOrRelax ? `100% ${workingSeconds * (5/3)}%` : `100% ${relaxSeconds * (5/3)}%`,
                 backgroundRepeat: 'no-repeat',
-                transition: 'all 0.5s',
                 position: 'absolute',
                 top: '0',
                 right: '0',

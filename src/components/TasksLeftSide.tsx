@@ -42,7 +42,6 @@ const TasksLeftSide = () => {
     border: colorTheme ? '1px solid #E2EAFC' : '1px solid black',
     boxShadow: '4px 4px 0px 0px #023E7D',
     backgroundColor: colorTheme ? '#001233' : '#ABC4FF',
-    transition: 'all .5s',
     fontSize: '25px',
     color: colorTheme ? 'white' : 'black',
    }
