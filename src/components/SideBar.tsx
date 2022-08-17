@@ -108,11 +108,12 @@ const SideBar = (): JSX.Element => {
 
       const playStopButtonHandler = (direction: string, callback?: Function) => {
         if (direction === "toStop") {
-          gsap.to(flipBoxFront.current, { duration: 1, transform: 'rotateX(180deg)' });
-          gsap.to(flipBoxBack.current, { duration: 1, transform: 'rotateX(0deg)' });
+          gsap.to(".flipBoxFront", { duration: 1, rotateX: 180 });
+          gsap.to(".flipBoxBack", { duration: 1, rotateX: 0 });
+          console.log(flipBoxFront.current)
         } else if (direction === "toPlay") {
-          gsap.to(flipBoxFront.current, { duration: 1, transform: 'rotateX(0deg)' });
-          gsap.to(flipBoxBack.current, { duration: 1, transform: 'rotateX(180deg)' });
+          gsap.to(".flipBoxFront", { duration: 1, rotateX: 0 });
+          gsap.to(".flipBoxBack", { duration: 1, rotateX: 180 });
         }
         callback && callback();
       }
@@ -161,10 +162,12 @@ const SideBar = (): JSX.Element => {
 
       const timerStylesLarge = {
         fontSize: '25px',
+        color: darkmode ? 'white' : 'black',
       }
       
       const timerStylesSmall = {
         fontSize: '12.5px',
+        color: darkmode ? 'white' : 'black',
       }
 
       const heroIconStyle = {
@@ -180,7 +183,7 @@ const SideBar = (): JSX.Element => {
       };
       
     return (
-        <div className="row position-relative" style={sideBar}>
+        <div className="row col-lg-10 position-relative" style={sideBar}>
           <SidebarBackgrounDecorationComponent />
           <div className="col-lg-4 d-flex justify-content-end">
             <img src={SpaceshipPNG} style={{ maxWidth: '100%', maxHeight: '500px' }}/>
@@ -190,13 +193,13 @@ const SideBar = (): JSX.Element => {
             <div className="col-lg-12" style={{ height: '50px', maxWidth: '250px' }}>
               <div className={classes.flipBox}>
                 <div className={classes.flipBoxInner} >
-                  <div className={classes.flipBoxFront} ref={flipBoxFront}>
-                    <button style={playStopButtonStyle} className="p-2" onClick={(target) => workingTime || relaxTime ? playStopButtonHandler("toStop", () => setPlaying(true)) : gsapTimerAnimation(target, false)}>
+                  <div className={classes.flipBoxFront + " " + "flipBoxFront"}>
+                    <button style={playStopButtonStyle} className="p-2" onClick={(target) => (workingTime || relaxTime) ? playStopButtonHandler("toStop", () => setPlaying(true)) : gsapTimerAnimation(target, false)}>
                       <strong>Play</strong>
                     </button>
                   </div>
-                  <div className={classes.flipBoxBack} ref={flipBoxBack}>
-                    <button style={playStopButtonStyle} className="p-2" onClick={(target) => workingTime || relaxTime ? playStopButtonHandler("toPlay", () => setPlaying(false)) : gsapTimerAnimation(target, false)}>
+                  <div className={classes.flipBoxBack  + " " + "flipBoxBack"}>
+                    <button style={playStopButtonStyle} className="p-2" onClick={(target) => (workingTime || relaxTime) ? playStopButtonHandler("toPlay", () => setPlaying(false)) : gsapTimerAnimation(target, false)}>
                       <strong>Stop</strong>
                     </button>
                   </div>
