@@ -205,16 +205,16 @@ const SideBar = (): JSX.Element => {
                 </div>
               </div>
             </div>
-            <div className="col-lg-8 mt-3 d-flex align-items-center flex-column row">
+            <div className="col-lg-12 mt-3 d-flex align-items-center flex-column row">
               <div className="d-flex row align-items-center">
-                <div className="col-sm-3">
+                <div className="col-lg-3">
                   <button style={buttonStyle} className="d-flex align-items-center justify-content-evenly p-2" onClick={(target) => workingTime > 60 && !playing ? gsapTimerAnimation(target, true, () => setWorkingTime(+workingTime - 60)) : gsapTimerAnimation(target, false)}>
                       <div style={heroIconStyle}>
                         <ArrowCircleDownIcon />
                       </div>
                     </button>
                 </div>
-                <div className="col-sm-6">
+                <div className="col-lg-6">
                 <button style={workButtonStyle} className="d-flex align-items-center justify-content-evenly p-2" onClick={(target) => workingTime && relaxTime ? setWorkOrRelax(true) : gsapTimerAnimation(target, false)}>
                   <div style={heroIconStyle}>
                     <PlayIcon />
@@ -224,7 +224,7 @@ const SideBar = (): JSX.Element => {
                   </div>
                   </button>
                 </div>
-                <div className="col-sm-3">
+                <div className="col-lg-3">
                   <button style={buttonStyle} className="d-flex align-items-center justify-content-evenly p-2" onClick={(target) => workingTime < 3600 && !playing ? gsapTimerAnimation(target, true, () => setWorkingTime(+workingTime + 60)) : gsapTimerAnimation(target, false)}>
                     <div style={heroIconStyle}>
                       <ArrowCircleUpIcon />
@@ -233,14 +233,14 @@ const SideBar = (): JSX.Element => {
                 </div>
               </div>
               <div className="d-flex row align-items-center mt-4">
-                <div className="col-sm-3">
+                <div className="col-lg-3">
                   <button style={buttonStyle} className="d-flex align-items-center justify-content-evenly p-2" onClick={(target) => relaxTime > 60 && !playing ? gsapTimerAnimation(target, true, () => setRelaxTime(+relaxTime - 60)) : gsapTimerAnimation(target, false)}>
                     <div style={heroIconStyle}>
                       <ArrowCircleDownIcon />
                     </div>
                   </button>
                 </div>
-                <div className="col-sm-6">
+                <div className="col-lg-6">
                   <button style={relaxButtonStyle} className="d-flex align-items-center justify-content-evenly p-2" onClick={(target) => workingTime && relaxTime ? setWorkOrRelax(false) : gsapTimerAnimation(target, false)}>
                     <div style={heroIconStyle}>
                       <PauseIcon />
@@ -250,7 +250,7 @@ const SideBar = (): JSX.Element => {
                     </div>
                   </button>
                 </div>
-                <div className="col-sm-3">
+                <div className="col-lg-3">
                   <button style={buttonStyle} className="d-flex align-items-center justify-content-evenly p-2" onClick={(target) => relaxTime < 1800 && !playing ? gsapTimerAnimation(target, true, () => setRelaxTime(+relaxTime + 60)) : gsapTimerAnimation(target, false)}>
                     <div style={heroIconStyle}>
                       <ArrowCircleUpIcon />
