@@ -27,43 +27,45 @@ import winterLandscape from '../images/winterLandscape.jpg';
 // akzent: #EC214E
 
 const HomeRoute = () => {
-    const colorTheme = useSelector((state: RootState) => state.colorTheme.value);
+    const darkmode = useSelector((state: RootState) => state.colorTheme.value)
     const dispatch = useDispatch();
     const refTest = useRef(null)
   
     const mainContainer = {
-        backgroundColor: colorTheme ? '#001233' : '#EDF2FB',
+        backgroundColor: darkmode ? '#001233' : '#EDF2FB',
         minHeight: '150vh',
         backgroundImage: `url(${landscape})`,
         backgroundRepeat: 'no-repeat',
         backgroundAttachment: 'fixed',
-        backgroundPosition: colorTheme ? 'top' : 'bottom',
+        backgroundPosition: darkmode ? 'top' : 'bottom',
         transition: '.5s',
     };
 
     const innerContainer = {
-        backgroundColor: colorTheme ? '#023E7D' : '#D7E3FC',
+        backgroundColor: darkmode ? '#023E7D' : '#D7E3FC',
         minHeight: '90vh',
         width: '75vw',
-        outline: colorTheme ? '20px solid #002855' : '20px solid #E2EAFC',
+        outline: darkmode ? '20px solid #002855' : '20px solid #E2EAFC',
         borderRadius: '15px',
     };
 
     const tasksLeftSide = {
-        border: colorTheme ? '2px solid #EDF2FB' : '2px solid black',
+        border: darkmode ? '2px solid #EDF2FB' : '2px solid black',
         boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
-        backgroundColor: '#B6CCFE'
+        backgroundColor: darkmode ? '#001233' : '#ABC4FF',
+        color: darkmode ? 'white' : 'black',
     }
 
     const tasksRightSide = {
-        border: colorTheme ? '2px solid #EDF2FB' : '2px solid black',
+        border: darkmode ? '2px solid #EDF2FB' : '2px solid black',
         boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
-        backgroundColor: '#B6CCFE'
+        backgroundColor: darkmode ? '#001233' : '#ABC4FF',
+        color: darkmode ? 'white' : 'black',
     }
   
     return (
         <div className="container-fluid d-flex justify-content-center align-items-center" style={mainContainer}>
-            <div style={innerContainer} className="d-flex justify-content-evenly row">
+            <div style={innerContainer} className="d-flex justify-content-evenly row mt-5 mb-5">
                 <HeaderElement />
                 <SideBar />
                 <div className="row col-lg-12 d-flex align-items-start justify-content-evenly mt-5 mb-5">
@@ -73,7 +75,7 @@ const HomeRoute = () => {
                     <div className="col-lg-5 rounded" style={tasksRightSide}>
                         <TasksRightSide />
                     </div>
-                    <button onClick={() => localStorage.clear}>CLEAR HERE</button>
+                    {/* <button onClick={() => localStorage.clear}>CLEAR HERE</button> */}
                 </div> 
             </div>
         </div>

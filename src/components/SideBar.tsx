@@ -176,21 +176,20 @@ const SideBar = (): JSX.Element => {
       }
 
       const sideBar = {
-        backgroundColor: '#B6CCFE',
         boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
         border: darkmode ? '2px solid #EDF2FB' : '2px solid black',
         zIndex: '9000'
       };
       
     return (
-        <div className="row col-lg-10 position-relative" style={sideBar}>
+        <div className="row col-lg-8 position-relative mt-5" style={sideBar}>
           <SidebarBackgrounDecorationComponent />
-          <div className="col-lg-4 d-flex justify-content-end">
-            <img src={SpaceshipPNG} style={{ maxWidth: '100%', maxHeight: '500px' }}/>
+          <div className="col-xl-4 d-flex justify-content-center">
+            <img src={SpaceshipPNG} style={{ maxWidth: '200%', maxHeight: '400px' }}/>
           </div>
-          <div className="col-lg-8">
-          <div className="d-flex align-items-center flex-column p-3 row">
-            <div className="col-lg-12" style={{ height: '50px', maxWidth: '250px' }}>
+          <div className="col-xl-8 p-3">
+          <div className="d-flex align-items-center flex-column row">
+            <div className="col-xl-12" style={{ height: '50px', maxWidth: '250px' }}>
               <div className={classes.flipBox}>
                 <div className={classes.flipBoxInner} >
                   <div className={classes.flipBoxFront + " " + "flipBoxFront"}>

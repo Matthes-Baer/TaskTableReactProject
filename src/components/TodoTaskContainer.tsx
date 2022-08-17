@@ -22,6 +22,7 @@ interface itemInterface {
 }
 
 const TodoTaskContainer = (): JSX.Element => {
+    const darkmode = useSelector((state: RootState) => state.colorTheme.value)
     const todoState = useSelector((state: RootState) => state.activeTodos.value);
     const currentTime = useSelector((state: RootState) => state.currentTime.value);
     const dispatch = useDispatch();
@@ -47,7 +48,7 @@ const TodoTaskContainer = (): JSX.Element => {
             <h2>Active Tasks</h2>
             <div 
                 className="container text-center mb-4" 
-                style={{ border: '1px solid #ABC4FF', backgroundColor: '#E2EAFC', height: '300px', overflowY: 'scroll' }}
+                style={{ border: darkmode ? '1px solid #E2EAFC' : '1px solid black', backgroundColor: darkmode ? '#002855' : '#ABC4FF', height: '300px', overflowY: 'scroll' }}
             >
                 
                 {todoState && todoState.map((item, idx) => {

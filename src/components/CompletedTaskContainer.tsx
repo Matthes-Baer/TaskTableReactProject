@@ -6,9 +6,8 @@ import { Link } from "react-router-dom";
 import homeworkIcon from '../images/homework icon.png';
 import timeIcon from '../images/time icon.png';
 
-import summerWinter from '../images/summer-winter.png';
-
 const CompletedTaskContainer = () => {
+    const darkmode = useSelector((state: RootState) => state.colorTheme.value)
     const doneTodoState = useSelector((state: RootState) => state.doneTodos.value);
     const currentTime = useSelector((state: RootState) => state.currentTime.value);
 
@@ -19,7 +18,7 @@ const CompletedTaskContainer = () => {
             <h2>Finished Tasks</h2>
             <div 
                 className="container text-center mb-4" 
-                style={{ border: '1px solid #ABC4FF', backgroundColor: '#E2EAFC', height: '300px', overflowY: 'scroll' }}
+                style={{ border: darkmode ? '1px solid #E2EAFC' : '1px solid black', backgroundColor: darkmode ? '#002855' : '#ABC4FF', height: '300px', overflowY: 'scroll' }}
             >
             {doneTodoState && doneTodoState.map((item, index) => {
                 return (
