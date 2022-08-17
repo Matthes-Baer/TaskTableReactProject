@@ -56,7 +56,7 @@ const TodoTaskContainer = (): JSX.Element => {
                 
                 {todoState && todoState.map((item, idx) => {
                     return(
-                        <div key={item.id} className="row d-flex align-items-start m-1 mt-4 rounded task position-relative" style={singleTodoTask}>
+                        <div key={item.id} className="row d-flex align-items-start m-2 rounded task position-relative justify-content-center" style={singleTodoTask}>
                             <Link to={`/${item.id}`}>more info here</Link>
                             <div 
                                 style={deleteStyle}
@@ -74,7 +74,7 @@ const TodoTaskContainer = (): JSX.Element => {
                                     {item.comment ? <span>{item.comment}</span> : <span>Kein Kommentar hinzugefügt</span>}
                                 </div>
                             </div>
-                            <div className="d-flex justify-content-evenly align-items-center">
+                            <div className="row d-flex justify-content-center align-items-center">
                                 {item.badges?.map(element => {
                                     return <TodoBadgesComponent badge={element.name}/>
                                     })}
