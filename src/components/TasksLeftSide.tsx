@@ -92,8 +92,6 @@ const TasksLeftSide = () => {
 
       const callbackForDispatchAdd = () => {
         dispatch(addActiveTodo({ id: htmlId, title: title, badges: badges.filter(item => item.checked), comment: comment, time: new Date().getTime() / 1000 / 60 }));
-        
-
         setTitle("");
         setComment("");
         setBadges(

@@ -12,6 +12,7 @@ import { addDoneTodo } from "../features/DoneTodoSlice";
 
 import "../CSS.css";
 import { useCookies } from "react-cookie";
+import TodoBadgesComponent from "./TodoBadgesComponent";
 
 interface itemInterface {
     id: string,
@@ -29,9 +30,11 @@ const TodoTaskContainer = (): JSX.Element => {
 
     const [cookie, setCookie] = useCookies();
 
- 
-
-    
+    const singleTodoTask = {
+        border: darkmode ? '1px solid #E2EAFC' : '1px solid black',
+        backgroundColor: darkmode ? '#001233' : '#ABC4FF',
+        boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
+    }
 
     const deleteFromActive = (item: itemInterface, index: number, callback: Function) => {
         callback(item, index, new Date().getTime() / 1000 / 60);
@@ -73,15 +76,8 @@ const TodoTaskContainer = (): JSX.Element => {
                             </div>
                             <div className="d-flex justify-content-evenly align-items-center">
                                 {item.badges?.map(element => {
-                                    if (element.name === 'todo') {
-                                        return <div><img src={homeworkIcon} style={iconStyle} /></div>
-                                    }
-                                    else if (element.name === 'feature') {
-                                        return <div><img src={timeIcon} style={iconStyle} /></div>
-                                    }
-                                    else if (element.name === 'important'){
-                                        return <div><img src={timeIcon} style={iconStyle} /></div>
-                                    }})}
+                                    return <TodoBadgesComponent badge={element.name}/>
+                                    })}
                             </div>
                             
                             <div className="d-flex justify-content-end align-items-center">
@@ -91,7 +87,6 @@ const TodoTaskContainer = (): JSX.Element => {
                                     }
                                     
                             </div>
-                            
                         </div>
                     )
                 })}
@@ -100,11 +95,6 @@ const TodoTaskContainer = (): JSX.Element => {
     )    
 }
 
-const singleTodoTask = {
-    border: '1px solid #ABC4FF',
-    backgroundColor: '#CCDBFD',
-    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
-}
 
 const iconStyle = {
     transform: 'scale(0.35)',
