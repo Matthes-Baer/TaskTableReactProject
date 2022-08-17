@@ -38,6 +38,7 @@ const HomeRoute = () => {
         backgroundRepeat: 'no-repeat',
         backgroundAttachment: 'fixed',
         backgroundPosition: colorTheme ? 'top' : 'bottom',
+        transition: '.5s',
     };
 
     const innerContainer = {
