@@ -52,7 +52,7 @@ const HeaderElement = ():JSX.Element => {
                 <h1 className="align-self-center">Task Tour</h1>
             </div>
             <div className="d-flex col-sm-3 justify-content-end">
-                <div onClick={changer} className="d-flex me-3" style={darkmodeSwitcherStyle}>
+                <div onClick={changer} className="d-flex me-3 align-self-center" style={darkmodeSwitcherStyle}>
                     <img src={darkmode ? MoonPNG : EarthPNG} />
                 </div>
                 <div style={sideEffect}></div>
