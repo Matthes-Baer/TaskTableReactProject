@@ -145,12 +145,6 @@ const SideBar = (): JSX.Element => {
         width: '100%',
       }
 
-      const iconImageStyles = {
-        width: "25px",
-        height: "25px",
-        filter: 'drop-shadow(1px 4px 6px rgba(0, 0, 0, 0.3))',
-      }
-
       const buttonStyle = {
         backgroundColor: darkmode ? '#001233' : '#ABC4FF',
         color: darkmode ? 'white' : 'black',
@@ -295,7 +289,7 @@ const SideBar = (): JSX.Element => {
               <div style={{
                 height: 'inherit',
                 width: 'inherit',
-                backgroundImage: 'linear-gradient(to top, red, red)',
+                backgroundImage: 'linear-gradient(to top, rgb(133,44,141), rgb(133,44,141))',
                 backgroundSize: workOrRelax ? `100% ${workingSeconds * (5/3)}%` : `100% ${relaxSeconds * (5/3)}%`,
                 backgroundRepeat: 'no-repeat',
                 position: 'absolute',

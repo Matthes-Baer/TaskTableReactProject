@@ -21,8 +21,6 @@ interface badgeInterface {
 }
 
 const TasksLeftSide = () => {
-    const [htmlId] = useId();
-
     const [title, setTitle] = useState<string>("");
     const [comment, setComment] = useState<string>("");
     const [badges, setBadges] = useState<badgeInterface["singleBadge"]>([
@@ -91,7 +89,7 @@ const TasksLeftSide = () => {
       };
 
       const callbackForDispatchAdd = () => {
-        dispatch(addActiveTodo({ id: htmlId, title: title, badges: badges.filter(item => item.checked), comment: comment, time: new Date().getTime() / 1000 / 60 }));
+        dispatch(addActiveTodo({ id: title + new Date().getTime(), title: title, badges: badges.filter(item => item.checked), comment: comment, time: new Date().getTime() / 1000 / 60 }));
         setTitle("");
         setComment("");
         setBadges(

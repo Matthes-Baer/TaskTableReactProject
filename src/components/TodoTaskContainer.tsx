@@ -1,12 +1,7 @@
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../app/store";
-import { Link } from "react-router-dom";
 
-import homeworkIcon from '../images/homework icon.png'
-import timeIcon from '../images/time icon.png'
-
-import { changeColorTheme } from "../features/ColorSlice";
 import { removeActiveTodo } from "../features/ActiveTodosSlice";
 import { addDoneTodo } from "../features/DoneTodoSlice";
 
@@ -28,7 +23,7 @@ const TodoTaskContainer = (): JSX.Element => {
     const currentTime = useSelector((state: RootState) => state.currentTime.value);
     const dispatch = useDispatch();
 
-    const [cookie, setCookie] = useCookies();
+    // const [cookie, setCookie] = useCookies();
 
     const singleTodoTask = {
         border: darkmode ? '1px solid #E2EAFC' : '1px solid black',
@@ -43,7 +38,6 @@ const TodoTaskContainer = (): JSX.Element => {
     const dispatchCall = (item: itemInterface, index: number, time: number) => {
         dispatch(removeActiveTodo(index));
         dispatch(addDoneTodo({...item, completedTime: time}));
-
     }
 
     return (
@@ -53,11 +47,9 @@ const TodoTaskContainer = (): JSX.Element => {
                 className="container text-center mb-4" 
                 style={{ border: darkmode ? '1px solid #E2EAFC' : '1px solid black', backgroundColor: darkmode ? '#002855' : '#ABC4FF', height: '300px', overflowY: 'scroll' }}
             >
-                
                 {todoState && todoState.map((item, idx) => {
                     return(
                         <div key={item.id} className="row d-flex align-items-start m-2 rounded task position-relative justify-content-center" style={singleTodoTask}>
-                            <Link to={`/${item.id}`}>more info here</Link>
                             <div 
                                 style={deleteStyle}
                                 onClick={() => deleteFromActive(item, idx, dispatchCall)}
@@ -66,8 +58,8 @@ const TodoTaskContainer = (): JSX.Element => {
                                 ❌
                             </div>
                             <div className="d-flex justify-content-evenly align-items-center mt-3">
-                                <div className="col-xl-5 p-1" style={{borderRight: '1px solid green'}}>
-                                    <span>{item.title}</span>
+                                <div className="col-xl-5 p-1">
+                                    <h5>{item.title}</h5>
                                 </div>
                             
                                 <div className="col-xl-5 p-1">
@@ -95,11 +87,6 @@ const TodoTaskContainer = (): JSX.Element => {
     )    
 }
 
-
-const iconStyle = {
-    transform: 'scale(0.35)',
-}
-
 const deleteStyle = {
     backgroundColor: 'transparent',
     width: '25px',
@@ -108,8 +95,5 @@ const deleteStyle = {
     top: '0',
     right: '0',
 }
-
-
-
 
 export default TodoTaskContainer;

@@ -12,7 +12,6 @@ const TasksRightSide = () => {
         <Fragment> 
             <div className="row d-flex justify-content-center align-items-start rounded">
                 <div className='col-lg-12 row text-center d-flex justify-content-center'>
-                    <button onClick={() => dispatch(changeCurrentTime(new Date().getTime() / 1000 / 60))}>Timer update</button>
                     <div className='text-center'>
                         <CompletedTaskContainer />
                     </div>

@@ -19,6 +19,7 @@ import TasksRightSide from '../components/TasksRightSide';
 import landscape from '../images/landscape.jpg';
 import bears from '../images/winterBears.jpg';
 import winterLandscape from '../images/winterLandscape.jpg';
+import { changeCurrentTime } from "../features/CurrentTimeSlice";
 
 // COLORS:
 // https://coolors.co/palette/edf2fb-e2eafc-d7e3fc-ccdbfd-c1d3fe-b6ccfe-abc4ff
@@ -30,6 +31,12 @@ const HomeRoute = () => {
     const darkmode = useSelector((state: RootState) => state.colorTheme.value)
     const dispatch = useDispatch();
     const refTest = useRef(null)
+
+    //* Automatische Updates für aktuelle letzte Zeiten
+    const interval = setInterval(() => {
+        dispatch(changeCurrentTime(new Date().getTime() / 1000 / 60));
+        console.log("update")
+    }, 60000)
   
     const mainContainer = {
         backgroundColor: darkmode ? '#001233' : '#EDF2FB',

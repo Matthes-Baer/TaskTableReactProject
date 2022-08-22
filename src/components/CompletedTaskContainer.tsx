@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 import homeworkIcon from '../images/homework icon.png';
 import timeIcon from '../images/time icon.png';
+import TodoBadgesComponent from "./TodoBadgesComponent";
 
 const CompletedTaskContainer = () => {
     const darkmode = useSelector((state: RootState) => state.colorTheme.value)
@@ -27,28 +28,20 @@ const CompletedTaskContainer = () => {
             {doneTodoState && doneTodoState.map((item, index) => {
                 return (
                     <div key={item.id} className="row d-flex align-items-center p-2 m-1 mt-4 rounded task" style={singleTodoTask}>
-                        <Link to={`/${item.id}`}>more info here</Link>
                         <div className="d-flex justify-content-evenly align-items-center">
                             <div className="col-lg-5 p-1">
-                                <span>{item.title}</span>
+                                <h5>{item.title}</h5>
                             </div>
                         
                             <div className="col-lg-5 p-1">
                                 {item.comment ? <span>{item.comment}</span> : <span>Kein Kommentar hinzugefügt</span>}
                             </div>
                         </div>
-                        <div className="row d-flex justify-content-center">
-                            {item.badges?.map(element => {
-                                if (element.name === 'todo') {
-                                    return <div className="col-sm-4"><img src={homeworkIcon} style={iconStyle} /></div>
-                                }
-                                else if (element.name === 'feature') {
-                                    return <div className="col-sm-4"><img src={timeIcon} style={iconStyle} /></div>
-                                }
-                                else if (element.name === 'important'){
-                                    return <div className="col-sm-4"><img src={timeIcon} style={iconStyle} /></div>
-                                }})}
-                        </div>
+                        <div className="row d-flex justify-content-center align-items-center">
+                                {item.badges?.map(element => {
+                                    return <TodoBadgesComponent badge={element.name}/>
+                                    })}
+                            </div>
                         <div className="container-fluid d-flex justify-content-end align-items-center">
                                {(currentTime - item.completedTime) > 60 
                                ? `finished ${Math.round((currentTime - item.completedTime) / 60)} hour/s ago` 
