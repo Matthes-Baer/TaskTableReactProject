@@ -41,6 +41,7 @@ const HeaderElement = ():JSX.Element => {
         width: '50px',
         height: '50px',
         backgroundColor: darkmode ? '#33415C' : '#0353A4',
+        transition: 'all .5s'
     }
 
 
