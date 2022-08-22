@@ -10,19 +10,15 @@ interface CheckboxInterface {
 
 const Checkbox = ({ isChecked, index, label, checkHandler }: CheckboxInterface):JSX.Element => {
     const darkmode = useSelector((state: RootState) => state.colorTheme.value);
-
     const labelStyle = {
-        color: isChecked ? '#EC214E' : darkmode ? 'white' : 'black',
+        color: darkmode ? 'white' : isChecked ? 'white' : 'black',
         transition: 'all .5s',
-        backgroundColor: darkmode ? '#001233' : '#ABC4FF',
+        backgroundColor: isChecked ? 'rgb(133,44,141)' : darkmode ? '#001233' : '#ABC4FF',
         width: '100%',
         height: '50px',
         boxShadow: '4px 4px 0px 0px #023E7D',
         border: darkmode ? '1px solid #E2EAFC' : '1px solid black',
     }
-
-
-
     return (
         <div className="col-xl-6 p-2 d-flex flex-column justify-content-center align-items-center text-center">
             <label className="d-flex justify-content-center align-items-center" style={labelStyle} htmlFor={`checkbox-${index}`}>{label}</label>
@@ -35,9 +31,5 @@ const Checkbox = ({ isChecked, index, label, checkHandler }: CheckboxInterface):
         </div>
     )
 }
-
-
-
-
 
 export default Checkbox;

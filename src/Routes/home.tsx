@@ -24,7 +24,7 @@ import winterLandscape from '../images/winterLandscape.jpg';
 // https://coolors.co/palette/edf2fb-e2eafc-d7e3fc-ccdbfd-c1d3fe-b6ccfe-abc4ff
 // green: #7bf1a8
 // red: #ee6055
-// akzent: #EC214E
+// akzent: #EC214E / 'rgb(133,44,141)'
 
 const HomeRoute = () => {
     const darkmode = useSelector((state: RootState) => state.colorTheme.value)
