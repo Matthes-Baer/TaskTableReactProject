@@ -68,7 +68,7 @@ const TodoTaskContainer = (): JSX.Element => {
                             </div>
                             <div className="row d-flex justify-content-center align-items-center">
                                 {item.badges?.map(element => {
-                                    return <TodoBadgesComponent badge={element.name}/>
+                                    return <TodoBadgesComponent key={item.id + element.name} badge={element.name}/>
                                     })}
                             </div>
                             

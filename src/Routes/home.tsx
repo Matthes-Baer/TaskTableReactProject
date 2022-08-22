@@ -30,7 +30,12 @@ import { changeCurrentTime } from "../features/CurrentTimeSlice";
 const HomeRoute = () => {
     const darkmode = useSelector((state: RootState) => state.colorTheme.value)
     const dispatch = useDispatch();
-    const refTest = useRef(null)
+
+    useEffect(() => {
+        console.log(
+            'Todo: transitions, background, colors, Aufräumen'
+        )
+    }, [])
 
     //* Automatische Updates für aktuelle letzte Zeiten
     const interval = setInterval(() => {
@@ -79,7 +84,7 @@ const HomeRoute = () => {
                     <div className="col-lg-5 rounded" style={tasksLeftSide}>
                         <TasksLeftSide />
                     </div>
-                    <div className="col-lg-5 rounded" style={tasksRightSide}>
+                    <div className="col-lg-5 rounded align-self-end position-relative" style={tasksRightSide}>
                         <TasksRightSide />
                     </div>
                     {/* <button onClick={() => localStorage.clear}>CLEAR HERE</button> */}
