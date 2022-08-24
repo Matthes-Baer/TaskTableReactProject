@@ -1,10 +1,7 @@
 import { Fragment, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../app/store";
-import { Link } from "react-router-dom";
 
-import homeworkIcon from '../images/homework icon.png';
-import timeIcon from '../images/time icon.png';
 import TodoBadgesComponent from "./TodoBadgesComponent";
 
 const CompletedTaskContainer = () => {
@@ -23,11 +20,11 @@ const CompletedTaskContainer = () => {
             <h2>Finished Tasks</h2>
             <div 
                 className="container text-center mb-4" 
-                style={{ border: darkmode ? '1px solid #E2EAFC' : '1px solid black', backgroundColor: darkmode ? '#002855' : '#ABC4FF', height: '300px', overflowY: 'scroll' }}
+                style={{ border: darkmode ? '1px solid #E2EAFC' : '1px solid black', backgroundColor: darkmode ? '#002855' : '#ABC4FF', height: '500px', overflowY: 'scroll'}}
             >
             {doneTodoState && doneTodoState.map((item, index) => {
                 return (
-                    <div key={item.id} className="row d-flex align-items-center p-2 m-1 mt-4 rounded task" style={singleTodoTask}>
+                    <div key={item.id} className="row d-flex align-items-center p-2 m-1 mt-4 rounded task" data-aos="fade-up" style={singleTodoTask}>
                         <div className="d-flex justify-content-evenly align-items-center">
                             <div className="col-lg-5 p-1">
                                 <h5>{item.title}</h5>
@@ -38,31 +35,20 @@ const CompletedTaskContainer = () => {
                             </div>
                         </div>
                         <div className="row d-flex justify-content-center align-items-center">
-                                {item.badges?.map(element => {
-                                    return <TodoBadgesComponent key={item.id + element.name} badge={element.name}/>
-                                    })}
-                            </div>
+                            {item.badges?.map(element => {
+                                return <TodoBadgesComponent key={item.id + element.name} badge={element.name}/>
+                                })}
+                        </div>
                         <div className="container-fluid d-flex justify-content-end align-items-center">
                                {(currentTime - item.completedTime) > 60 
                                ? `finished ${Math.round((currentTime - item.completedTime) / 60)} hour/s ago` 
                                : `finished ${Math.max(0, Math.round(currentTime - item.completedTime))} minute/s ago` 
                                }
-
-
-                               
-                               
                         </div>
-                        {/* <div 
-                            style={{width: '50px', height: '50px', backgroundColor: 'red'}}
-                            onClick={() => setCurrentTime(new Date().getTime() / 1000 / 60)}
-                            >
-                               Get current time
-                        </div> */}
-                </div>
+                    </div>
                 )
             })}
-            
-        </div>
+            </div>
         </Fragment>
     )
 }

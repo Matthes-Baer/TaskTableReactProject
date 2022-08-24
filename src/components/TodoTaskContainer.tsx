@@ -49,7 +49,7 @@ const TodoTaskContainer = (): JSX.Element => {
             >
                 {todoState && todoState.map((item, idx) => {
                     return(
-                        <div key={item.id} className="row d-flex align-items-start m-2 rounded task position-relative justify-content-center" style={singleTodoTask}>
+                        <div key={item.id} className="row d-flex align-items-start m-2 rounded task position-relative justify-content-center" data-aos="fade-up" style={singleTodoTask}>
                             <div 
                                 style={deleteStyle}
                                 onClick={() => deleteFromActive(item, idx, dispatchCall)}

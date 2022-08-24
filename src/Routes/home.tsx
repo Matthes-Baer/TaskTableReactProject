@@ -20,6 +20,7 @@ import landscape from '../images/landscape.jpg';
 import bears from '../images/winterBears.jpg';
 import winterLandscape from '../images/winterLandscape.jpg';
 import { changeCurrentTime } from "../features/CurrentTimeSlice";
+import InnerContainerBackgroundStuff from "../components/InnerContainerBackgroundStuff";
 
 // COLORS:
 // https://coolors.co/palette/edf2fb-e2eafc-d7e3fc-ccdbfd-c1d3fe-b6ccfe-abc4ff
@@ -77,10 +78,11 @@ const HomeRoute = () => {
   
     return (
         <div className="container-fluid d-flex justify-content-center align-items-center" style={mainContainer}>
-            <div style={innerContainer} className="d-flex justify-content-evenly row mt-5 mb-5">
+            <div style={innerContainer} className="d-flex justify-content-evenly row mt-5 mb-5 position-relative">
                 <HeaderElement />
                 <SideBar />
-                <div className="row col-lg-12 d-flex align-items-start justify-content-evenly mt-5 mb-5">
+                <InnerContainerBackgroundStuff />
+                <div className="row col-lg-12 d-flex align-items-start justify-content-evenly mt-5 mb-5" style={{zIndex: 5}}>
                     <div className="col-lg-5 rounded" style={tasksLeftSide}>
                         <TasksLeftSide />
                     </div>
