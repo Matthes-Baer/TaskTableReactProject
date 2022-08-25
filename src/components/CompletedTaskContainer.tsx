@@ -17,7 +17,7 @@ const CompletedTaskContainer = () => {
 
     return (
         <Fragment>
-            <h2>Finished Tasks</h2>
+            <h2 className="p-3">Finished Tasks</h2>
             <div 
                 className="container text-center mb-4" 
                 style={{ border: darkmode ? '1px solid #E2EAFC' : '1px solid black', backgroundColor: darkmode ? '#002855' : '#ABC4FF', height: '500px', overflowY: 'scroll'}}

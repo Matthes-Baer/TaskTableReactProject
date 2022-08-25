@@ -102,7 +102,7 @@ const TasksLeftSide = () => {
         <Fragment> 
             <div className="row d-flex justify-content-center align-items-start rounded">
                 <div className='col-lg-12 row text-center d-flex justify-content-center'>
-                    <h2 className='col-lg-12 text-center'>Task Configuration</h2>
+                    <h2 className='col-lg-12 text-center p-3'>Task Configuration</h2>
                     <div className='col-lg-12 text-center'><i>maximum of 50 characters for comments</i></div>
                     <input className="p-1 m-1 col-lg-5" type="text" placeholder="title for task" value={title} onChange={(event) => updateInput(event, setTitle)} />
                     <input className="p-1 m-1 col-lg-5" type="text" placeholder="comment for task" value={comment} onChange={(event) => updateInput(event, setComment)} />

@@ -63,17 +63,17 @@ const HomeRoute = () => {
     };
 
     const tasksLeftSide = {
-        border: darkmode ? '2px solid #EDF2FB' : '2px solid black',
         boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
         backgroundColor: darkmode ? '#001233' : '#ABC4FF',
         color: darkmode ? 'white' : 'black',
+        borderRadius: '5%',
     }
 
     const tasksRightSide = {
-        border: darkmode ? '2px solid #EDF2FB' : '2px solid black',
         boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
         backgroundColor: darkmode ? '#001233' : '#ABC4FF',
         color: darkmode ? 'white' : 'black',
+        borderRadius: '5%',
     }
   
     return (
@@ -83,10 +83,10 @@ const HomeRoute = () => {
                 <SideBar />
                 <InnerContainerBackgroundStuff />
                 <div className="row col-lg-12 d-flex align-items-start justify-content-evenly mt-5 mb-5" style={{zIndex: 5}}>
-                    <div className="col-lg-5 rounded" style={tasksLeftSide}>
+                    <div className="col-lg-5" style={tasksLeftSide}>
                         <TasksLeftSide />
                     </div>
-                    <div className="col-lg-5 rounded align-self-end position-relative" style={tasksRightSide}>
+                    <div className="col-lg-5 align-self-end position-relative" style={tasksRightSide}>
                         <TasksRightSide />
                     </div>
                     {/* <button onClick={() => localStorage.clear}>CLEAR HERE</button> */}

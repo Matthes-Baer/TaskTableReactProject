@@ -171,8 +171,7 @@ const SideBar = (): JSX.Element => {
 
       const sideBar = {
         boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
-        border: darkmode ? '2px solid #EDF2FB' : '2px solid black',
-        zIndex: '9000'
+        zIndex: '9000',
       };
       
     return (
