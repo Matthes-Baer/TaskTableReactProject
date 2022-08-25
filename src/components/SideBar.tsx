@@ -178,13 +178,14 @@ const SideBar = (): JSX.Element => {
       const sideBar = {
         boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
         zIndex: '9000',
+        borderRadius: '35px'
       };
       
     return (
         <div className="row col-lg-8 position-relative mt-5" style={sideBar}>
           <SidebarBackgrounDecorationComponent />
           <div className="col-xl-4 d-flex justify-content-center">
-            <img src={SpaceshipPNG} style={{ maxWidth: '200%', maxHeight: '400px' }}/>
+            <img src={SpaceshipPNG} style={{ maxWidth: '95%', maxHeight: '350px' }}/>
           </div>
           <div className="col-xl-8 p-3">
           <div className="d-flex align-items-center flex-column row">
