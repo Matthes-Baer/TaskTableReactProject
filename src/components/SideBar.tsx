@@ -166,7 +166,8 @@ const SideBar = (): JSX.Element => {
 
       const heroIconStyle = {
         width: '25px',
-        height: '25px'
+        height: '25px',
+        backgroundColor: darkmode ? '#001233' : '#ABC4FF',
       }
 
       const sideBar = {
@@ -306,9 +307,10 @@ const SideBar = (): JSX.Element => {
                 top: '50%',
                 left: '50%',
                 transform: 'translate(-50%, -50%)',
-                backgroundColor: '#B6CCFE',
+                backgroundColor: darkmode ? '#001233' : '#ABC4FF',
                 zIndex: '15',
-                borderRadius: '50%'
+                borderRadius: '50%',
+                color: darkmode ? "white" : "black",
               }}
               >
                 <div style={{width:'inherit', height: 'inherit', fontSize: '30px' }} className="d-flex align-items-center justify-content-center flex-column">
