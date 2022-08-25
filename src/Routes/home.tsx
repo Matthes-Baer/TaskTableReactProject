@@ -34,7 +34,7 @@ const HomeRoute = () => {
 
     useEffect(() => {
         console.log(
-            'Todo: transitions, background, colors, Aufräumen', 'Schatten statt borders & mehr borderRadius?'
+            'Todo: transitions, background stuff hinzufügen mit Animation, colors, Aufräumen'
         )
     }, [])
 
