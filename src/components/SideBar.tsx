@@ -83,25 +83,25 @@ const SideBar = (): JSX.Element => {
         if (success) {
           if (darkmode) {
             let targetTimeline = gsap.timeline({});
-            targetTimeline.to(currentTarget, { duration: 0.5, backgroundColor: '#7bf1a8' });
-            targetTimeline.to(currentTarget, { duration: 0.5, backgroundColor: '#001233' });
+            targetTimeline.to(currentTarget, { duration: 0.2, backgroundColor: '#7bf1a8' });
+            targetTimeline.to(currentTarget, { duration: 0.2, backgroundColor: '#001233' });
             callback && callback();
           } else {
             let targetTimeline = gsap.timeline({});
-            targetTimeline.to(currentTarget, { duration: 0.5, backgroundColor: '#7bf1a8' });
-            targetTimeline.to(currentTarget, { duration: 0.5, backgroundColor: '#ABC4FF' });
+            targetTimeline.to(currentTarget, { duration: 0.2, backgroundColor: '#7bf1a8' });
+            targetTimeline.to(currentTarget, { duration: 0.2, backgroundColor: '#ABC4FF' });
             callback && callback();
           }
           
         } else {
           if (darkmode) {
             let targetTimeline = gsap.timeline({});
-            targetTimeline.to(currentTarget, { duration: 0.5, backgroundColor: 'red' });
-            targetTimeline.to(currentTarget, { duration: 0.5, backgroundColor: '#001233' });
+            targetTimeline.to(currentTarget, { duration: 0.2, backgroundColor: 'red' });
+            targetTimeline.to(currentTarget, { duration: 0.2, backgroundColor: '#001233' });
           } else {
             let targetTimeline = gsap.timeline({});
-            targetTimeline.to(currentTarget, { duration: 0.5, backgroundColor: 'red' });
-            targetTimeline.to(currentTarget, { duration: 0.5, backgroundColor: '#ABC4FF' });
+            targetTimeline.to(currentTarget, { duration: 0.2, backgroundColor: 'red' });
+            targetTimeline.to(currentTarget, { duration: 0.2, backgroundColor: '#ABC4FF' });
           }
         }
       }
@@ -165,6 +165,11 @@ const SideBar = (): JSX.Element => {
       }
 
       const heroIconStyle = {
+        width: '25px',
+        height: '25px',
+      }
+
+      const heroIconStyleRevert = {
         width: '25px',
         height: '25px',
         backgroundColor: darkmode ? '#001233' : '#ABC4FF',
@@ -315,7 +320,7 @@ const SideBar = (): JSX.Element => {
               >
                 <div style={{width:'inherit', height: 'inherit', fontSize: '30px' }} className="d-flex align-items-center justify-content-center flex-column">
                   {workOrRelax ? formattedWorkingSeconds : formattedRelaxSeconds}
-                  <div onClick={(target) => !playing ? gsapTimerAnimation(target, true, () => resetTimer()) : gsapTimerAnimation(target, false)} style={heroIconStyle} className="d-flex justify-content-center align-items-center rounded-circle">
+                  <div onClick={(target) => !playing ? gsapTimerAnimation(target, true, () => resetTimer()) : gsapTimerAnimation(target, false)} style={heroIconStyleRevert} className="d-flex justify-content-center align-items-center rounded-circle">
                     <RewindIcon />
                   </div>
                 </div>
