@@ -80,7 +80,7 @@ export default function InnerContainerBackgroundStuff() {
                 opacity: 0.9,
                 top: 900, 
                 right: 0,
-                zIndex: 0
+                zIndex: 0,
                 }}>
             </div>
         </div>
