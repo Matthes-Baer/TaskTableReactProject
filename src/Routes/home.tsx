@@ -64,14 +64,14 @@ const HomeRoute = () => {
 
     const tasksLeftSide = {
         boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
-        backgroundColor: darkmode ? '#001233' : '#ABC4FF',
+        backgroundColor: darkmode ? '#001233' : '#E2EAFC',
         color: darkmode ? 'white' : 'black',
         borderRadius: '35px',
     }
 
     const tasksRightSide = {
         boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
-        backgroundColor: darkmode ? '#001233' : '#ABC4FF',
+        backgroundColor: darkmode ? '#001233' : '#E2EAFC',
         color: darkmode ? 'white' : 'black',
         borderRadius: '35px',
     }

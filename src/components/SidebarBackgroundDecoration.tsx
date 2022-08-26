@@ -6,7 +6,7 @@ const SidebarBackgrounDecorationComponent = (): JSX.Element => {
     const darkmode = useSelector((state: RootState) => state.colorTheme.value);
 
     const absoluteBackground = {
-        backgroundColor: darkmode ? '#001233' : '#ABC4FF',
+        backgroundColor: darkmode ? '#001233' : '#E2EAFC',
         height: '100%', 
         width: '100%', 
         bottom: 0, 
@@ -22,7 +22,6 @@ const SidebarBackgrounDecorationComponent = (): JSX.Element => {
         opacity: darkmode ? '100%' : '50%',
         borderRadius: '35px'
     }
-
 
     return (
         <div className={classes.container}>

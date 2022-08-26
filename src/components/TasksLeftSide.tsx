@@ -3,15 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import TodoTaskContainer from '../components/TodoTaskContainer';
 import Checkbox from "../components/Checkbox";
-
 import { addActiveTodo } from "../features/ActiveTodosSlice";
-
 import { RootState } from '../app/store';
 import { changeCurrentTime } from '../features/CurrentTimeSlice';
 import { gsap } from 'gsap';
-import { useId } from "react-id-generator";
-
-
 
 interface badgeInterface {
     singleBadge: {
@@ -39,7 +34,7 @@ const TasksLeftSide = () => {
    const buttonStyle = {
     border: colorTheme ? '1px solid #E2EAFC' : '1px solid black',
     boxShadow: '4px 4px 0px 0px #023E7D',
-    backgroundColor: colorTheme ? '#001233' : '#ABC4FF',
+    backgroundColor: colorTheme ? '#001233' : '#D7E3FC',
     fontSize: '25px',
     color: colorTheme ? 'white' : 'black',
    }
@@ -47,7 +42,7 @@ const TasksLeftSide = () => {
    const horizontalLine = {
     width: '100%',
     height: '5px',
-    backgroundImage: 'linear-gradient(to Right, #ABC4FF, #0466C8)',
+    backgroundImage: 'linear-gradient(to Right, #E2EAFC, rgb(133,44,141))',
     boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
    }
 

@@ -10,9 +10,9 @@ const CompletedTaskContainer = () => {
     const currentTime = useSelector((state: RootState) => state.currentTime.value);
 
     const singleTodoTask = {
-        border: darkmode ? '1px solid #E2EAFC' : '1px solid black',
-        backgroundColor: darkmode ? '#001233' : '#ABC4FF',
-        boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
+        backgroundColor: darkmode ? '#001233' : '#D7E3FC',
+        boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.25)',
+        fontSize: '20px',
     }
 
     return (
@@ -20,7 +20,7 @@ const CompletedTaskContainer = () => {
             <h2 className="p-3">Finished Tasks</h2>
             <div 
                 className="container text-center mb-4" 
-                style={{ border: darkmode ? '1px solid #E2EAFC' : '1px solid black', backgroundColor: darkmode ? '#002855' : '#ABC4FF', height: '500px', overflowY: 'scroll'}}
+                style={{ border: darkmode ? '1px solid #E2EAFC' : '1px solid black', backgroundColor: darkmode ? '#002855' : '#EDF2FB', height: '500px', overflowY: 'scroll'}}
             >
             {doneTodoState && doneTodoState.map((item, index) => {
                 return (

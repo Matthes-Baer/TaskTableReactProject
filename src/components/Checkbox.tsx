@@ -13,7 +13,7 @@ const Checkbox = ({ isChecked, index, label, checkHandler }: CheckboxInterface):
     const labelStyle = {
         color: darkmode ? 'white' : isChecked ? 'white' : 'black',
         transition: 'all .5s',
-        backgroundColor: isChecked ? 'rgb(133,44,141)' : darkmode ? '#001233' : '#ABC4FF',
+        backgroundColor: isChecked ? 'rgb(133,44,141)' : darkmode ? '#001233' : '#D7E3FC',
         width: '100%',
         height: '50px',
         boxShadow: '4px 4px 0px 0px #023E7D',

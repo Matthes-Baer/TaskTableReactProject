@@ -89,7 +89,7 @@ const SideBar = (): JSX.Element => {
           } else {
             let targetTimeline = gsap.timeline({});
             targetTimeline.to(currentTarget, { duration: 0.2, backgroundColor: '#7bf1a8' });
-            targetTimeline.to(currentTarget, { duration: 0.2, backgroundColor: '#ABC4FF' });
+            targetTimeline.to(currentTarget, { duration: 0.2, backgroundColor: '#E2EAFC' });
             callback && callback();
           }
           
@@ -101,7 +101,7 @@ const SideBar = (): JSX.Element => {
           } else {
             let targetTimeline = gsap.timeline({});
             targetTimeline.to(currentTarget, { duration: 0.2, backgroundColor: 'red' });
-            targetTimeline.to(currentTarget, { duration: 0.2, backgroundColor: '#ABC4FF' });
+            targetTimeline.to(currentTarget, { duration: 0.2, backgroundColor: '#E2EAFC' });
           }
         }
       }
@@ -120,7 +120,7 @@ const SideBar = (): JSX.Element => {
       
       const playStopButtonStyle = {
         color: playing ? 'black' : darkmode ? 'white' : 'black',
-        backgroundColor: playing ? "#7bf1a8" : darkmode ? '#001233' : '#ABC4FF',
+        backgroundColor: playing ? "#7bf1a8" : darkmode ? '#001233' : '#D7E3FC',
         minWidth: '100%',
         height: 'auto',
         boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
@@ -128,7 +128,7 @@ const SideBar = (): JSX.Element => {
       }
 
       const workButtonStyle = {
-        backgroundColor: workOrRelax ? "#7bf1a8" : darkmode ? '#001233' : '#ABC4FF',
+        backgroundColor: workOrRelax ? "#7bf1a8" : darkmode ? '#001233' : '#D7E3FC',
         color: workOrRelax ? 'black' : darkmode ? 'white' : 'black',
         cursor: "pointer",
         boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
@@ -137,7 +137,7 @@ const SideBar = (): JSX.Element => {
       }
 
       const relaxButtonStyle = {
-        backgroundColor: !workOrRelax ? "#7bf1a8" : darkmode ? '#001233' : '#ABC4FF',
+        backgroundColor: !workOrRelax ? "#7bf1a8" : darkmode ? '#001233' : '#D7E3FC',
         color: !workOrRelax ? 'black' : darkmode ? 'white' : 'black',
         cursor: "pointer",
         boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
@@ -146,7 +146,7 @@ const SideBar = (): JSX.Element => {
       }
 
       const buttonStyle = {
-        backgroundColor: darkmode ? '#001233' : '#ABC4FF',
+        backgroundColor: darkmode ? '#001233' : '#D7E3FC',
         color: darkmode ? 'white' : 'black',
         cursor: "pointer",
         boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
@@ -172,7 +172,7 @@ const SideBar = (): JSX.Element => {
       const heroIconStyleRevert = {
         width: '25px',
         height: '25px',
-        backgroundColor: darkmode ? '#001233' : '#ABC4FF',
+        backgroundColor: darkmode ? '#001233' : '#D7E3FC',
       }
 
       const sideBar = {
@@ -313,7 +313,7 @@ const SideBar = (): JSX.Element => {
                 top: '50%',
                 left: '50%',
                 transform: 'translate(-50%, -50%)',
-                backgroundColor: darkmode ? '#001233' : '#ABC4FF',
+                backgroundColor: darkmode ? '#001233' : '#E2EAFC',
                 zIndex: '15',
                 borderRadius: '50%',
                 color: darkmode ? "white" : "black",

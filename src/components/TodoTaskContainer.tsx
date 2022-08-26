@@ -26,9 +26,9 @@ const TodoTaskContainer = (): JSX.Element => {
     // const [cookie, setCookie] = useCookies();
 
     const singleTodoTask = {
-        border: darkmode ? '1px solid #E2EAFC' : '1px solid black',
-        backgroundColor: darkmode ? '#001233' : '#ABC4FF',
-        boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
+        backgroundColor: darkmode ? '#001233' : '#D7E3FC',
+        boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.25)',
+        fontSize: '20px'
     }
 
     const deleteFromActive = (item: itemInterface, index: number, callback: Function) => {
@@ -45,7 +45,7 @@ const TodoTaskContainer = (): JSX.Element => {
             <h2>Active Tasks</h2>
             <div 
                 className="container text-center mb-4" 
-                style={{ border: darkmode ? '1px solid #E2EAFC' : '1px solid black', backgroundColor: darkmode ? '#002855' : '#ABC4FF', height: '300px', overflowY: 'scroll' }}
+                style={{ border: darkmode ? '1px solid #E2EAFC' : '1px solid black', backgroundColor: darkmode ? '#002855' : '#EDF2FB', height: '300px', overflowY: 'scroll' }}
             >
                 {todoState && todoState.map((item, idx) => {
                     return(
@@ -59,7 +59,7 @@ const TodoTaskContainer = (): JSX.Element => {
                             </div>
                             <div className="d-flex justify-content-evenly align-items-center mt-3">
                                 <div className="col-xl-5 p-1">
-                                    <h5>{item.title}</h5>
+                                    <h4>{item.title}</h4>
                                 </div>
                             
                                 <div className="col-xl-5 p-1">

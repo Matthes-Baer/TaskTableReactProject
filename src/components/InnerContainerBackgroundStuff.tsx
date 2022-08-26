@@ -9,13 +9,37 @@ export default function InnerContainerBackgroundStuff() {
     const movingRectangleRef2 = useRef(null);
     
     useLayoutEffect(() => {
-        var movingRectangleRef1Timeline = gsap.timeline({ repeat: Infinity });
-        movingRectangleRef1Timeline.to(movingRectangleRef1.current, { x: 0, y: 0, rotate: 0, perspective: 1000, duration: 1 });
-        movingRectangleRef1Timeline.to(movingRectangleRef1.current, { x: 30, y: 35, rotate: 25, perspective: 1000, duration: 10 });
-        movingRectangleRef1Timeline.to(movingRectangleRef1.current, { x: 70, y: 35, rotate: 35, perspective: 1000, duration: 12 });
-        movingRectangleRef1Timeline.to(movingRectangleRef1.current, { x: 25, y: 15, rotate: 75, perspective: 1000, rotateZ: 20, duration: 15 });
-        movingRectangleRef1Timeline.to(movingRectangleRef1.current, { x: 35, y: 25, rotate: 45, perspective: 1000, rotateZ: 15, duration: 13 });
-        movingRectangleRef1Timeline.to(movingRectangleRef1.current, { x: 0, y: 0, rotate: 0, perspective: 1000, duration: 7.5 });
+        var movingRectangleRef1Timeline = gsap.timeline({ repeat: 0 });
+        movingRectangleRef1Timeline.to(movingRectangleRef1.current, { x: 0, y: 0, rotate: 30, duration: 25 });
+        movingRectangleRef1Timeline.to(movingRectangleRef1.current, { x: 30, y: 35, rotate: 25, duration: 25 });
+        movingRectangleRef1Timeline.to(movingRectangleRef1.current, { x: 70, y: 35, rotate: 35, duration: 25 });
+        movingRectangleRef1Timeline.to(movingRectangleRef1.current, { x: 25, y: 15, rotate: 75, duration: 25 });
+        movingRectangleRef1Timeline.to(movingRectangleRef1.current, { x: 35, y: 25, rotate: 45, rotateZ: 15, duration: 25 });
+        movingRectangleRef1Timeline.to(movingRectangleRef1.current, { x: 0, y: 0, rotate: 0, duration: 25 });
+
+        const interval1 = setInterval(() => {
+            if (movingRectangleRef1Timeline.reversed()) {
+                movingRectangleRef1Timeline.play();
+            } else {
+                movingRectangleRef1Timeline.reverse();
+            }
+        }, 150000)
+
+        var movingRectangleRef2Timeline = gsap.timeline({ repeat: 0 });
+        movingRectangleRef2Timeline.to(movingRectangleRef2.current, { x: 0, y: 0, rotate: 30, duration: 35 });
+        movingRectangleRef2Timeline.to(movingRectangleRef2.current, { x: -30, y: -35, rotate: 25, duration: 35 });
+        movingRectangleRef2Timeline.to(movingRectangleRef2.current, { x: -70, y: 5, rotate: 55, duration: 35 });
+        movingRectangleRef2Timeline.to(movingRectangleRef2.current, { x: 0, y: 15, rotate: 135, duration: 35 });
+        movingRectangleRef2Timeline.to(movingRectangleRef2.current, { x: 20, y: 20, rotate: 45, duration: 35 });
+        movingRectangleRef2Timeline.to(movingRectangleRef2.current, { x: 0, y: 0, rotate: 45, duration: 35 });
+
+        const interval2 = setInterval(() => {
+            if (movingRectangleRef2Timeline.reversed()) {
+                movingRectangleRef2Timeline.play();
+            } else {
+                movingRectangleRef2Timeline.reverse();
+            }
+        }, 210000)
     }, []);
 
     return (    
@@ -30,6 +54,7 @@ export default function InnerContainerBackgroundStuff() {
                 top: 575, 
                 right: 0,
                 zIndex: 0,
+                boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
                 }}>
             </div>
             <div style={{
@@ -43,6 +68,7 @@ export default function InnerContainerBackgroundStuff() {
                 top: 775, 
                 right: 0,
                 zIndex: 0,
+                boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
                 }}>
             </div>
             <div style={{
@@ -56,6 +82,7 @@ export default function InnerContainerBackgroundStuff() {
                 top: 1200, 
                 right: 0,
                 zIndex: 0,
+                boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
                 }}>
             </div>
             <div style={{
@@ -68,7 +95,8 @@ export default function InnerContainerBackgroundStuff() {
                 position: 'absolute', 
                 top: 250, 
                 right: 0,
-                zIndex: 0
+                zIndex: 0,
+                boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
                 }}>
             </div>
             <div style={{
@@ -81,7 +109,8 @@ export default function InnerContainerBackgroundStuff() {
                 position: 'absolute', 
                 top: 400, 
                 left: 0,
-                zIndex: 0
+                zIndex: 0,
+                boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
                 }}>
             </div>
             <div style={{
@@ -95,6 +124,7 @@ export default function InnerContainerBackgroundStuff() {
                 top: 900, 
                 right: 0,
                 zIndex: 0,
+                boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
                 }}>
             </div>
 
@@ -108,22 +138,23 @@ export default function InnerContainerBackgroundStuff() {
                 left: 50,
                 opacity: 0.5,
                 zIndex: 0,
-                overflow: 'hidden'
+                boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
             }}
             ref={movingRectangleRef1}>
             </div>
 
             <div style={{
-                width: '100px',
-                height: '100px',
+                width: '200px',
+                height: '75px',
                 backgroundColor: 'transparent',
-                border: '3px solid #EC214E',
+                border: '2px solid rgb(133,44,141)',
                 position: 'absolute',
-                top: 200,
-                left: 50,
+                top: 500,
+                right: 100,
                 opacity: 0.5,
                 zIndex: 0,
-                overflow: 'hidden'
+                rotate: '45deg',
+                boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
             }}
             ref={movingRectangleRef2}>
             </div>
