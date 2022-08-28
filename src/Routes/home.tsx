@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addActiveTodo } from "../features/ActiveTodosSlice";
 import { RootState } from "../app/store";
 import { gsap } from "gsap";
+import { Helmet } from "react-helmet";
 
 
 import { changeColorTheme } from "../features/ColorSlice";
@@ -78,6 +79,10 @@ const HomeRoute = () => {
   
     return (
         <div className="container-fluid d-flex justify-content-center align-items-center" style={mainContainer}>
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>Task Table React Project</title>
+            </Helmet>
             <div style={innerContainer} className="d-flex justify-content-evenly row mt-5 mb-5 position-relative">
                 <HeaderElement />
                 <SideBar />
