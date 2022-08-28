@@ -35,14 +35,13 @@ const HomeRoute = () => {
 
     useEffect(() => {
         console.log(
-            'Todo: transitions, background stuff hinzufügen mit Animation, colors, Aufräumen'
+            'Todo: transitions, Aufräumen, Kleinere Bildschirmgrößen prüfen und ggf. responsive anpassen'
         )
     }, [])
 
     //* Automatische Updates für aktuelle letzte Zeiten
     const interval = setInterval(() => {
         dispatch(changeCurrentTime(new Date().getTime() / 1000 / 60));
-        console.log("update")
     }, 60000)
   
     const mainContainer = {
@@ -94,7 +93,6 @@ const HomeRoute = () => {
                     <div className="col-lg-5 align-self-end position-relative" style={tasksRightSide}>
                         <TasksRightSide />
                     </div>
-                    {/* <button onClick={() => localStorage.clear}>CLEAR HERE</button> */}
                 </div> 
             </div>
         </div>
