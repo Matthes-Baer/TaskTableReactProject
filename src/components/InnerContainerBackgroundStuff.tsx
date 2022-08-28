@@ -7,6 +7,7 @@ export default function InnerContainerBackgroundStuff() {
     const darkmode = useSelector((state: RootState) => state.colorTheme.value);
     const movingRectangleRef1 = useRef(null);
     const movingRectangleRef2 = useRef(null);
+    const movingRectangleRef3 = useRef(null);
     
     useLayoutEffect(() => {
         var movingRectangleRef1Timeline = gsap.timeline({ repeat: 0 });
@@ -40,6 +41,22 @@ export default function InnerContainerBackgroundStuff() {
                 movingRectangleRef2Timeline.reverse();
             }
         }, 210000)
+
+        var movingRectangleRef3Timeline = gsap.timeline({ repeat: 0 });
+        movingRectangleRef3Timeline.to(movingRectangleRef3.current, { x: 0, y: 0, rotate: 75, duration: 20 });
+        movingRectangleRef3Timeline.to(movingRectangleRef3.current, { x: 15, y: 15, rotate: 25, duration: 20 });
+        movingRectangleRef3Timeline.to(movingRectangleRef3.current, { x: 10, y: 5, rotate: 55, duration: 20 });
+        movingRectangleRef3Timeline.to(movingRectangleRef3.current, { x: 0, y: 15, rotate: 135, duration: 20 });
+        movingRectangleRef3Timeline.to(movingRectangleRef3.current, { x: 15, y: 20, rotate: 45, duration: 20 });
+        movingRectangleRef3Timeline.to(movingRectangleRef3.current, { x: 0, y: 0, rotate: 75, duration: 20 });
+
+        const interval3 = setInterval(() => {
+            if (movingRectangleRef3Timeline.reversed()) {
+                movingRectangleRef3Timeline.play();
+            } else {
+                movingRectangleRef3Timeline.reverse();
+            }
+        }, 120000)
     }, []);
 
     return (    
@@ -157,6 +174,22 @@ export default function InnerContainerBackgroundStuff() {
                 boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
             }}
             ref={movingRectangleRef2}>
+            </div>
+
+            <div style={{
+                width: '100px',
+                height: '75px',
+                backgroundColor: 'transparent',
+                border: '2px solid rgb(133,44,141)',
+                position: 'absolute',
+                top: 1000,
+                left: 25,
+                opacity: 0.5,
+                zIndex: 0,
+                rotate: '75deg',
+                boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
+            }}
+            ref={movingRectangleRef3}>
             </div>
         </div>
     )
