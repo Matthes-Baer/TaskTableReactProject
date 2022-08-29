@@ -58,8 +58,8 @@ const HomeRoute = () => {
         backgroundColor: darkmode ? '#023E7D' : '#D7E3FC',
         minHeight: '90vh',
         width: '75vw',
-        outline: darkmode ? '20px solid #002855' : '20px solid #E2EAFC',
         borderRadius: '15px',
+        boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.25)',
     };
 
     const tasksLeftSide = {

@@ -33,6 +33,8 @@ const HeaderElement = ():JSX.Element => {
         color: darkmode ? 'white' : 'black',
         minHeight: '100px',
         boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
+        borderTopLeftRadius: '15px',
+        borderTopRightRadius: '15px'
     }
 
     const darkmodeSwitcherStyle = {
@@ -41,7 +43,6 @@ const HeaderElement = ():JSX.Element => {
         height: '50px',
         transition: 'all .5s',
     }
-
 
     return (
         <div style={headerElement} className="row d-flex align-items-center justify-content-between">
