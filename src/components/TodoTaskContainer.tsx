@@ -25,7 +25,8 @@ const TodoTaskContainer = (): JSX.Element => {
     const singleTodoTask = {
         backgroundColor: darkmode ? '#001233' : '#D7E3FC',
         boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.25)',
-        fontSize: '20px'
+        fontSize: '20px',
+        transition: 'all .5s'
     }
 
     const deleteFromActive = (item: itemInterface, index: number, callback: Function) => {

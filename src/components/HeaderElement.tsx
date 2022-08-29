@@ -34,7 +34,7 @@ const HeaderElement = ():JSX.Element => {
         minHeight: '100px',
         boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
         borderTopLeftRadius: '15px',
-        borderTopRightRadius: '15px'
+        borderTopRightRadius: '15px',
     }
 
     const darkmodeSwitcherStyle = {

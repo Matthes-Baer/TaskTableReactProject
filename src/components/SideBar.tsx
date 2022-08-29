@@ -123,6 +123,7 @@ const SideBar = (): JSX.Element => {
         height: 'auto',
         boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
         border: darkmode ? '1px solid #E2EAFC' : '1px solid black',
+        transition: 'all .5s'
       }
 
       const workButtonStyle = {
@@ -132,6 +133,7 @@ const SideBar = (): JSX.Element => {
         boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
         border: darkmode ? '1px solid #E2EAFC' : '1px solid black',
         width: '100%',
+        transition: 'all .5s'
       }
 
       const relaxButtonStyle = {
@@ -141,6 +143,7 @@ const SideBar = (): JSX.Element => {
         boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
         border: darkmode ? '1px solid #E2EAFC' : '1px solid black',
         width: '100%',
+        transition: 'all .5s'
       }
 
       const buttonStyle = {
@@ -150,16 +153,19 @@ const SideBar = (): JSX.Element => {
         boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
         border: darkmode ? '1px solid #E2EAFC' : '1px solid black',
         width: '100%',
+        transition: 'all .5s'
       }
 
       const timerStylesLarge = {
         fontSize: '25px',
         color: darkmode ? 'white' : 'black',
+        transition: 'all .5s'
       }
       
       const timerStylesSmall = {
         fontSize: '12.5px',
         color: darkmode ? 'white' : 'black',
+        transition: 'all .5s'
       }
 
       const heroIconStyle = {
