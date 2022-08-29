@@ -4,7 +4,6 @@ import { useSelector } from "react-redux"
 import { RootState } from "../app/store"
 
 export default function InnerContainerBackgroundStuff() {
-    const darkmode = useSelector((state: RootState) => state.colorTheme.value);
     const movingRectangleRef1 = useRef(null);
     const movingRectangleRef2 = useRef(null);
     const movingRectangleRef3 = useRef(null);

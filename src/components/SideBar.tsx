@@ -16,19 +16,17 @@ import { PauseIcon } from '@heroicons/react/outline';
 //* components:
 import SidebarBackgrounDecorationComponent from "./SidebarBackgroundDecoration";
 
-//* images:
-import GalaxyPNG from '../images/space/GalaxyPNG.png';
+//* image:
 import SpaceshipPNG from '../images/space/SpaceshipPNG.png';
 
 
 const SideBar = (): JSX.Element => {
-    const [workingTime, setWorkingTime] = useState<number|boolean>(60);
-    const [relaxTime, setRelaxTime] = useState<number|boolean>(60);
+    const [workingTime, setWorkingTime] = useState<number|boolean>(600);
+    const [relaxTime, setRelaxTime] = useState<number|boolean>(600);
     const [workOrRelax, setWorkOrRelax] = useState<boolean>(true)
     const [playing, setPlaying] = useState<boolean>(false);
     const darkmode = useSelector((state: RootState) => state.colorTheme.value)
     const flipBoxFront = useRef(null);
-    const flipBoxBack = useRef(null);
 
     let workingMinutes = Math.floor(+workingTime / 60);
     let workingSeconds = (+workingTime - workingMinutes * 60);

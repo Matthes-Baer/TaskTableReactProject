@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import classes from './TodoBadgesComponent.module.css';
 
 export default function TodoBadgesComponent(props: { badge: string }) {

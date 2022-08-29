@@ -6,7 +6,6 @@ import { removeActiveTodo } from "../features/ActiveTodosSlice";
 import { addDoneTodo } from "../features/DoneTodoSlice";
 
 import "../CSS.css";
-import { useCookies } from "react-cookie";
 import TodoBadgesComponent from "./TodoBadgesComponent";
 
 interface itemInterface {
@@ -22,8 +21,6 @@ const TodoTaskContainer = (): JSX.Element => {
     const todoState = useSelector((state: RootState) => state.activeTodos.value);
     const currentTime = useSelector((state: RootState) => state.currentTime.value);
     const dispatch = useDispatch();
-
-    // const [cookie, setCookie] = useCookies();
 
     const singleTodoTask = {
         backgroundColor: darkmode ? '#001233' : '#D7E3FC',

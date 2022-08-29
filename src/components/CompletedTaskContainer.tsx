@@ -1,7 +1,6 @@
 import { Fragment, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../app/store";
-
 import TodoBadgesComponent from "./TodoBadgesComponent";
 
 const CompletedTaskContainer = () => {
@@ -51,10 +50,6 @@ const CompletedTaskContainer = () => {
             </div>
         </Fragment>
     )
-}
-
-const iconStyle = {
-    transform: 'scale(0.5)',
 }
 
 export default CompletedTaskContainer;

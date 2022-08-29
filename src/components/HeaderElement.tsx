@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../app/store";
 
@@ -6,8 +6,8 @@ import { changeColorTheme } from "../features/ColorSlice";
 
 import logo from '../images/logo.jpg';
 
-import EarthPNG from '../images/space/EarthPNG.png';
-import MoonPNG from '../images/space/MoonPNG.png';
+import EarthPNG from '../images/space/EarthPNG.jpg';
+import MoonPNG from '../images/space/MoonPNG.jpg';
 
 const HeaderElement = ():JSX.Element => {
     const [today, setToday] = useState(new Date().toLocaleDateString('de-DE', {
@@ -36,11 +36,9 @@ const HeaderElement = ():JSX.Element => {
     }
 
     const darkmodeSwitcherStyle = {
-        borderRadius: '50%',
         transform: darkmode ? 'rotate(-90deg)' : 'rotate(90deg)',
         width: '50px',
         height: '50px',
-        backgroundColor: darkmode ? '#33415C' : '#0353A4',
         transition: 'all .5s',
     }
 
@@ -54,7 +52,7 @@ const HeaderElement = ():JSX.Element => {
             </div>
             <div className="d-flex col-sm-3 justify-content-end">
                 <div onClick={changer} className="d-flex me-3 align-self-center" style={darkmodeSwitcherStyle}>
-                    <img src={darkmode ? MoonPNG : EarthPNG} />
+                    <img src={darkmode ? MoonPNG : EarthPNG} style={{borderRadius: '50%'}}/>
                 </div>
                 <div style={sideEffect}></div>
                 <div style={timeStyle} className="p-2">{today}</div>
