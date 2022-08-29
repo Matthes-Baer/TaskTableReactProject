@@ -35,7 +35,7 @@ const HomeRoute = () => {
 
     useEffect(() => {
         console.log(
-            'Todo: transitions, Aufräumen, Kleinere Bildschirmgrößen prüfen und ggf. responsive anpassen'
+            'Todo: Kleinere Bildschirmgrößen prüfen und ggf. responsive anpassen'
         )
     }, [])
 
