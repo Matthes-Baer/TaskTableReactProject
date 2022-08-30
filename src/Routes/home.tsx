@@ -1,25 +1,14 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addActiveTodo } from "../features/ActiveTodosSlice";
 import { RootState } from "../app/store";
-import { gsap } from "gsap";
 import { Helmet } from "react-helmet";
 
-
-import { changeColorTheme } from "../features/ColorSlice";
-
-// Components:
-import Checkbox from "../components/Checkbox";
 import SideBar from '../components/SideBar';
 import HeaderElement from '../components/HeaderElement';
-import TodoTaskContainer from '../components/TodoTaskContainer'
-import CompletedTaskContainer from '../components/CompletedTaskContainer';
 import TasksLeftSide from '../components/TasksLeftSide';
 import TasksRightSide from '../components/TasksRightSide';
 
 import landscape from '../images/landscape.jpg';
-import bears from '../images/winterBears.jpg';
-import winterLandscape from '../images/winterLandscape.jpg';
 import { changeCurrentTime } from "../features/CurrentTimeSlice";
 import InnerContainerBackgroundStuff from "../components/InnerContainerBackgroundStuff";
 
