@@ -7,6 +7,7 @@ import { addDoneTodo } from "../features/DoneTodoSlice";
 
 import "../CSS.css";
 import TodoBadgesComponent from "./TodoBadgesComponent";
+import { Helmet } from "react-helmet";
 
 interface itemInterface {
     id: string,
@@ -47,7 +48,7 @@ const TodoTaskContainer = (): JSX.Element => {
             >
                 {todoState && todoState.map((item, idx) => {
                     return(
-                        <div key={item.id} className="row d-flex align-items-start p-2 m-1 mt-4 rounded task position-relative justify-content-center" data-aos="fade-up" style={singleTodoTask}>
+                        <div key={item.id} className="row d-flex align-items-start p-2 m-1 mt-4 rounded task position-relative justify-content-center" style={singleTodoTask}>
                             <div 
                                 style={deleteStyle}
                                 onClick={() => deleteFromActive(item, idx, dispatchCall)}

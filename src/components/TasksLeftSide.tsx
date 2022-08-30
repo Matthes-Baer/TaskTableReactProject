@@ -68,7 +68,7 @@ const TasksLeftSide = () => {
 
         // GSAP
         const buttonPushTL = gsap.timeline({});
-        buttonPushTL.to(currentTarget, { duration: 0.25 ,y: 10, boxShadow: '4px -16px 0px 0px #023E7D' });
+        buttonPushTL.to(currentTarget, { duration: 0.25, y: 2.5, boxShadow: '4px 2.5px 0px 0px #023E7D' });
         buttonPushTL.to(currentTarget, { duration: 0.25, y: 0, boxShadow: '4px 4px 0px 0px #023E7D' });
 
         const linePushTL = gsap.timeline();
