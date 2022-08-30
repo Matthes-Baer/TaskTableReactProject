@@ -78,7 +78,7 @@ const TasksLeftSide = () => {
         callback();
         }
         else {
-            alert('Fehler: Titel fehlt, oder Kommentar übersteigt 50 Zeichen.');
+            alert('Error: Title is missing or description exceeds 50 characters.');
             
         }
       };

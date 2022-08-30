@@ -24,7 +24,7 @@ const CompletedTaskContainer = () => {
             >
             {doneTodoState && doneTodoState.map((item, index) => {
                 return (
-                    <div key={item.id} className="row d-flex align-items-center p-2 m-1 mt-4 rounded task" data-aos="fade-up" style={singleTodoTask}>
+                    <div key={item.id} className="row d-flex align-items-center p-2 m-1 mt-4 rounded task" style={singleTodoTask}>
                         <div className="d-flex justify-content-evenly align-items-center">
                             <div className="col-lg-5 p-1">
                                 <h5>{item.title}</h5>
@@ -39,7 +39,7 @@ const CompletedTaskContainer = () => {
                                 return <TodoBadgesComponent key={item.id + element.name} badge={element.name}/>
                                 })}
                         </div>
-                        <div className="container-fluid d-flex justify-content-end align-items-center">
+                        <div className="container-fluid d-flex justify-content-end align-items-center" style={{fontWeight: 'bold'}}>
                                {(currentTime - item.completedTime) > 60 
                                ? `finished ${Math.round((currentTime - item.completedTime) / 60)} hour/s ago` 
                                : `finished ${Math.max(0, Math.round(currentTime - item.completedTime))} minute/s ago` 

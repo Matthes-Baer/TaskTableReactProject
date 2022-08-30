@@ -40,14 +40,14 @@ const TodoTaskContainer = (): JSX.Element => {
 
     return (
         <Fragment>
-            <h2>Active Tasks</h2>
+            <h2 className="p-3">Active Tasks</h2>
             <div 
                 className="container text-center mb-4" 
                 style={{ border: darkmode ? '1px solid #E2EAFC' : '1px solid black', backgroundColor: darkmode ? '#002855' : '#EDF2FB', height: '300px', overflowY: 'scroll' }}
             >
                 {todoState && todoState.map((item, idx) => {
                     return(
-                        <div key={item.id} className="row d-flex align-items-start m-2 rounded task position-relative justify-content-center" data-aos="fade-up" style={singleTodoTask}>
+                        <div key={item.id} className="row d-flex align-items-start p-2 m-1 mt-4 rounded task position-relative justify-content-center" data-aos="fade-up" style={singleTodoTask}>
                             <div 
                                 style={deleteStyle}
                                 onClick={() => deleteFromActive(item, idx, dispatchCall)}
@@ -70,7 +70,7 @@ const TodoTaskContainer = (): JSX.Element => {
                                     })}
                             </div>
                             
-                            <div className="d-flex justify-content-end align-items-center">
+                            <div className="d-flex justify-content-end align-items-center" style={{fontWeight: 'bold'}}>
                                     {(currentTime - item.time) > 60 
                                     ? `created ${Math.round((currentTime - item.time) / 60)} hour/s ago` 
                                     : `created ${Math.round(currentTime - item.time)} minute/s ago` 
