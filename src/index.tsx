@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Helmet } from 'react-helmet';
 
 // Save every now and then after compiling if it doesn't update
 import 'bootstrap/dist/css/bootstrap.css';

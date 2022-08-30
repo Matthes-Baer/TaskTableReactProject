@@ -182,7 +182,7 @@ const SideBar = (): JSX.Element => {
       const sideBar = {
         boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
         zIndex: '9000',
-        borderRadius: '35px'
+        borderRadius: '35px',
       };
       
     return (

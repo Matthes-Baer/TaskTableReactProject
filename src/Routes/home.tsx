@@ -22,12 +22,6 @@ const HomeRoute = () => {
     const darkmode = useSelector((state: RootState) => state.colorTheme.value)
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        console.log(
-            'Todo: Kleinere Bildschirmgrößen prüfen und ggf. responsive anpassen'
-        )
-    }, [])
-
     //* Automatische Updates für aktuelle letzte Zeiten
     const interval = setInterval(() => {
         dispatch(changeCurrentTime(new Date().getTime() / 1000 / 60));
@@ -69,17 +63,18 @@ const HomeRoute = () => {
         <div className="container-fluid d-flex justify-content-center align-items-center" style={mainContainer}>
             <Helmet>
                 <meta charSet="utf-8" />
-                <title>Task Table React Project</title>
+                <title>Task Tour React Portfolio Project</title>
+                <meta name="description" content="A React Project for my portfolio"/>
             </Helmet>
-            <div style={innerContainer} className="d-flex justify-content-evenly row mt-5 mb-5 position-relative">
+            <div style={innerContainer} className="d-flex justify-content-evenly row mt-5 mb-5 position-relative p-3">
                 <HeaderElement />
                 <SideBar />
                 <InnerContainerBackgroundStuff />
-                <div className="row col-lg-12 d-flex align-items-start justify-content-evenly mt-5 mb-5" style={{zIndex: 5}}>
+                <div className="row col-lg-12 d-flex align-items-start justify-content-evenly mt-5 mb-3" style={{zIndex: 5}}>
                     <div className="col-lg-5" style={tasksLeftSide}>
                         <TasksLeftSide />
                     </div>
-                    <div className="col-lg-5 align-self-end position-relative" style={tasksRightSide}>
+                    <div className="col-lg-5 align-self-end position-relative mt-4" style={tasksRightSide}>
                         <TasksRightSide />
                     </div>
                 </div> 
