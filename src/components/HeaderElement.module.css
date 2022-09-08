@@ -1,4 +1,4 @@
-@media all and (max-width: 768px) {
+@media all and (max-width: 996px) {
     .containerResponsive {
         flex-direction: column;
     }
