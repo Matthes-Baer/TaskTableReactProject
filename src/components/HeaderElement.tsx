@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../app/store";
+import styles from "./HeaderElement.module.css";
 
 import { changeColorTheme } from "../features/ColorSlice";
 
@@ -18,7 +19,7 @@ const HeaderElement = ():JSX.Element => {
     const darkmode = useSelector((state: RootState) => state.colorTheme.value);
     const dispatch = useDispatch();
 
-    const changer = () => {
+    const changer = (): void => {
         if (darkmode) {
             localStorage.setItem('darkmode', JSON.stringify(false));
         }
@@ -35,6 +36,7 @@ const HeaderElement = ():JSX.Element => {
         boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
         borderTopLeftRadius: '15px',
         borderTopRightRadius: '15px',
+        zIndex: 5,
     }
 
     const darkmodeSwitcherStyle = {
@@ -45,25 +47,25 @@ const HeaderElement = ():JSX.Element => {
     }
 
     return (
-        <div style={headerElement} className="row d-flex align-items-center justify-content-between">
-            <div className="d-flex col-sm-8 justify-content-start">
-                <div className="ms-1" style={backgroundLogoStyle}></div>
-                <div className="ms-3" style={sideEffect}></div>
+        <div style={headerElement} className={styles.containerResponsive + " " + `d-flex align-items-center justify-content-between p-2`}>
+            <div className={"d-flex" + " " + styles.firstGroupResponsive}>
+                <div className="me-2" style={backgroundLogoStyle}></div>
+                <div className="" style={sideEffect}></div>
                 <h1 className="align-self-center">Task Tour</h1>
             </div>
-            <div className="d-flex col-sm-3 justify-content-end">
-                <div onClick={changer} className="d-flex me-3 align-self-center" style={darkmodeSwitcherStyle}>
-                    <img src={darkmode ? MoonPNG : EarthPNG} style={{borderRadius: '50%'}}/>
+            <div className="d-flex">
+                <div onClick={changer} className="me-2 align-self-center" style={darkmodeSwitcherStyle}>
+                    <img src={darkmode ? MoonPNG : EarthPNG} style={{borderRadius: '50%', height: '50px'}} alt=""/>
                 </div>
                 <div style={sideEffect}></div>
-                <div style={timeStyle} className="p-2">{today}</div>
+                <div style={timeStyle} className="align-self-center">{today}</div>
             </div>
         </div>
     )
 }
 
 const sideEffect = {
-    width: '10px',
+    width: '5px',
     height: 'auto',
     backgroundColor: '#EC214E',
     borderRadius: '10px 0 0 10px',

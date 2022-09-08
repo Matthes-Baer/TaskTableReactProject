@@ -1,0 +1,11 @@
+@media all and (max-width: 768px) {
+    .containerResponsive {
+        flex-direction: column;
+    }
+
+    .firstGroupResponsive {
+        margin-bottom: 10px;
+        justify-content: start;
+    }
+}
+

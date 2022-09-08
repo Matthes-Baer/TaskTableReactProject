@@ -71,6 +71,7 @@ export default function InnerContainerBackgroundStuff() {
                 right: 0,
                 zIndex: 0,
                 boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
+                overflow: 'hidden'
                 }}>
             </div>
             <div style={{
@@ -85,6 +86,7 @@ export default function InnerContainerBackgroundStuff() {
                 right: 0,
                 zIndex: 0,
                 boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
+                overflow: 'hidden'
                 }}>
             </div>
             <div style={{
@@ -99,6 +101,7 @@ export default function InnerContainerBackgroundStuff() {
                 right: 0,
                 zIndex: 0,
                 boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
+                overflow: 'hidden'
                 }}>
             </div>
             <div style={{
@@ -113,6 +116,7 @@ export default function InnerContainerBackgroundStuff() {
                 right: 0,
                 zIndex: 0,
                 boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
+                overflow: 'hidden'
                 }}>
             </div>
             <div style={{
@@ -127,6 +131,7 @@ export default function InnerContainerBackgroundStuff() {
                 left: 0,
                 zIndex: 0,
                 boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
+                overflow: 'hidden'
                 }}>
             </div>
             <div style={{
@@ -141,6 +146,7 @@ export default function InnerContainerBackgroundStuff() {
                 right: 0,
                 zIndex: 0,
                 boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
+                overflow: 'hidden'
                 }}>
             </div>
 
@@ -155,6 +161,7 @@ export default function InnerContainerBackgroundStuff() {
                 opacity: 0.5,
                 zIndex: 0,
                 boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
+                overflow: 'hidden'
             }}
             ref={movingRectangleRef1}>
             </div>
@@ -171,6 +178,7 @@ export default function InnerContainerBackgroundStuff() {
                 zIndex: 0,
                 rotate: '45deg',
                 boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
+                overflow: 'hidden'
             }}
             ref={movingRectangleRef2}>
             </div>
@@ -187,6 +195,7 @@ export default function InnerContainerBackgroundStuff() {
                 zIndex: 0,
                 rotate: '75deg',
                 boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
+                overflow: 'hidden'
             }}
             ref={movingRectangleRef3}>
             </div>
