@@ -1,13 +1,11 @@
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../app/store";
-
 import { removeActiveTodo } from "../features/ActiveTodosSlice";
 import { addDoneTodo } from "../features/DoneTodoSlice";
 
 import "../CSS.css";
 import TodoBadgesComponent from "./TodoBadgesComponent";
-import { Helmet } from "react-helmet";
 
 interface itemInterface {
     id: string,
