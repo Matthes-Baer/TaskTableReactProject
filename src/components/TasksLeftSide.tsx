@@ -130,6 +130,7 @@ const TasksLeftSide = () => {
             type="text"
             placeholder="title for task"
             value={title}
+            data-testid="titleInput"
             onChange={(event) => updateInput(event, setTitle)}
           />
           <input
@@ -137,6 +138,7 @@ const TasksLeftSide = () => {
             type="text"
             placeholder="comment for task"
             value={comment}
+            data-testid="commentInput"
             onChange={(event) => updateInput(event, setComment)}
           />
           <div className="col-lg-12 row d-flex justify-content-center align-items-center">

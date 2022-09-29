@@ -1,8 +1,12 @@
-import { screen } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 // We're using our own custom render function and not RTL's render.
 import { renderWithProviders } from "../utils/test-utils";
 import App from "../App";
 import CompletedTaskContainer from "../components/CompletedTaskContainer";
+import TasksLeftSide from "../components/TasksLeftSide";
+
+import { useSelector } from "react-redux";
+import { RootState } from "../app/store";
 
 test("App component renders", async () => {
   renderWithProviders(<App />);
@@ -20,8 +24,12 @@ test("include 1 h2 heading", async () => {
   expect(Element).toHaveLength(1);
 });
 
-test("no finished todo tasks at first", async () => {
-  renderWithProviders(<CompletedTaskContainer />);
-  const Element = screen.getByTestId("to-do-task");
-  expect(Element).toThrowError();
+test("able to change title and comment state dynamically", async () => {
+  renderWithProviders(<TasksLeftSide />);
+  const titleInput = screen.getByTestId("titleInput");
+  const commentInput = screen.getByTestId("commentInput");
+
+  const testValue = "testValue";
+  fireEvent.change(titleInput, { target: { value: testValue } });
+  fireEvent.change(commentInput, { target: { value: testValue } });
 });
