@@ -37,10 +37,3 @@ test("able to change title and comment state dynamically", async () => {
   fireEvent.change(titleInput, { target: { value: testValue } });
   fireEvent.change(commentInput, { target: { value: testValue } });
 });
-
-test("wait for appearance", async () => {
-  renderWithProviders(<TodoTaskContainer />);
-  await waitFor(() => {
-    expect(screen.getByTestId("to-do-task")).toBeInTheDocument();
-  });
-});

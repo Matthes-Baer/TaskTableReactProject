@@ -1,25 +1,25 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { Helmet } from 'react-helmet';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { Helmet } from "react-helmet";
 
 // Save every now and then after compiling if it doesn't update
-import 'bootstrap/dist/css/bootstrap.css';
+import "bootstrap/dist/css/bootstrap.css";
 
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 
 // imports regarding Redux
-import { Provider } from 'react-redux';
-import { store } from './app/store';
+import { Provider } from "react-redux";
+import { store } from "./app/store";
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-      <Provider store={store}>
-        <App />
-      </Provider>
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
 
