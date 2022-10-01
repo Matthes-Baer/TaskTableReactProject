@@ -1,49 +1,76 @@
 // app.test.js
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { fireEvent } from "@testing-library/react";
 import { renderWithProviders } from "../utils/test-utils";
 
-import { LocationDisplay } from "../App";
 import App from "../App";
-import { BrowserRouter, MemoryRouter } from "react-router-dom";
+import {
+  BrowserRouter,
+  Link,
+  MemoryRouter,
+  Route,
+  Routes,
+} from "react-router-dom";
+import Navbar from "../components/Navbar";
+import HomeRoute from "../Routes/home";
+import ErrorPage from "../Routes/ErrorPage";
 
-// test("full app rendering/navigating", async () => {
-//   render(<App />, { wrapper: BrowserRouter });
-//   const user = userEvent.setup()
+const Container = () => {
+  return (
+    <BrowserRouter>
+      <Link to="/somethingTHere">Something</Link>
+      <Routes>
+        <Route path="/" element={<Navbar />}>
+          <Route index element={<HomeRoute />} />
+          <Route path="*" element={<ErrorPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
+};
 
-//   // verify page content for default route
-//   expect(screen.getByText(/you are home/i)).toBeInTheDocument();
+test("full app rendering/navigating", async () => {
+  renderWithProviders(<Container />);
 
-//   // verify page content for expected route after navigating
-//   await user.click(screen.getByText(/about/i));
-//   expect(screen.getByText(/you are on the about page/i)).toBeInTheDocument();
-// });
+  // verify page content for default route
+  expect(screen.getByText(/Task Tour/i)).toBeInTheDocument();
 
-// test("landing on a bad page", () => {
-//   const badRoute = "/some/bad/route";
+  // verify page content for expected route after navigating - Ich habe keine anklickbaren Links, weshalb einer simuliert wird
+  await fireEvent.click(screen.getByText(/Something/i));
+  expect(screen.getByText(/Back home/i)).toBeInTheDocument();
+});
 
-//   // use <MemoryRouter> when you want to manually control the history
-//   renderWithProviders(
-//     <MemoryRouter initialEntries={[badRoute]}>
-//       <App />
-//     </MemoryRouter>
-//   );
+test("landing on a bad page", () => {
+  const badRoute = "/some/bad/route";
 
-//   // verify navigation to "no match" route
-//   expect(screen.getByText(/no match/i)).toBeInTheDocument();
-// });
+  // use <MemoryRouter> when you want to manually control the history
+  renderWithProviders(
+    <MemoryRouter initialEntries={[badRoute]}>
+      <Link to="/somethingTHere">Something</Link>
+      <Routes>
+        <Route path="/" element={<Navbar />}>
+          <Route index element={<HomeRoute />} />
+          <Route path="*" element={<ErrorPage />} />
+        </Route>
+      </Routes>
+    </MemoryRouter>
+  );
+
+  // verify navigation to "404 - Error Page"" route
+  expect(screen.getByText(/404 - Error Page/i)).toBeInTheDocument();
+});
 
 // test("rendering a component that uses useLocation", () => {
 //   const route = "/some-route";
 
 //   // use <MemoryRouter> when you want to manually control the history
-//   renderWithProviders(
+//   render(
 //     <MemoryRouter initialEntries={[route]}>
 //       <LocationDisplay />
 //     </MemoryRouter>
 //   );
 
-//   // verify location display is rendered
+// verify location display is rendered
 //   expect(screen.getByTestId("location-display")).toHaveTextContent(route);
 // });
