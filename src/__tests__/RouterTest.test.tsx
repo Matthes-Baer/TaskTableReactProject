@@ -30,35 +30,37 @@ const Container = () => {
   );
 };
 
-test("full app rendering/navigating", async () => {
-  renderWithProviders(<Container />);
+describe("React Router logic with Mockup", () => {
+  test("full app rendering/navigating", async () => {
+    renderWithProviders(<Container />);
 
-  // verify page content for default route
-  expect(screen.getByText(/Task Tour/i)).toBeInTheDocument();
+    // verify page content for default route
+    expect(screen.getByText(/Task Tour/i)).toBeInTheDocument();
 
-  // verify page content for expected route after navigating - Ich habe keine anklickbaren Links, weshalb einer simuliert wird
-  await fireEvent.click(screen.getByText(/Something/i));
-  expect(screen.getByText(/Back home/i)).toBeInTheDocument();
-});
+    // verify page content for expected route after navigating - Ich habe keine anklickbaren Links, weshalb einer simuliert wird
+    await fireEvent.click(screen.getByText(/Something/i));
+    expect(screen.getByText(/Back home/i)).toBeInTheDocument();
+  });
 
-test("landing on a bad page", () => {
-  const badRoute = "/some/bad/route";
+  test("landing on a bad page", () => {
+    const badRoute = "/some/bad/route";
 
-  // use <MemoryRouter> when you want to manually control the history
-  renderWithProviders(
-    <MemoryRouter initialEntries={[badRoute]}>
-      <Link to="/somethingTHere">Something</Link>
-      <Routes>
-        <Route path="/" element={<Navbar />}>
-          <Route index element={<HomeRoute />} />
-          <Route path="*" element={<ErrorPage />} />
-        </Route>
-      </Routes>
-    </MemoryRouter>
-  );
+    // use <MemoryRouter> when you want to manually control the history
+    renderWithProviders(
+      <MemoryRouter initialEntries={[badRoute]}>
+        <Link to="/somethingTHere">Something</Link>
+        <Routes>
+          <Route path="/" element={<Navbar />}>
+            <Route index element={<HomeRoute />} />
+            <Route path="*" element={<ErrorPage />} />
+          </Route>
+        </Routes>
+      </MemoryRouter>
+    );
 
-  // verify navigation to "404 - Error Page"" route
-  expect(screen.getByText(/404 - Error Page/i)).toBeInTheDocument();
+    // verify navigation to "404 - Error Page"" route
+    expect(screen.getByText(/404 - Error Page/i)).toBeInTheDocument();
+  });
 });
 
 // test("rendering a component that uses useLocation", () => {
