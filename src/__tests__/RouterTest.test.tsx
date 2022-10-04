@@ -39,7 +39,6 @@ beforeEach(() => {
 describe("React Router logic with Mockup", () => {
   test("full app rendering/navigating", async () => {
     renderWithProviders(<Container />);
-
     // verify page content for default route
     expect(screen.getByText(/Task Tour/i)).toBeInTheDocument();
 
