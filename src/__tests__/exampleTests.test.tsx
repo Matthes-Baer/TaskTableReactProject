@@ -1,16 +1,9 @@
-import {
-  findByTestId,
-  fireEvent,
-  getByTestId,
-  screen,
-  waitFor,
-} from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 // We're using our own custom render function and not RTL's render.
 import { renderWithProviders } from "../utils/test-utils";
 import App from "../App";
 import CompletedTaskContainer from "../components/CompletedTaskContainer";
 import TasksLeftSide from "../components/TasksLeftSide";
-import TodoTaskContainer from "../components/TodoTaskContainer";
 
 test("App component renders", async () => {
   renderWithProviders(<App />);

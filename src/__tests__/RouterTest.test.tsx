@@ -30,6 +30,12 @@ const Container = () => {
   );
 };
 
+beforeEach(() => {
+  console.log("beforeEach() function");
+});
+
+//! .concurrent führt hier zum Error, weil dann zweimal der Container gerendered wird und die Ergebnisse doppelt gefunden werden
+
 describe("React Router logic with Mockup", () => {
   test("full app rendering/navigating", async () => {
     renderWithProviders(<Container />);
@@ -59,7 +65,7 @@ describe("React Router logic with Mockup", () => {
     );
 
     // verify navigation to "404 - Error Page"" route
-    expect(screen.getByText(/404 - Error Page/i)).toBeInTheDocument();
+    expect(screen.getByText(/Back home/i)).toBeInTheDocument();
   });
 });
 
