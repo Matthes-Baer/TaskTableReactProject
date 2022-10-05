@@ -5,6 +5,22 @@ import App from "../App";
 import CompletedTaskContainer from "../components/CompletedTaskContainer";
 import TasksLeftSide from "../components/TasksLeftSide";
 
+// const testResponseData = { testKey: "testDat" };
+
+// const fetchTest = jest.fn((url, options) => {
+//   return new Promise((resolve, reject) => {
+//     const testResponse = {
+//       ok: true,
+//       json() {
+//         return new Promise((resolve, reject) => {
+//           resolve(testResponseData);
+//         });
+//       },
+//     };
+//     resolve(testResponse);
+//   });
+// });
+
 test("App component renders", async () => {
   renderWithProviders(<App />);
 });
@@ -30,3 +46,7 @@ test("able to change title and comment state dynamically", async () => {
   fireEvent.change(titleInput, { target: { value: testValue } });
   fireEvent.change(commentInput, { target: { value: testValue } });
 });
+
+// test('promise Test', () => {
+//   expect(fetchTest({ key: 'test' })).resolves().toEqual(testResponseData);
+// })
