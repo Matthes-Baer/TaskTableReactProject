@@ -1,6 +1,6 @@
-var callback = (txt: string): string => {
-  return txt;
-};
+// var callback = (txt: string): string => {
+//   return txt;
+// };
 
 export const Sum = (a: any, b: any): number => {
   return a + b;
