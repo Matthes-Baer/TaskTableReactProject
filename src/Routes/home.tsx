@@ -1,6 +1,3 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../app/store";
 import { Helmet } from "react-helmet";
 
 import SideBar from "../components/SideBar";
@@ -11,6 +8,7 @@ import TasksRightSide from "../components/TasksRightSide";
 import landscape from "../images/landscape.jpg";
 import { changeCurrentTime } from "../features/CurrentTimeSlice";
 import InnerContainerBackgroundStuff from "../components/InnerContainerBackgroundStuff";
+import { useAppDispatch, useAppSelector } from "../hooks/ReduxHooks";
 
 // COLORS:
 // https://coolors.co/palette/edf2fb-e2eafc-d7e3fc-ccdbfd-c1d3fe-b6ccfe-abc4ff
@@ -19,8 +17,8 @@ import InnerContainerBackgroundStuff from "../components/InnerContainerBackgroun
 // akzent: #EC214E / 'rgb(133,44,141)'
 
 const HomeRoute = () => {
-  const darkmode = useSelector((state: RootState) => state.colorTheme.value);
-  const dispatch = useDispatch();
+  const darkmode = useAppSelector((state) => state.colorTheme.value);
+  const dispatch = useAppDispatch();
 
   //* Automatische Updates für aktuelle letzte Zeiten
   const interval = setInterval(() => {

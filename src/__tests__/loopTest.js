@@ -4,7 +4,7 @@ let loopNumbers = [
   [2, 5, 7],
 ];
 
-//! Loop Example for tests
-test.each(loopNumbers)("somethingTest", (a, b, total) => {
+//! Loop Example for tests with %i
+test.each(loopNumbers)("add %i to %i should be %i", (a, b, total) => {
   expect(a + b).toBe(total);
 });
