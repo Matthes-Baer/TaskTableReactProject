@@ -17,6 +17,9 @@ import HomeRoute from "../Routes/home";
 import ErrorPage from "../Routes/ErrorPage";
 import { act } from "react-dom/test-utils";
 
+//! act(() => { redner(...) }) - kann genutzt werden, wenn sich der State verändert im component (beispielsweise beim Fetching mit Loading)
+//! queryByTestId('...') funktioniert, wenn man ein Element anvisieren möchte, dass ursprünglich noch nicht gerendered wurde (was erst noch "erscheint") / Statt getByTestId('...')
+
 const Container = () => {
   return (
     <BrowserRouter>
