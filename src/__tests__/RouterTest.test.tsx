@@ -15,6 +15,7 @@ import {
 import Navbar from "../components/Navbar";
 import HomeRoute from "../Routes/home";
 import ErrorPage from "../Routes/ErrorPage";
+import { act } from "react-dom/test-utils";
 
 const Container = () => {
   return (
