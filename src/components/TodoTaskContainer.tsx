@@ -1,8 +1,8 @@
-import { Fragment, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../app/store";
+import { Fragment } from "react";
 import { removeActiveTodo } from "../features/ActiveTodosSlice";
 import { addDoneTodo } from "../features/DoneTodoSlice";
+import { useAppSelector } from "../hooks/ReduxHooks";
+import { useAppDispatch } from "../hooks/ReduxHooks";
 
 import "../CSS.css";
 import TodoBadgesComponent from "./TodoBadgesComponent";
@@ -16,12 +16,10 @@ interface itemInterface {
 }
 
 const TodoTaskContainer = (): JSX.Element => {
-  const darkmode = useSelector((state: RootState) => state.colorTheme.value);
-  const todoState = useSelector((state: RootState) => state.activeTodos.value);
-  const currentTime = useSelector(
-    (state: RootState) => state.currentTime.value
-  );
-  const dispatch = useDispatch();
+  const darkmode = useAppSelector((state) => state.colorTheme.value);
+  const todoState = useAppSelector((state) => state.activeTodos.value);
+  const currentTime = useAppSelector((state) => state.currentTime.value);
+  const dispatch = useAppDispatch();
 
   const singleTodoTask = {
     backgroundColor: darkmode ? "#001233" : "#D7E3FC",
