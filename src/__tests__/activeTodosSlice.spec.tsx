@@ -38,10 +38,10 @@ describe("active todos reducer", () => {
     expect(actual.value).toEqual([todoTask]);
   });
 
-  //   it("should handle decrement", () => {
-  //     const actual = counterReducer(initialState, decrement());
-  //     expect(actual.value).toEqual(2);
-  //   });
+  it("should handle removeActiveTodo", () => {
+    const actual = ActiveTodosSlice({ value: [todoTask] }, removeActiveTodo(0));
+    expect(actual.value).toEqual([]);
+  });
 
   //   it("should handle incrementByAmount", () => {
   //     const actual = counterReducer(initialState, incrementByAmount(2));
