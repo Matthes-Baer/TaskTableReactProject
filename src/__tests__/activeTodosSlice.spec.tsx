@@ -43,6 +43,24 @@ describe("active todos reducer", () => {
     expect(actual.value).toEqual([]);
   });
 
+  it("should handle removeActiveTodo with multiple elements as initial state", () => {
+    const secondElement = {
+      id: "2",
+      title: "todoTask",
+      badges: [
+        { name: "important", checked: true },
+        { name: "longterm", checked: false },
+      ],
+      comment: "this is something important",
+      time: 9000,
+    };
+    const actual = ActiveTodosSlice(
+      { value: [todoTask, secondElement] },
+      removeActiveTodo(1)
+    );
+    expect(actual.value).toEqual([todoTask]);
+  });
+
   //   it("should handle incrementByAmount", () => {
   //     const actual = counterReducer(initialState, incrementByAmount(2));
   //     expect(actual.value).toEqual(5);
