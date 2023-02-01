@@ -1,7 +1,5 @@
 import { Helmet } from "react-helmet";
-import { useSelector } from "react-redux";
-import { RootState } from "../app/store";
-import landscape from "../images/landscape.jpg";
+import landscape from "../images/landscape.webp";
 import { Link } from "react-router-dom";
 import gsap from "gsap";
 import { useState } from "react";

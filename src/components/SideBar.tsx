@@ -17,7 +17,7 @@ import { PauseIcon } from "@heroicons/react/24/outline";
 import SidebarBackgrounDecorationComponent from "./SidebarBackgroundDecoration";
 
 //* image:
-import SpaceshipPNG from "../images/space/SpaceshipPNG.png";
+import SpaceshipPNG from "../images/space/SpaceshipPNG.webp";
 
 const SideBar = (): JSX.Element => {
   const [workingTime, setWorkingTime] = useState<number | boolean>(600);
@@ -226,7 +226,7 @@ const SideBar = (): JSX.Element => {
       <div className="col-xl-4 d-flex justify-content-center">
         <img
           src={SpaceshipPNG}
-          style={{ maxWidth: "95%", maxHeight: "350px" }}
+          style={{ width: "100%", height: "auto" }}
           alt="spaceship flying with purple and white colors"
         />
       </div>
@@ -249,6 +249,7 @@ const SideBar = (): JSX.Element => {
                           )
                         : gsapTimerAnimation(target, false)
                     }
+                    aria-label="StopButton"
                   >
                     <strong>Play</strong>
                   </button>
@@ -264,6 +265,7 @@ const SideBar = (): JSX.Element => {
                           )
                         : gsapTimerAnimation(target, false)
                     }
+                    aria-label="PlayButton"
                   >
                     <strong>Stop</strong>
                   </button>
@@ -284,6 +286,7 @@ const SideBar = (): JSX.Element => {
                         )
                       : gsapTimerAnimation(target, false)
                   }
+                  aria-label="decreaseWorkTime"
                 >
                   <div style={heroIconStyle}>
                     <ArrowDownIcon />
@@ -299,6 +302,7 @@ const SideBar = (): JSX.Element => {
                       ? setWorkOrRelax(true)
                       : gsapTimerAnimation(target, false)
                   }
+                  aria-label="workTimeActive"
                 >
                   <div style={heroIconStyle}>
                     <PlayIcon />
@@ -317,6 +321,7 @@ const SideBar = (): JSX.Element => {
                         )
                       : gsapTimerAnimation(target, false)
                   }
+                  aria-label="increaseWorkTime"
                 >
                   <div style={heroIconStyle}>
                     <ArrowUpIcon />
@@ -336,6 +341,7 @@ const SideBar = (): JSX.Element => {
                         )
                       : gsapTimerAnimation(target, false)
                   }
+                  aria-label="decreaseRelaxTime"
                 >
                   <div style={heroIconStyle}>
                     <ArrowDownIcon />
@@ -351,6 +357,7 @@ const SideBar = (): JSX.Element => {
                       ? setWorkOrRelax(false)
                       : gsapTimerAnimation(target, false)
                   }
+                  aria-label="relaxTimeActive"
                 >
                   <div style={heroIconStyle}>
                     <PauseIcon />
@@ -369,6 +376,7 @@ const SideBar = (): JSX.Element => {
                         )
                       : gsapTimerAnimation(target, false)
                   }
+                  aria-label="increaseRelaxTime"
                 >
                   <div style={heroIconStyle}>
                     <ArrowUpIcon />

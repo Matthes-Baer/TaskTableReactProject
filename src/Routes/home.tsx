@@ -5,7 +5,7 @@ import HeaderElement from "../components/HeaderElement";
 import TasksLeftSide from "../components/TasksLeftSide";
 import TasksRightSide from "../components/TasksRightSide";
 
-import landscape from "../images/landscape.jpg";
+import landscape from "../images/landscape.webp";
 import { changeCurrentTime } from "../features/CurrentTimeSlice";
 import InnerContainerBackgroundStuff from "../components/InnerContainerBackgroundStuff";
 import { useAppDispatch, useAppSelector } from "../hooks/ReduxHooks";
