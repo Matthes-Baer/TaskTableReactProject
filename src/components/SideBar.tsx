@@ -226,7 +226,7 @@ const SideBar = (): JSX.Element => {
       <div className="col-xl-4 d-flex justify-content-center">
         <img
           src={SpaceshipPNG}
-          style={{ width: "100%", height: "auto" }}
+          style={{ width: "100%", height: "auto", maxWidth: "250px" }}
           alt="spaceship flying with purple and white colors"
         />
       </div>
