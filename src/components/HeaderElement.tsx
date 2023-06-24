@@ -63,7 +63,7 @@ const HeaderElement = (): JSX.Element => {
       <div className={"d-flex" + " " + styles.firstGroupResponsive}>
         <div className="me-2" style={backgroundLogoStyle}></div>
         <div className="" style={sideEffect}></div>
-        <h1 className="align-self-center">Task Table</h1>
+        <h1 className="align-self-center">Task Tour</h1>
       </div>
       <div className="d-flex">
         <div
