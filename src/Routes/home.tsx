@@ -64,7 +64,7 @@ const HomeRoute = () => {
     >
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Task Tour React Portfolio Project</title>
+        <title>Task Tour</title>
         <meta name="description" content="A React Project for my portfolio" />
       </Helmet>
       <div
