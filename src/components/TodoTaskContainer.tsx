@@ -70,7 +70,7 @@ const TodoTaskContainer = (): JSX.Element => {
                   ❌
                 </div>
                 <div
-                  className="d-flex justify-content-evenly align-items-center mt-3"
+                  className="d-flex flex-column flex-sm-row justify-content-evenly align-items-center mt-3"
                   style={{
                     borderBottomStyle: "solid",
                     borderBottomColor: darkmode ? "#E2EAFC" : "black",
@@ -85,11 +85,11 @@ const TodoTaskContainer = (): JSX.Element => {
                     {item.comment ? (
                       <span>{item.comment}</span>
                     ) : (
-                      <span>Kein Kommentar hinzugefügt</span>
+                      <span>No comment added</span>
                     )}
                   </div>
                 </div>
-                <div className="row d-flex justify-content-center align-items-center">
+                <div className="d-flex justify-content-center align-items-center flex-wrap">
                   {item.badges?.map((element) => {
                     return (
                       <TodoBadgesComponent
@@ -101,8 +101,8 @@ const TodoTaskContainer = (): JSX.Element => {
                 </div>
 
                 <div
-                  className="d-flex justify-content-end align-items-center mt-3 mb-2"
-                  style={{ fontWeight: "bold", fontSize: "15px" }}
+                  className="d-flex justify-content-center justify-content-sm-end align-items-center mt-sm-3 mb-sm-2"
+                  style={{ fontWeight: "bold", fontSize: "13.5px" }}
                 >
                   {currentTime - item.time > 60
                     ? `created ${Math.round(

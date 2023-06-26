@@ -11,7 +11,7 @@ const ErrorPage = () => {
 
   const mainContainer = {
     backgroundColor: darkmode ? "#001233" : "#EDF2FB",
-    minHeight: "150vh",
+    minHeight: "100vh",
     backgroundImage: `url(${landscape})`,
     backgroundRepeat: "no-repeat",
     backgroundAttachment: "fixed",

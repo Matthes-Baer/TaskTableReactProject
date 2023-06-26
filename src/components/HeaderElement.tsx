@@ -2,11 +2,8 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../app/store";
 import styles from "./HeaderElement.module.css";
-
 import { changeColorTheme } from "../features/ColorSlice";
-
 import logo from "../images/logo.webp";
-
 import EarthPNG from "../images/space/EarthPNG.webp";
 import MoonPNG from "../images/space/MoonPNG.webp";
 

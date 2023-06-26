@@ -9,6 +9,7 @@ import landscape from "../images/landscape.webp";
 import { changeCurrentTime } from "../features/CurrentTimeSlice";
 import InnerContainerBackgroundStuff from "../components/InnerContainerBackgroundStuff";
 import { useAppDispatch, useAppSelector } from "../hooks/ReduxHooks";
+import { useEffect } from "react";
 
 // COLORS:
 // https://coolors.co/palette/edf2fb-e2eafc-d7e3fc-ccdbfd-c1d3fe-b6ccfe-abc4ff
@@ -21,13 +22,17 @@ const HomeRoute = () => {
   const dispatch = useAppDispatch();
 
   //* Automatische Updates für aktuelle letzte Zeiten
-  const interval = setInterval(() => {
-    dispatch(changeCurrentTime(new Date().getTime() / 1000 / 60));
-  }, 60000);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      dispatch(changeCurrentTime(new Date().getTime() / 1000 / 60));
+    }, 60000);
+
+    return () => clearInterval(interval);
+  }, [dispatch]);
 
   const mainContainer = {
     backgroundColor: darkmode ? "#001233" : "#EDF2FB",
-    minHeight: "150vh",
+    minHeight: "100vh",
     backgroundImage: `url(${landscape})`,
     backgroundRepeat: "no-repeat",
     backgroundAttachment: "fixed",
