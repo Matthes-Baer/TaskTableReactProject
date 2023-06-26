@@ -69,7 +69,14 @@ const TodoTaskContainer = (): JSX.Element => {
                 >
                   ❌
                 </div>
-                <div className="d-flex justify-content-evenly align-items-center mt-3">
+                <div
+                  className="d-flex justify-content-evenly align-items-center mt-3"
+                  style={{
+                    borderBottomStyle: "solid",
+                    borderBottomColor: darkmode ? "#E2EAFC" : "black",
+                    borderBottomWidth: "1px",
+                  }}
+                >
                   <div className="col-xl-5 p-1">
                     <h4>{item.title}</h4>
                   </div>
@@ -94,8 +101,8 @@ const TodoTaskContainer = (): JSX.Element => {
                 </div>
 
                 <div
-                  className="d-flex justify-content-end align-items-center"
-                  style={{ fontWeight: "bold" }}
+                  className="d-flex justify-content-end align-items-center mt-3 mb-2"
+                  style={{ fontWeight: "bold", fontSize: "15px" }}
                 >
                   {currentTime - item.time > 60
                     ? `created ${Math.round(

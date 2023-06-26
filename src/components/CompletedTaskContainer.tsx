@@ -39,7 +39,14 @@ const CompletedTaskContainer = () => {
                 className="row d-flex align-items-center p-2 m-1 mt-4 rounded task"
                 style={singleTodoTask}
               >
-                <div className="d-flex justify-content-evenly align-items-center">
+                <div
+                  className="d-flex justify-content-evenly align-items-center"
+                  style={{
+                    borderBottomStyle: "solid",
+                    borderBottomColor: darkmode ? "#E2EAFC" : "black",
+                    borderBottomWidth: "1px",
+                  }}
+                >
                   <div className="col-lg-5 p-1">
                     <h5>{item.title}</h5>
                   </div>
@@ -63,8 +70,8 @@ const CompletedTaskContainer = () => {
                   })}
                 </div>
                 <div
-                  className="container-fluid d-flex justify-content-end align-items-center"
-                  style={{ fontWeight: "bold" }}
+                  className="container-fluid d-flex justify-content-end align-items-center mt-3 mb-2"
+                  style={{ fontWeight: "bold", fontSize: "15px" }}
                 >
                   {currentTime - item.completedTime > 60
                     ? `finished ${Math.round(
