@@ -161,7 +161,7 @@ const TasksLeftSide = () => {
               dispatchAddFunction(callbackForDispatchAdd, current)
             }
           >
-            Add task
+            Add Task
           </button>
           <span
             ref={horizontalLineRef}
